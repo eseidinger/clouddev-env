@@ -64,11 +64,11 @@ pipeline {
             steps {
                 container('docker') {
                     withCredentials([usernamePassword(credentialsId: 'harbor', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                        sh 'docker login harbor.eseidinger.de/internal/ -u $USERNAME -p $PASSWORD'
-                        sh 'docker tag cloud-tools harbor.eseidinger.de/internal/cloud-tools:latest'
-                        sh 'docker tag harbor.eseidinger.de/internal/cloud-tools:latest harbor.eseidinger.de/internal/cloud-tools:$TAG_NAME'
-                        sh 'docker push harbor.eseidinger.de/internal/cloud-tools:latest'
-                        sh 'docker push harbor.eseidinger.de/internal/cloud-tools:$TAG_NAME'
+                        sh 'docker login harbor.eseidinger.de/public/ -u $USERNAME -p $PASSWORD'
+                        sh 'docker tag cloud-tools harbor.eseidinger.de/public/cloud-tools:latest'
+                        sh 'docker tag harbor.eseidinger.de/public/cloud-tools:latest harbor.eseidinger.de/public/cloud-tools:$TAG_NAME'
+                        sh 'docker push harbor.eseidinger.de/public/cloud-tools:latest'
+                        sh 'docker push harbor.eseidinger.de/public/cloud-tools:$TAG_NAME'
                     }
                 }
             }
