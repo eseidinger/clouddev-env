@@ -1,0 +1,4 @@
+Host eseidinger-clouddev
+    Hostname [Hostname]
+    User clouddev
+    IdentityFile [IdentityFile]

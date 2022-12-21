@@ -1,0 +1,10 @@
+services:
+  cloud-test:
+    image: cloud-tools
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./image-test:/image-test
+      - ./tools/versions.sh:/tools/versions.sh
+    entrypoint:
+      - sh
+      - /image-test/test.sh

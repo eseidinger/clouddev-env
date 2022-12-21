@@ -1,0 +1,28 @@
+services:
+  docker:
+    image: docker:dind
+    privileged: true
+    expose:
+      - 2376
+    volumes:
+      - certs:/certs
+    environment:
+      - DOCKER_TLS_CERTDIR=/certs
+  cloud-tools:
+    image: cloud-tools
+    volumes:
+      - certs:/certs
+      - ./image:/build/image
+      - ./image-test:/build/image-test
+      - ./tools:/build/tools
+    environment:
+      - DOCKER_TLS_CERTDIR=/certs
+      - DOCKER_HOST=tcp://docker:2376
+      - DOCKER_TLS_VERIFY=1
+      - DOCKER_CERT_PATH=/certs/client
+    entrypoint:
+      - 'tail'
+      - '-f'
+      - '/dev/null'
+volumes:
+  certs: {}
