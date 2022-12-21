@@ -1,6 +1,6 @@
 # Cloud Development Environment
 
-This repository contains Python and shell scripts to set up a local Ubuntu development VM.
+This repository contains Python and shell scripts to set up a local Ubuntu VM containing cloud development tools.
 The VM can be created on Linux, MacOS and Windows using Multipass.
 
 There are also scripts to set up a SSH connection from your host machine to the development VM.
@@ -16,7 +16,7 @@ The following tools will be installed inside the VM as well as the Docker image:
 * [Docker](https://www.docker.com/): provides the ability to package and run an application in a loosely isolated environment called a container
 * [Kubectl](https://kubernetes.io/docs/reference/kubectl/): the Kubernetes CLI
 * [Helm](https://helm.sh/): the package manager for Kubernetes
-* [Miniconda](https://docs.conda.io/en/latest/miniconda.html): open source package management system and environment management system with Python
+* [Miniconda](https://docs.conda.io/en/latest/miniconda.html): open source package management system and environment management including Python
 * [AWS CLI](https://aws.amazon.com/de/cli/): a unified tool to manage your AWS services
 * [Ansible](https://docs.ansible.com/ansible/latest/index.html): a radically simple IT automation system
 * [Terraform](https://www.terraform.io/): automate infrastructure on any cloud
@@ -120,7 +120,7 @@ To test the image run:
 docker compose up
 ```
 
-This will mount the Go test module in the _image-test_ directory, install Terratest and execute the tests.
+This will mount the Go test module in the _image-test_ directory, install [Terratest](https://terratest.gruntwork.io/) and execute the tests.
 The tests will check if all the tools were installed and have the correct version. 
 
 To try the tools in the image using a Docker in Docker environment, run:
