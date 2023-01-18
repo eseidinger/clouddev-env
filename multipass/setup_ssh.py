@@ -50,8 +50,10 @@ def get_clean_ssh_config(vm_name: str) -> str:
     if os.path.isfile(ssh_config_filename):
         with open(ssh_config_filename, mode="r", encoding="utf-8") as ssh_config_file:
             ssh_config_file_contents = ssh_config_file.read()
-        clean_ssh_config = re.sub(f"Host {vm_name}" + r"(?:\n\s+.*)+", "",
+        ssh_config_file_contents = ssh_config_file_contents.replace("\r\n", "\n")
+        clean_ssh_config = re.sub(f"Host {vm_name}" + r"(?:\n\s+.*)+\n?", "",
                                   ssh_config_file_contents)
+        clean_ssh_config = clean_ssh_config.strip()
     else:
         clean_ssh_config = ""
     return clean_ssh_config
@@ -64,7 +66,7 @@ if __name__ == "__main__":
     ip = get_vm_ip(args.vm_name)
     ssh_config_snippet = create_ssh_config_snippet(args.vm_name, ip)
     old_ssh_config = get_clean_ssh_config(args.vm_name)
-    if not old_ssh_config.endswith(os.linesep):
-        old_ssh_config = old_ssh_config + os.linesep
+    if old_ssh_config != "" and not old_ssh_config.endswith("\n"):
+        old_ssh_config = old_ssh_config + "\n"
     with open(ssh_config_filename, mode="w", encoding="utf-8") as file:
         file.write(old_ssh_config + ssh_config_snippet)
