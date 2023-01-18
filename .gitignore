@@ -1,5 +1,5 @@
 .idea/
 *.iml
-eseidinger-clouddev_rsa*
+*_rsa*
 cloud-config.yaml
 __pycache__/

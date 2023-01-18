@@ -29,11 +29,13 @@ class TestToolVersions(unittest.TestCase):
                     key, version = line.split('=')
                     self.versions[key] = version.strip('"')
 
+        self.vm_name = os.getenv('VM_NAME', 'eseidinger-clouddev')
+
     def test_docker(self):
         """
         Test Docker version
         """
-        version_info = subprocess.run('ssh eseidinger-clouddev "docker version"',
+        version_info = subprocess.run(f'ssh {self.vm_name} "docker version"',
                                       shell=True, capture_output=True, check=True)
         match = re.search(r'\d+:(\d+\.\d+\.\d+)',
                           self.versions['DOCKER_VERSION'])
@@ -47,7 +49,7 @@ class TestToolVersions(unittest.TestCase):
         """
         Test MicroK8s version
         """
-        version_info = subprocess.run('ssh eseidinger-clouddev "microk8s version"',
+        version_info = subprocess.run(f'ssh {self.vm_name} "microk8s version"',
                                       shell=True, capture_output=True, check=True)
         match = re.search(
             r'(\d+\.\d+)/', self.versions['MICROK8S_VERSION'])
@@ -61,7 +63,7 @@ class TestToolVersions(unittest.TestCase):
         """
         Test miniconda version
         """
-        version_info = subprocess.run('ssh eseidinger-clouddev "~/miniconda3/bin/conda --version"',
+        version_info = subprocess.run(f'ssh {self.vm_name} "~/miniconda3/bin/conda --version"',
                                       shell=True, capture_output=True, check=True)
         match = re.search(r'[^_]+_(\d+\.\d+\.\d+)',
                           self.versions['MINICONDA_VERSION'])
@@ -75,7 +77,7 @@ class TestToolVersions(unittest.TestCase):
         """
         Test ansible version
         """
-        version_info = subprocess.run('ssh eseidinger-clouddev "~/miniconda3/bin/pip show ansible"',
+        version_info = subprocess.run(f'ssh {self.vm_name} "~/miniconda3/bin/pip show ansible"',
                                       shell=True, capture_output=True, check=True)
         self.assertTrue(
             self.versions['ANSIBLE_VERSION'] in str(version_info.stdout))
@@ -84,7 +86,7 @@ class TestToolVersions(unittest.TestCase):
         """
         Test Golang version
         """
-        version_info = subprocess.run('ssh eseidinger-clouddev "/usr/local/go/bin/go version"',
+        version_info = subprocess.run(f'ssh {self.vm_name} "/usr/local/go/bin/go version"',
                                       shell=True, capture_output=True, check=True)
         self.assertTrue(self.versions['GOLANG_VERSION']
                         in str(version_info.stdout))
@@ -93,7 +95,7 @@ class TestToolVersions(unittest.TestCase):
         """
         Test kind version
         """
-        version_info = subprocess.run('ssh eseidinger-clouddev "~/go/bin/kind version"',
+        version_info = subprocess.run(f'ssh {self.vm_name} "~/go/bin/kind version"',
                                       shell=True, capture_output=True, check=True)
         self.assertTrue(self.versions['KIND_VERSION']
                         in str(version_info.stdout))
@@ -102,7 +104,7 @@ class TestToolVersions(unittest.TestCase):
         """
         Test kubectl version
         """
-        version_info = subprocess.run('ssh eseidinger-clouddev "kubectl --client=true version"',
+        version_info = subprocess.run(f'ssh {self.vm_name} "kubectl --client=true version"',
                                       shell=True, capture_output=True, check=True)
         match = re.search(
             r'\d+\.\d+\.\d+', self.versions['KUBECTL_VERSION'])
@@ -116,7 +118,7 @@ class TestToolVersions(unittest.TestCase):
         """
         Test Helm version
         """
-        version_info = subprocess.run('ssh eseidinger-clouddev "helm version"',
+        version_info = subprocess.run(f'ssh {self.vm_name} "helm version"',
                                       shell=True, capture_output=True, check=True)
         self.assertTrue(self.versions['HELM_VERSION']
                         in str(version_info.stdout))
@@ -125,7 +127,7 @@ class TestToolVersions(unittest.TestCase):
         """
         Test AWS CLI version
         """
-        version_info = subprocess.run('ssh eseidinger-clouddev "aws --version"',
+        version_info = subprocess.run(f'ssh {self.vm_name} "aws --version"',
                                       shell=True, capture_output=True, check=True)
         self.assertTrue(
             self.versions['AWS_CLI_VERSION'] in str(version_info.stdout))
@@ -134,11 +136,30 @@ class TestToolVersions(unittest.TestCase):
         """
         Test Terraform version
         """
-        version_info = subprocess.run('ssh eseidinger-clouddev "terraform --version"',
+        version_info = subprocess.run(f'ssh {self.vm_name} "terraform --version"',
                                       shell=True, capture_output=True, check=True)
         self.assertTrue(
             self.versions['TERRAFORM_VERSION'] in str(version_info.stdout))
 
+    def test_node(self):
+        """
+        Test Node version
+        """
+        version_info = subprocess.run(f'ssh {self.vm_name} '
+                                    + '"/usr/local/lib/nodejs/node/bin/node --version"',
+                                      shell=True, capture_output=True, check=True)
+        self.assertTrue(
+            self.versions['NODE_VERSION'] in str(version_info.stdout))
+
+    def test_npm(self):
+        """
+        Test npm version
+        """
+        version_info = subprocess.run(f'ssh {self.vm_name} "/usr/local/lib/nodejs/node/bin/node "'
+                                    + '/usr/local/lib/nodejs/node/bin/npm --version"',
+                                      shell=True, capture_output=True, check=True)
+        self.assertTrue(
+            self.versions['NPM_VERSION'] in str(version_info.stdout))
 
 if __name__ == '__main__':
     unittest.main()

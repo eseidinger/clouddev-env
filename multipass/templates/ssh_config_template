@@ -1,4 +1,4 @@
-Host eseidinger-clouddev
+Host [VMName]
     Hostname [Hostname]
     User clouddev
     IdentityFile [IdentityFile]

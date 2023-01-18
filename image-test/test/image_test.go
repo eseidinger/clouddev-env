@@ -75,4 +75,16 @@ func TestVersions(t *testing.T) {
 		output := docker.Run(t, tag, opts)
 		assert.True(t, strings.Contains(output, m["KIND_VERSION"]), output)
 	})
+	t.Run("NODE_VERSION", func(t *testing.T) {
+		opts := &docker.RunOptions{Command: []string{"node", "--version"},
+			Remove: true}
+		output := docker.Run(t, tag, opts)
+		assert.True(t, strings.Contains(output, m["NODE_VERSION"]), output)
+	})
+	t.Run("NPM_VERSION", func(t *testing.T) {
+		opts := &docker.RunOptions{Command: []string{"npm", "--version"},
+			Remove: true}
+		output := docker.Run(t, tag, opts)
+		assert.True(t, strings.Contains(output, m["NPM_VERSION"]), output)
+	})
 }

@@ -22,3 +22,5 @@ sudo bash ${SCRIPT_DIR}/install_kubectl.sh
 sudo bash ${SCRIPT_DIR}/install_helm.sh
 sudo bash ${SCRIPT_DIR}/install_aws_cli.sh
 sudo bash ${SCRIPT_DIR}/install_terraform.sh
+sudo bash ${SCRIPT_DIR}/install_node.sh
+bash ${SCRIPT_DIR}/config_node.sh

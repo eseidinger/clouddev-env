@@ -53,20 +53,20 @@ The _clouddev_ user is configured for sudo without password. The configuration f
 [cloud-init](https://cloudinit.readthedocs.io/en/latest/).
 
 ```
-python create_devenv.py
+python create_devenv.py eseidinger-clouddev
 ```
 
 The next script will adapt the SSH config file in your home directory to allow connections to the VM without having
 to enter a username or password.
 
 ```
-python setup_ssh.py
+python setup_ssh.py eseidinger-clouddev
 ```
 
 If you would rather add the respective section to the config file yourself, you can just print the needed configuration.
 
 ```
-python print_ssh_config.py
+python print_ssh_config.py eseidinger-clouddev
 ```
 
 Now you should be able to login to your VM using SSH. Try the following command.
@@ -81,7 +81,7 @@ Type `exit` to leave the shell.
 Next we are going to install all the tools we need into the virtual development environment.
 
 ```
-python install_tools.py
+python install_tools.py eseidinger-clouddev
 ```
 
 You can test if all the tools have been installed and have the correct version by executing the
@@ -90,7 +90,7 @@ You can test if all the tools have been installed and have the correct version b
 
 ```
 cd test
-python test_tool_versions.py
+VM_NAME=eseidinger-clouddev python test_tool_versions.py
 ```
 
 ### Connect to the Development Environment
