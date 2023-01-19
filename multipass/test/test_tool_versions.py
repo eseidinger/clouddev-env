@@ -146,7 +146,7 @@ class TestToolVersions(unittest.TestCase):
         Test Terraform version
         """
         version_info = subprocess.run(f'ssh {self.vm_name} '
-                                      + '"/home/tools/terraform/terraform --version"',
+                                      + '"~/tools/terraform/terraform --version"',
                                       shell=True, capture_output=True, check=True)
         self.assertTrue(
             self.versions['TERRAFORM_VERSION'] in str(version_info.stdout))
