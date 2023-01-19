@@ -4,6 +4,10 @@ WORKDIR /src
 
 COPY . .
 
+ARG NODE_VERSION="18.13.0"
+
+RUN mkdir /root/tools
+
 RUN apt-get update && apt-get install -y jq unzip wget build-essential
 
 RUN bash install_miniconda.sh
@@ -13,22 +17,25 @@ RUN bash install_ansible_miniconda.sh
 RUN bash install_docker.sh
 
 RUN bash install_go.sh
+ENV GOROOT /root/tools/go
 ENV GOPATH /root/go
-ENV PATH $GOPATH/bin:/root/tools/go/bin:$PATH
+ENV PATH $GOPATH/bin:$GOROOT/bin:$PATH
 
 RUN bash install_kubectl.sh
 
 RUN bash install_helm.sh
+ENV PATH /root/tools/helm:$PATH
 RUN helm plugin install https://github.com/chartmuseum/helm-push
 
 RUN bash install_aws_cli.sh
 
 RUN bash install_terraform.sh
+ENV PATH /root/tools/terraform:$PATH
 
 RUN bash install_kind.sh
 
 RUN bash install_node.sh
-ENV PATH /usr/local/lib/nodejs/node/bin:$PATH
+ENV PATH /root/.nvm/versions/node/v${NODE_VERSION}/bin:$PATH
 
 WORKDIR /
 RUN rm -rf /src

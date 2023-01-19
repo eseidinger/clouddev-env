@@ -51,32 +51,34 @@ Executing the following command will create an Ubuntu VM using the virtualizatio
 A SSH keypair will be created and the public key is set as authorized key for the _clouddev_ user in the VM.
 The _clouddev_ user is configured for sudo without password. The configuration for the user is created using
 [cloud-init](https://cloudinit.readthedocs.io/en/latest/).
+You can optionally specify a VM name. If you do not specificy a VM name, _eseidinger-clouddev_ will be used.
 
 ```
-python create_devenv.py eseidinger-clouddev
+python create_devenv.py [--vm_name your_vm_name]
 ```
 
 The next script will adapt the SSH config file in your home directory to allow connections to the VM without having
 to enter a username or password.
 
 ```
-python setup_ssh.py eseidinger-clouddev
+python setup_ssh.py [--vm_name your_vm_name]
 ```
 
 If you would rather add the respective section to the config file yourself, you can just print the needed configuration.
 
 ```
-python print_ssh_config.py eseidinger-clouddev
+python print_ssh_config.py [--vm_name your_vm_name]
 ```
 
 Now you should be able to login to your VM using SSH. Try the following command.
+You may need to change the host name.
 
 ```
 ssh eseidinger-clouddev
 ```
 
 You should now see a shell with the prompt _(base) clouddev@eseidinger-clouddev:~$_
-Type `exit` to leave the shell.
+The prompt may be different depending on your host name. Type `exit` to leave the shell.
 
 Next we are going to install all the tools we need into the virtual development environment.
 
@@ -90,7 +92,7 @@ You can test if all the tools have been installed and have the correct version b
 
 ```
 cd test
-VM_NAME=eseidinger-clouddev python test_tool_versions.py
+[VM_NAME=your_vm_name] python test_tool_versions.py
 ```
 
 ### Connect to the Development Environment

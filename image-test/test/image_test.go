@@ -22,6 +22,18 @@ func TestVersions(t *testing.T) {
 	}
 	tag := "cloud-tools"
 
+	t.Run("PYTHON_VERSION", func(t *testing.T) {
+		opts := &docker.RunOptions{Command: []string{"python", "--version"},
+			Remove: true}
+		output := docker.Run(t, tag, opts)
+		assert.True(t, strings.Contains(output, m["PYTHON_VERSION"]), output)
+	})
+	t.Run("CONDA_VERSION", func(t *testing.T) {
+		opts := &docker.RunOptions{Command: []string{"conda", "--version"},
+			Remove: true}
+		output := docker.Run(t, tag, opts)
+		assert.True(t, strings.Contains(output, m["CONDA_VERSION"]), output)
+	})
 	t.Run("ANSIBLE_VERSION", func(t *testing.T) {
 		opts := &docker.RunOptions{Command: []string{"pip", "show", "ansible"},
 			Remove: true}
