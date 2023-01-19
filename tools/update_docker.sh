@@ -5,4 +5,4 @@ source ${SCRIPT_DIR}/versions.sh
 
 apt-get update
 
-apt-get install -y docker-ce=${DOCKER_VERSION} docker-ce-cli=${DOCKER_VERSION}
+apt-get install -y --allow-downgrades docker-ce=${DOCKER_VERSION} docker-ce-cli=${DOCKER_VERSION}
