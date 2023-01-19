@@ -69,7 +69,8 @@ def create_vm(vm_name: str):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Create development VM.')
-    parser.add_argument('vm_name', help='the name of the VM to create')
+    parser.add_argument('vm_name', help='the name of the VM to create',
+                        default='eseidinger-clouddev')
     args = parser.parse_args()
     clean_old_config(args.vm_name)
     create_ssh_key(args.vm_name)

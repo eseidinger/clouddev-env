@@ -73,6 +73,15 @@ class TestToolVersions(unittest.TestCase):
             self.fail("Miniconda version regex did not match")
         self.assertTrue(version in str(version_info.stdout))
 
+    def test_python(self):
+        """
+        Test Python version
+        """
+        version_info = subprocess.run(f'ssh {self.vm_name} "~/miniconda3/bin/python --version"',
+                                      shell=True, capture_output=True, check=True)
+        self.assertTrue(
+            self.versions['PYTHON_VERSION'] in str(version_info.stdout))
+
     def test_ansible(self):
         """
         Test ansible version
@@ -86,7 +95,7 @@ class TestToolVersions(unittest.TestCase):
         """
         Test Golang version
         """
-        version_info = subprocess.run(f'ssh {self.vm_name} "/usr/local/go/bin/go version"',
+        version_info = subprocess.run(f'ssh {self.vm_name} "~/tools/go/bin/go version"',
                                       shell=True, capture_output=True, check=True)
         self.assertTrue(self.versions['GOLANG_VERSION']
                         in str(version_info.stdout))
@@ -118,7 +127,7 @@ class TestToolVersions(unittest.TestCase):
         """
         Test Helm version
         """
-        version_info = subprocess.run(f'ssh {self.vm_name} "helm version"',
+        version_info = subprocess.run(f'ssh {self.vm_name} "~/tools/helm/helm version"',
                                       shell=True, capture_output=True, check=True)
         self.assertTrue(self.versions['HELM_VERSION']
                         in str(version_info.stdout))
@@ -136,17 +145,27 @@ class TestToolVersions(unittest.TestCase):
         """
         Test Terraform version
         """
-        version_info = subprocess.run(f'ssh {self.vm_name} "terraform --version"',
+        version_info = subprocess.run(f'ssh {self.vm_name} '
+                                      + '"/home/tools/terraform/terraform --version"',
                                       shell=True, capture_output=True, check=True)
         self.assertTrue(
             self.versions['TERRAFORM_VERSION'] in str(version_info.stdout))
+
+    def test_nvm(self):
+        """
+        Test nvm version
+        """
+        version_info = subprocess.run(f'ssh {self.vm_name} ". ~/.nvm/nvm.sh && nvm --version"',
+                                      shell=True, capture_output=True, check=True)
+        self.assertTrue(
+            self.versions['NVM_VERSION'] in str(version_info.stdout))
 
     def test_node(self):
         """
         Test Node version
         """
         version_info = subprocess.run(f'ssh {self.vm_name} '
-                                    + '"/usr/local/lib/nodejs/node/bin/node --version"',
+                    + f'"~/.nvm/versions/node/v{self.versions["NODE_VERSION"]}/bin/node --version"',
                                       shell=True, capture_output=True, check=True)
         self.assertTrue(
             self.versions['NODE_VERSION'] in str(version_info.stdout))
@@ -155,8 +174,9 @@ class TestToolVersions(unittest.TestCase):
         """
         Test npm version
         """
-        version_info = subprocess.run(f'ssh {self.vm_name} "/usr/local/lib/nodejs/node/bin/node "'
-                                    + '/usr/local/lib/nodejs/node/bin/npm --version"',
+        version_info = subprocess.run(f'ssh {self.vm_name} '
+                    + f'"~/.nvm/versions/node/v{self.versions["NODE_VERSION"]}/bin/node '
+                    + f'~/.nvm/versions/node/v{self.versions["NODE_VERSION"]}/bin/npm --version"',
                                       shell=True, capture_output=True, check=True)
         self.assertTrue(
             self.versions['NPM_VERSION'] in str(version_info.stdout))

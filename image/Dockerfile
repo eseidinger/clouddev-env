@@ -14,7 +14,7 @@ RUN bash install_docker.sh
 
 RUN bash install_go.sh
 ENV GOPATH /root/go
-ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
+ENV PATH $GOPATH/bin:/root/tools/go/bin:$PATH
 
 RUN bash install_kubectl.sh
 

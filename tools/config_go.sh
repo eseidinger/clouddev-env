@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 
-echo "PATH=\"/usr/local/go/bin:\${HOME}/go/bin:\${PATH}\"" >> ~/.profile
+echo "GOROOT=\"\${HOME}/tools/go\"" >> ~/.bashrc
+echo "PATH=\"\${HOME}/tools/go/bin:\${GOROOT}/bin:\${PATH}\"" >> ~/.bashrc
