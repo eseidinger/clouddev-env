@@ -73,6 +73,15 @@ class TestToolVersions(unittest.TestCase):
             self.fail("Miniconda version regex did not match")
         self.assertTrue(version in str(version_info.stdout))
 
+    def test_conda(self):
+        """
+        Test conda version
+        """
+        version_info = subprocess.run(f'ssh {self.vm_name} "~/miniconda3/bin/conda --version"',
+                                      shell=True, capture_output=True, check=True)
+        self.assertTrue(
+            self.versions['CONDA_VERSION'] in str(version_info.stdout))
+
     def test_python(self):
         """
         Test Python version
