@@ -8,3 +8,6 @@ bash ~/Miniconda3-${MINICONDA_VERSION}-Linux-$(uname -m).sh -b -p
 rm ~/Miniconda3-${MINICONDA_VERSION}-Linux-$(uname -m).sh
 source ~/miniconda3/bin/activate
 conda init
+
+conda install -y -n base conda=${CONDA_VERSION}
+conda install -y -n base python=${PYTHON_VERSION}
