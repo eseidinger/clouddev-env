@@ -27,3 +27,4 @@ sudo bash ${SCRIPT_DIR}/install_aws_cli.sh
 bash ${SCRIPT_DIR}/install_terraform.sh
 bash ${SCRIPT_DIR}/config_terraform.sh
 bash ${SCRIPT_DIR}/install_node.sh
+bash ${SCRIPT_DIR}/install_k9s.sh

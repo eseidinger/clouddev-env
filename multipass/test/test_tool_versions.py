@@ -190,5 +190,15 @@ class TestToolVersions(unittest.TestCase):
         self.assertTrue(
             self.versions['NPM_VERSION'] in str(version_info.stdout))
 
+    def test_k9s(self):
+        """
+        Test K9s version
+        """
+        version_info = subprocess.run(f'ssh {self.vm_name} '
+                                      + '"~/tools/k9s/k9s --version"',
+                                      shell=True, capture_output=True, check=True)
+        self.assertTrue(
+            self.versions['TERRAFORM_VERSION'] in str(version_info.stdout))
+
 if __name__ == '__main__':
     unittest.main()
