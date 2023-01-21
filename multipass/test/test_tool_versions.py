@@ -195,10 +195,10 @@ class TestToolVersions(unittest.TestCase):
         Test K9s version
         """
         version_info = subprocess.run(f'ssh {self.vm_name} '
-                                      + '"~/tools/k9s/k9s --version"',
+                                      + '"~/tools/k9s/k9s version"',
                                       shell=True, capture_output=True, check=True)
         self.assertTrue(
-            self.versions['TERRAFORM_VERSION'] in str(version_info.stdout))
+            self.versions['K9S_VERSION'] in str(version_info.stdout))
 
 if __name__ == '__main__':
     unittest.main()
