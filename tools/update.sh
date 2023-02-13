@@ -18,3 +18,4 @@ sudo bash ${SCRIPT_DIR}/update_aws_cli.sh
 bash ${SCRIPT_DIR}/update_terraform.sh
 bash ${SCRIPT_DIR}/update_node.sh
 bash ${SCRIPT_DIR}/update_k9s.sh
+bash ${SCRIPT_DIR}/update_java.sh

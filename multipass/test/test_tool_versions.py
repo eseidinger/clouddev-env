@@ -200,5 +200,35 @@ class TestToolVersions(unittest.TestCase):
         self.assertTrue(
             self.versions['K9S_VERSION'] in str(version_info.stdout))
 
+    def test_java(self):
+        """
+        Test Java version
+        """
+        version_info = subprocess.run(f'ssh {self.vm_name} '
+                                      + '"~/.sdkman/candidates/java/current/bin/java --version"',
+                                      shell=True, capture_output=True, check=True)
+        self.assertTrue(
+            self.versions['JAVA_VERSION'] in str(version_info.stdout))
+
+    def test_kotlin(self):
+        """
+        Test Kotlin version
+        """
+        version_info = subprocess.run(f'ssh {self.vm_name} '
+                                      + '"~/.sdkman/candidates/kotlin/current/bin/kotlin -version"',
+                                      shell=True, capture_output=True, check=True)
+        self.assertTrue(
+            self.versions['KOTLIN_VERSION'] in str(version_info.stdout))
+
+    def test_gradle(self):
+        """
+        Test Gradle version
+        """
+        version_info = subprocess.run(f'ssh {self.vm_name} '
+                                      + '"~/.sdkman/candidates/gradle/current/bin/gradle --version"',
+                                      shell=True, capture_output=True, check=True)
+        self.assertTrue(
+            self.versions['GRADLE_VERSION'] in str(version_info.stdout))
+
 if __name__ == '__main__':
     unittest.main()

@@ -10,7 +10,7 @@ mkdir ~/tools
 
 sudo apt-get update
 sudo apt-get upgrade
-sudo apt-get install -y jq unzip wget build-essential
+sudo apt-get install -y jq zip unzip wget build-essential
 sudo bash ${SCRIPT_DIR}/install_docker.sh
 sudo bash ${SCRIPT_DIR}/config_docker.sh $username
 sudo bash ${SCRIPT_DIR}/install_microk8s.sh
@@ -29,3 +29,4 @@ bash ${SCRIPT_DIR}/config_terraform.sh
 bash ${SCRIPT_DIR}/install_node.sh
 bash ${SCRIPT_DIR}/install_k9s.sh
 bash ${SCRIPT_DIR}/config_k9s.sh
+bash ${SCRIPT_DIR}/install_java.sh
