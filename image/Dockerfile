@@ -8,7 +8,7 @@ ARG NODE_VERSION="18.13.0"
 
 RUN mkdir /root/tools
 
-RUN apt-get update && apt-get install -y jq unzip wget build-essential
+RUN apt-get update && apt-get install -y jq zip unzip wget build-essential
 
 RUN bash install_miniconda.sh
 ENV PATH /root/miniconda3/bin:$PATH
