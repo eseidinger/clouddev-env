@@ -201,7 +201,8 @@ class TestToolVersions(unittest.TestCase):
         Test Kotlin version
         """
         version_info = subprocess.run(f'ssh {self.vm_name} '
-                                      + '"~/.sdkman/candidates/kotlin/current/bin/kotlin -version"',
+                                      + '"PATH=~/.sdkman/candidates/java/current/bin/:$PATH '
+                                      + '~/.sdkman/candidates/kotlin/current/bin/kotlin -version"',
                                       shell=True, capture_output=True, check=True)
         self.assertTrue(
             self.versions['KOTLIN_VERSION'] in str(version_info.stdout))
@@ -212,6 +213,7 @@ class TestToolVersions(unittest.TestCase):
         """
         version_info = subprocess.run(
             f'ssh {self.vm_name} '
+            + '"PATH=~/.sdkman/candidates/java/current/bin/:$PATH '
             + '"~/.sdkman/candidates/gradle/current/bin/gradle --version"',
             shell=True, capture_output=True, check=True)
         self.assertTrue(
