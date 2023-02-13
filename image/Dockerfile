@@ -37,5 +37,10 @@ RUN bash install_kind.sh
 RUN bash install_node.sh
 ENV PATH /root/.nvm/versions/node/v${NODE_VERSION}/bin:$PATH
 
+RUN bash install_java.sh
+ENV PATH /root/.sdkman/candidates/java/current/bin:$PATH
+ENV PATH /root/.sdkman/candidates/kotlin/current/bin:$PATH
+ENV PATH /root/.sdkman/candidates/gradle/current/bin:$PATH
+
 WORKDIR /
 RUN rm -rf /src

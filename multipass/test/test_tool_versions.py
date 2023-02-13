@@ -224,9 +224,10 @@ class TestToolVersions(unittest.TestCase):
         """
         Test Gradle version
         """
-        version_info = subprocess.run(f'ssh {self.vm_name} '
-                                      + '"~/.sdkman/candidates/gradle/current/bin/gradle --version"',
-                                      shell=True, capture_output=True, check=True)
+        version_info = subprocess.run(
+            f'ssh {self.vm_name} '
+            + '"~/.sdkman/candidates/gradle/current/bin/gradle --version"',
+            shell=True, capture_output=True, check=True)
         self.assertTrue(
             self.versions['GRADLE_VERSION'] in str(version_info.stdout))
 

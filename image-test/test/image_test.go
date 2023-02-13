@@ -99,4 +99,23 @@ func TestVersions(t *testing.T) {
 		output := docker.Run(t, tag, opts)
 		assert.True(t, strings.Contains(output, m["NPM_VERSION"]), output)
 	})
+
+	t.Run("JAVA_VERSION", func(t *testing.T) {
+		opts := &docker.RunOptions{Command: []string{"java", "-version"},
+			Remove: true}
+		output := docker.Run(t, tag, opts)
+		assert.True(t, strings.Contains(output, m["JAVA_VERSION"]), output)
+	})
+	t.Run("KOTLIN_VERSION", func(t *testing.T) {
+		opts := &docker.RunOptions{Command: []string{"kotlin", "-version"},
+			Remove: true}
+		output := docker.Run(t, tag, opts)
+		assert.True(t, strings.Contains(output, m["KOTLIN_VERSION"]), output)
+	})
+	t.Run("GRADLE_VERSION", func(t *testing.T) {
+		opts := &docker.RunOptions{Command: []string{"gradle", "--version"},
+			Remove: true}
+		output := docker.Run(t, tag, opts)
+		assert.True(t, strings.Contains(output, m["GRADLE_VERSION"]), output)
+	})
 }
