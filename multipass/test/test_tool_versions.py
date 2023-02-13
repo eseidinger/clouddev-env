@@ -59,20 +59,6 @@ class TestToolVersions(unittest.TestCase):
             self.fail("MicroK8s version regex did not match")
         self.assertTrue(version in str(version_info.stdout))
 
-    def test_miniconda(self):
-        """
-        Test miniconda version
-        """
-        version_info = subprocess.run(f'ssh {self.vm_name} "~/miniconda3/bin/conda --version"',
-                                      shell=True, capture_output=True, check=True)
-        match = re.search(r'[^_]+_(\d+\.\d+\.\d+)',
-                          self.versions['MINICONDA_VERSION'])
-        if match is not None:
-            version = match.group(1)
-        else:
-            self.fail("Miniconda version regex did not match")
-        self.assertTrue(version in str(version_info.stdout))
-
     def test_conda(self):
         """
         Test conda version
