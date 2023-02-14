@@ -30,12 +30,16 @@ class TestToolVersions(unittest.TestCase):
                     self.versions[key] = version.strip('"')
 
         self.vm_name = os.getenv('VM_NAME', 'eseidinger-clouddev')
+        if self.vm_name == "localhost":
+            self.command_prefix = "bash -c"
+        else:
+            self.command_prefix = f"ssh {self.vm_name}"
 
     def test_docker(self):
         """
         Test Docker version
         """
-        version_info = subprocess.run(f'ssh {self.vm_name} "docker version"',
+        version_info = subprocess.run(f'{self.command_prefix} "docker version"',
                                       shell=True, capture_output=True, check=True)
         match = re.search(r'\d+:(\d+\.\d+\.\d+)',
                           self.versions['DOCKER_VERSION'])
@@ -49,7 +53,7 @@ class TestToolVersions(unittest.TestCase):
         """
         Test MicroK8s version
         """
-        version_info = subprocess.run(f'ssh {self.vm_name} "microk8s version"',
+        version_info = subprocess.run(f'{self.command_prefix} "microk8s version"',
                                       shell=True, capture_output=True, check=True)
         match = re.search(
             r'(\d+\.\d+)/', self.versions['MICROK8S_VERSION'])
@@ -63,7 +67,7 @@ class TestToolVersions(unittest.TestCase):
         """
         Test conda version
         """
-        version_info = subprocess.run(f'ssh {self.vm_name} "~/miniconda3/bin/conda --version"',
+        version_info = subprocess.run(f'{self.command_prefix} "~/miniconda3/bin/conda --version"',
                                       shell=True, capture_output=True, check=True)
         self.assertTrue(
             self.versions['CONDA_VERSION'] in str(version_info.stdout))
@@ -72,7 +76,7 @@ class TestToolVersions(unittest.TestCase):
         """
         Test Python version
         """
-        version_info = subprocess.run(f'ssh {self.vm_name} "~/miniconda3/bin/python --version"',
+        version_info = subprocess.run(f'{self.command_prefix} "~/miniconda3/bin/python --version"',
                                       shell=True, capture_output=True, check=True)
         self.assertTrue(
             self.versions['PYTHON_VERSION'] in str(version_info.stdout))
@@ -81,7 +85,7 @@ class TestToolVersions(unittest.TestCase):
         """
         Test ansible version
         """
-        version_info = subprocess.run(f'ssh {self.vm_name} "~/miniconda3/bin/pip show ansible"',
+        version_info = subprocess.run(f'{self.command_prefix} "~/miniconda3/bin/pip show ansible"',
                                       shell=True, capture_output=True, check=True)
         self.assertTrue(
             self.versions['ANSIBLE_VERSION'] in str(version_info.stdout))
@@ -90,7 +94,7 @@ class TestToolVersions(unittest.TestCase):
         """
         Test Golang version
         """
-        version_info = subprocess.run(f'ssh {self.vm_name} "~/tools/go/bin/go version"',
+        version_info = subprocess.run(f'{self.command_prefix} "~/tools/go/bin/go version"',
                                       shell=True, capture_output=True, check=True)
         self.assertTrue(self.versions['GOLANG_VERSION']
                         in str(version_info.stdout))
@@ -99,7 +103,7 @@ class TestToolVersions(unittest.TestCase):
         """
         Test kind version
         """
-        version_info = subprocess.run(f'ssh {self.vm_name} "~/go/bin/kind version"',
+        version_info = subprocess.run(f'{self.command_prefix} "~/go/bin/kind version"',
                                       shell=True, capture_output=True, check=True)
         self.assertTrue(self.versions['KIND_VERSION']
                         in str(version_info.stdout))
@@ -108,7 +112,7 @@ class TestToolVersions(unittest.TestCase):
         """
         Test kubectl version
         """
-        version_info = subprocess.run(f'ssh {self.vm_name} "kubectl --client=true version"',
+        version_info = subprocess.run(f'{self.command_prefix} "kubectl --client=true version"',
                                       shell=True, capture_output=True, check=True)
         match = re.search(
             r'\d+\.\d+\.\d+', self.versions['KUBECTL_VERSION'])
@@ -122,7 +126,7 @@ class TestToolVersions(unittest.TestCase):
         """
         Test Helm version
         """
-        version_info = subprocess.run(f'ssh {self.vm_name} "~/tools/helm/helm version"',
+        version_info = subprocess.run(f'{self.command_prefix} "~/tools/helm/helm version"',
                                       shell=True, capture_output=True, check=True)
         self.assertTrue(self.versions['HELM_VERSION']
                         in str(version_info.stdout))
@@ -131,7 +135,7 @@ class TestToolVersions(unittest.TestCase):
         """
         Test AWS CLI version
         """
-        version_info = subprocess.run(f'ssh {self.vm_name} "aws --version"',
+        version_info = subprocess.run(f'{self.command_prefix} "aws --version"',
                                       shell=True, capture_output=True, check=True)
         self.assertTrue(
             self.versions['AWS_CLI_VERSION'] in str(version_info.stdout))
@@ -140,7 +144,7 @@ class TestToolVersions(unittest.TestCase):
         """
         Test Terraform version
         """
-        version_info = subprocess.run(f'ssh {self.vm_name} '
+        version_info = subprocess.run(f'{self.command_prefix} '
                                       + '"~/tools/terraform/terraform --version"',
                                       shell=True, capture_output=True, check=True)
         self.assertTrue(
@@ -150,7 +154,7 @@ class TestToolVersions(unittest.TestCase):
         """
         Test nvm version
         """
-        version_info = subprocess.run(f'ssh {self.vm_name} ". ~/.nvm/nvm.sh && nvm --version"',
+        version_info = subprocess.run(f'{self.command_prefix} ". ~/.nvm/nvm.sh && nvm --version"',
                                       shell=True, capture_output=True, check=True)
         self.assertTrue(
             self.versions['NVM_VERSION'] in str(version_info.stdout))
@@ -159,7 +163,7 @@ class TestToolVersions(unittest.TestCase):
         """
         Test Node version
         """
-        version_info = subprocess.run(f'ssh {self.vm_name} '
+        version_info = subprocess.run(f'{self.command_prefix} '
                     + f'"~/.nvm/versions/node/v{self.versions["NODE_VERSION"]}/bin/node --version"',
                                       shell=True, capture_output=True, check=True)
         self.assertTrue(
@@ -169,7 +173,7 @@ class TestToolVersions(unittest.TestCase):
         """
         Test npm version
         """
-        version_info = subprocess.run(f'ssh {self.vm_name} '
+        version_info = subprocess.run(f'{self.command_prefix} '
                     + f'"~/.nvm/versions/node/v{self.versions["NODE_VERSION"]}/bin/node '
                     + f'~/.nvm/versions/node/v{self.versions["NODE_VERSION"]}/bin/npm --version"',
                                       shell=True, capture_output=True, check=True)
@@ -180,7 +184,7 @@ class TestToolVersions(unittest.TestCase):
         """
         Test K9s version
         """
-        version_info = subprocess.run(f'ssh {self.vm_name} '
+        version_info = subprocess.run(f'{self.command_prefix} '
                                       + '"~/tools/k9s/k9s version"',
                                       shell=True, capture_output=True, check=True)
         self.assertTrue(
@@ -190,7 +194,7 @@ class TestToolVersions(unittest.TestCase):
         """
         Test Java version
         """
-        version_info = subprocess.run(f'ssh {self.vm_name} '
+        version_info = subprocess.run(f'{self.command_prefix} '
                                       + '"~/.sdkman/candidates/java/current/bin/java --version"',
                                       shell=True, capture_output=True, check=True)
         self.assertTrue(
@@ -200,7 +204,7 @@ class TestToolVersions(unittest.TestCase):
         """
         Test Kotlin version
         """
-        version_info = subprocess.run(f'ssh {self.vm_name} '
+        version_info = subprocess.run(f'{self.command_prefix} '
                                       + '"PATH=~/.sdkman/candidates/java/current/bin/:$PATH '
                                       + '~/.sdkman/candidates/kotlin/current/bin/kotlin -version"',
                                       shell=True, capture_output=True, check=True)
@@ -212,9 +216,9 @@ class TestToolVersions(unittest.TestCase):
         Test Gradle version
         """
         version_info = subprocess.run(
-            f'ssh {self.vm_name} '
+            f'{self.command_prefix} '
             + '"PATH=~/.sdkman/candidates/java/current/bin/:$PATH '
-            + '"~/.sdkman/candidates/gradle/current/bin/gradle --version"',
+            + '~/.sdkman/candidates/gradle/current/bin/gradle --version"',
             shell=True, capture_output=True, check=True)
         self.assertTrue(
             self.versions['GRADLE_VERSION'] in str(version_info.stdout))

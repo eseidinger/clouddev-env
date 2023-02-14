@@ -6,12 +6,14 @@ source ${SCRIPT_DIR}/versions.sh
 ARCH=
 dpkgArch="$(dpkg --print-architecture)"
 case "${dpkgArch##*-}" in \
-    amd64) ARCH='x86_64';; \
+    amd64) ARCH='amd64';; \
     ppc64el) ARCH='ppc64le';; \
     s390x) ARCH='s390x';; \
     arm64) ARCH='arm64';; \
     *) echo "unsupported architecture"; exit 1 ;; \
 esac
+
+echo https://github.com/derailed/k9s/releases/download/v${K9S_VERSION}/k9s_Linux_${ARCH}.tar.gz
 
 mkdir -p ~/tools/k9s
 wget  -q -P ~/ https://github.com/derailed/k9s/releases/download/v${K9S_VERSION}/k9s_Linux_${ARCH}.tar.gz
