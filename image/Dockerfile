@@ -4,8 +4,6 @@ WORKDIR /src
 
 COPY . .
 
-ARG NODE_VERSION="18.13.0"
-
 RUN mkdir /root/tools
 
 RUN apt-get update && apt-get install -y jq zip unzip wget build-essential
@@ -35,7 +33,8 @@ ENV PATH /root/tools/terraform:$PATH
 RUN bash install_kind.sh
 
 RUN bash install_node.sh
-ENV PATH /root/.nvm/versions/node/v${NODE_VERSION}/bin:$PATH
+RUN bash config_node_docker.sh
+ENV PATH /root/.nvm/versions/node/current/bin:$PATH
 
 RUN bash install_java.sh
 ENV PATH /root/.sdkman/candidates/java/current/bin:$PATH
