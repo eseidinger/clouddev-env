@@ -163,9 +163,10 @@ class TestToolVersions(unittest.TestCase):
         """
         Test Node version
         """
-        version_info = subprocess.run(f'{self.command_prefix} '
-                    + f'"~/.nvm/versions/node/v{self.versions["NODE_VERSION"]}/bin/node --version"',
-                                      shell=True, capture_output=True, check=True)
+        version_info = subprocess.run(
+            f'{self.command_prefix} '
+            + f'"~/.nvm/versions/node/v{self.versions["NODE_VERSION"]}/bin/node --version"',
+            shell=True, capture_output=True, check=True)
         self.assertTrue(
             self.versions['NODE_VERSION'] in str(version_info.stdout))
 
@@ -173,10 +174,11 @@ class TestToolVersions(unittest.TestCase):
         """
         Test npm version
         """
-        version_info = subprocess.run(f'{self.command_prefix} '
-                    + f'"~/.nvm/versions/node/v{self.versions["NODE_VERSION"]}/bin/node '
-                    + f'~/.nvm/versions/node/v{self.versions["NODE_VERSION"]}/bin/npm --version"',
-                                      shell=True, capture_output=True, check=True)
+        version_info = subprocess.run(
+            f'{self.command_prefix} '
+            + f'"~/.nvm/versions/node/v{self.versions["NODE_VERSION"]}/bin/node '
+            + f'~/.nvm/versions/node/v{self.versions["NODE_VERSION"]}/bin/npm --version"',
+            shell=True, capture_output=True, check=True)
         self.assertTrue(
             self.versions['NPM_VERSION'] in str(version_info.stdout))
 
@@ -184,9 +186,10 @@ class TestToolVersions(unittest.TestCase):
         """
         Test K9s version
         """
-        version_info = subprocess.run(f'{self.command_prefix} '
-                                      + '"~/tools/k9s/k9s version"',
-                                      shell=True, capture_output=True, check=True)
+        version_info = subprocess.run(
+            f'{self.command_prefix} '
+            + '"~/tools/k9s/k9s version"',
+            shell=True, capture_output=True, check=True)
         self.assertTrue(
             self.versions['K9S_VERSION'] in str(version_info.stdout))
 
@@ -205,7 +208,7 @@ class TestToolVersions(unittest.TestCase):
         Test Kotlin version
         """
         version_info = subprocess.run(f'{self.command_prefix} '
-                                      + '"PATH=~/.sdkman/candidates/java/current/bin/:$PATH '
+                                      + '"JAVA_HOME=~/.sdkman/candidates/java/current/ '
                                       + '~/.sdkman/candidates/kotlin/current/bin/kotlin -version"',
                                       shell=True, capture_output=True, check=True)
         self.assertTrue(
@@ -217,11 +220,22 @@ class TestToolVersions(unittest.TestCase):
         """
         version_info = subprocess.run(
             f'{self.command_prefix} '
-            + '"PATH=~/.sdkman/candidates/java/current/bin/:$PATH '
+            + '"JAVA_HOME=~/.sdkman/candidates/java/current/ '
             + '~/.sdkman/candidates/gradle/current/bin/gradle --version"',
             shell=True, capture_output=True, check=True)
         self.assertTrue(
             self.versions['GRADLE_VERSION'] in str(version_info.stdout))
+
+    def test_chromium(self):
+        """
+        Test Chromium version
+        """
+        version_info = subprocess.run(f'{self.command_prefix} '
+                                      + '"chromium --version"',
+                                      shell=True, capture_output=True, check=True)
+        self.assertTrue(
+            "Chromium" in str(version_info.stdout))
+
 
 if __name__ == '__main__':
     unittest.main()
