@@ -42,5 +42,8 @@ ENV PATH /root/.sdkman/candidates/java/current/bin:$PATH
 ENV PATH /root/.sdkman/candidates/kotlin/current/bin:$PATH
 ENV PATH /root/.sdkman/candidates/gradle/current/bin:$PATH
 
+RUN bash install_chromium.sh
+ENV PATH /root/tools/chrome-linux:$PATH
+
 WORKDIR /
 RUN rm -rf /src

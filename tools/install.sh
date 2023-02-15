@@ -30,3 +30,5 @@ bash ${SCRIPT_DIR}/install_node.sh
 bash ${SCRIPT_DIR}/install_k9s.sh
 bash ${SCRIPT_DIR}/config_k9s.sh
 bash ${SCRIPT_DIR}/install_java.sh
+bash ${SCRIPT_DIR}/install_chromium.sh
+bash ${SCRIPT_DIR}/config_chromium.sh
