@@ -44,5 +44,8 @@ ENV PATH /root/.sdkman/candidates/gradle/current/bin:$PATH
 RUN bash install_chromium_docker.sh
 ENV PATH /root/tools/chrome-linux:$PATH
 
+RUN bash install_linkerd.sh
+ENV PATH /root/tools/linkerd:$PATH
+
 WORKDIR /
 RUN rm -rf /src
