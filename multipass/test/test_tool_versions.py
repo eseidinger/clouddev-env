@@ -226,16 +226,6 @@ class TestToolVersions(unittest.TestCase):
         self.assertTrue(
             self.versions['GRADLE_VERSION'] in str(version_info.stdout))
 
-    def test_chromium(self):
-        """
-        Test Chromium version
-        """
-        version_info = subprocess.run(f'{self.command_prefix} '
-                                      + '"chromium --version"',
-                                      shell=True, capture_output=True, check=True)
-        self.assertTrue(
-            "Chromium" in str(version_info.stdout))
-
 
 if __name__ == '__main__':
     unittest.main()

@@ -117,10 +117,4 @@ func TestVersions(t *testing.T) {
 		output := docker.Run(t, tag, opts)
 		assert.True(t, strings.Contains(output, m["GRADLE_VERSION"]), output)
 	})
-	t.Run("CHROMIUM_VERSION", func(t *testing.T) {
-		opts := &docker.RunOptions{Command: []string{"chrome", "--version"},
-			Remove: true}
-		output := docker.Run(t, tag, opts)
-		assert.True(t, strings.Contains(output, "Chromium"), output)
-	})
 }

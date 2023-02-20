@@ -41,9 +41,6 @@ ENV PATH /root/.sdkman/candidates/java/current/bin:$PATH
 ENV PATH /root/.sdkman/candidates/kotlin/current/bin:$PATH
 ENV PATH /root/.sdkman/candidates/gradle/current/bin:$PATH
 
-RUN bash install_chromium_docker.sh
-ENV PATH /root/tools/chrome-linux:$PATH
-
 RUN bash install_linkerd.sh
 ENV PATH /root/tools/linkerd:$PATH
 
