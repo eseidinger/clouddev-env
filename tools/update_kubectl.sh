@@ -3,4 +3,11 @@
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source ${SCRIPT_DIR}/versions.sh
 
-apt-get update && apt-get install -y --allow-downgrades kubectl=${KUBECTL_VERSION}
+SUDO=
+if type sudo >/dev/null &> /dev/null
+then
+    SUDO="sudo"
+fi
+
+${SUDO} apt-get update
+${SUDO} apt-get install -y --allow-downgrades kubectl=${KUBECTL_VERSION}

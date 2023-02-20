@@ -12,11 +12,12 @@ bash ${SCRIPT_DIR}/update_miniconda.sh
 bash ${SCRIPT_DIR}/update_ansible_miniconda.sh
 bash ${SCRIPT_DIR}/update_go.sh
 bash ${SCRIPT_DIR}/update_kind.sh
-sudo bash ${SCRIPT_DIR}/update_kubectl.sh
+bash ${SCRIPT_DIR}/update_kubectl.sh
 bash ${SCRIPT_DIR}/update_helm.sh
-sudo bash ${SCRIPT_DIR}/update_aws_cli.sh
+bash ${SCRIPT_DIR}/install_aws_cli.sh --update
 bash ${SCRIPT_DIR}/update_terraform.sh
 bash ${SCRIPT_DIR}/update_node.sh
 bash ${SCRIPT_DIR}/update_k9s.sh
 bash ${SCRIPT_DIR}/update_java.sh
 bash ${SCRIPT_DIR}/update_linkerd.sh
+bash ${SCRIPT_DIR}/install_trivy.sh

@@ -226,6 +226,16 @@ class TestToolVersions(unittest.TestCase):
         self.assertTrue(
             self.versions['GRADLE_VERSION'] in str(version_info.stdout))
 
+    def test_trivy(self):
+        """
+        Test Trivy version
+        """
+        version_info = subprocess.run(
+            f'{self.command_prefix} '
+            + '"trivy --version"',
+            shell=True, capture_output=True, check=True)
+        self.assertTrue(
+            self.versions['TRIVY_VERSION'] in str(version_info.stdout))
 
 if __name__ == '__main__':
     unittest.main()

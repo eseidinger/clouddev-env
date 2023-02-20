@@ -117,4 +117,10 @@ func TestVersions(t *testing.T) {
 		output := docker.Run(t, tag, opts)
 		assert.True(t, strings.Contains(output, m["GRADLE_VERSION"]), output)
 	})
+	t.Run("TRIVY_VERSION", func(t *testing.T) {
+		opts := &docker.RunOptions{Command: []string{"trivy", "--version"},
+			Remove: true}
+		output := docker.Run(t, tag, opts)
+		assert.True(t, strings.Contains(output, m["TRIVY_VERSION"]), output)
+	})
 }

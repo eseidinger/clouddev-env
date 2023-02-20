@@ -44,5 +44,7 @@ ENV PATH /root/.sdkman/candidates/gradle/current/bin:$PATH
 RUN bash install_linkerd.sh
 ENV PATH /root/tools/linkerd:$PATH
 
+RUN bash install_trivy.sh
+
 WORKDIR /
 RUN rm -rf /src

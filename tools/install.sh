@@ -20,10 +20,10 @@ bash ${SCRIPT_DIR}/install_ansible_miniconda.sh
 bash ${SCRIPT_DIR}/install_go.sh
 bash ${SCRIPT_DIR}/config_go.sh
 bash ${SCRIPT_DIR}/install_kind.sh
-sudo bash ${SCRIPT_DIR}/install_kubectl.sh
+bash ${SCRIPT_DIR}/install_kubectl.sh
 bash ${SCRIPT_DIR}/install_helm.sh
 bash ${SCRIPT_DIR}/config_helm.sh
-sudo bash ${SCRIPT_DIR}/install_aws_cli.sh
+bash ${SCRIPT_DIR}/install_aws_cli.sh
 bash ${SCRIPT_DIR}/install_terraform.sh
 bash ${SCRIPT_DIR}/config_terraform.sh
 bash ${SCRIPT_DIR}/install_node.sh
@@ -32,3 +32,4 @@ bash ${SCRIPT_DIR}/config_k9s.sh
 bash ${SCRIPT_DIR}/install_java.sh
 bash ${SCRIPT_DIR}/install_linkerd.sh
 bash ${SCRIPT_DIR}/config_linkerd.sh
+bash ${SCRIPT_DIR}/install_trivy.sh
