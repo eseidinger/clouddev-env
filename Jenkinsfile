@@ -10,7 +10,7 @@ pipeline {
         spec:
             containers:
             - name: docker
-              image: docker:20.10.23
+              image: docker:23.0.1
               command:
               - cat
               tty: true
@@ -27,7 +27,7 @@ pipeline {
               - name: DOCKER_CERT_PATH
                 value: /certs/client
             - name: docker-daemon
-              image: docker:20.10.23-dind
+              image: docker:23.0.1-dind
               securityContext:
                 privileged: true
               volumeMounts:
