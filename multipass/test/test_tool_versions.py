@@ -237,5 +237,27 @@ class TestToolVersions(unittest.TestCase):
         self.assertTrue(
             self.versions['TRIVY_VERSION'] in str(version_info.stdout))
 
+    def test_linkerd(self):
+        """
+        Test linkerd version
+        """
+        version_info = subprocess.run(
+            f'{self.command_prefix} '
+            + '"linkerd version --client"',
+            shell=True, capture_output=True, check=True)
+        self.assertTrue(
+            self.versions['LINKERD_VERSION'] in str(version_info.stdout))
+
+    def test_linkerd_smi(self):
+        """
+        Test linkerd smi version
+        """
+        version_info = subprocess.run(
+            f'{self.command_prefix} '
+            + '"linkerd smi version"',
+            shell=True, capture_output=True, check=True)
+        self.assertTrue(
+            self.versions['LINKERD_SMI_VERSION'] in str(version_info.stdout))
+
 if __name__ == '__main__':
     unittest.main()

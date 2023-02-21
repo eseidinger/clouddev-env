@@ -123,4 +123,16 @@ func TestVersions(t *testing.T) {
 		output := docker.Run(t, tag, opts)
 		assert.True(t, strings.Contains(output, m["TRIVY_VERSION"]), output)
 	})
+	t.Run("LINKERD_VERSION", func(t *testing.T) {
+		opts := &docker.RunOptions{Command: []string{"linkerd", "version", "--client"},
+			Remove: true}
+		output := docker.Run(t, tag, opts)
+		assert.True(t, strings.Contains(output, m["LINKERD_VERSION"]), output)
+	})
+	t.Run("LINKERD_SMI_VERSION", func(t *testing.T) {
+		opts := &docker.RunOptions{Command: []string{"linkerd", "smi", "version"},
+			Remove: true}
+		output := docker.Run(t, tag, opts)
+		assert.True(t, strings.Contains(output, m["LINKERD_SMI_VERSION"]), output)
+	})
 }

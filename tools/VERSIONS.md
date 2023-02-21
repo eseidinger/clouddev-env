@@ -83,3 +83,8 @@ sdk list kotlin
 # Linkerd
 
 https://github.com/linkerd/linkerd2/releases/
+https://github.com/linkerd/linkerd-smi/releases
+
+# Trivy
+
+https://github.com/aquasecurity/trivy/releases
