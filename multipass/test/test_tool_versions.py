@@ -259,5 +259,16 @@ class TestToolVersions(unittest.TestCase):
         self.assertTrue(
             self.versions['LINKERD_SMI_VERSION'] in str(version_info.stdout))
 
+    def test_istio(self):
+        """
+        Test istio version
+        """
+        version_info = subprocess.run(
+            f'{self.command_prefix} '
+            + '"istioctl version --remote=false"',
+            shell=True, capture_output=True, check=True)
+        self.assertTrue(
+            self.versions['ISTIO_VERSION'] in str(version_info.stdout))
+
 if __name__ == '__main__':
     unittest.main()

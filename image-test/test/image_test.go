@@ -135,4 +135,10 @@ func TestVersions(t *testing.T) {
 		output := docker.Run(t, tag, opts)
 		assert.True(t, strings.Contains(output, m["LINKERD_SMI_VERSION"]), output)
 	})
+	t.Run("ISTIO_VERSION", func(t *testing.T) {
+		opts := &docker.RunOptions{Command: []string{"istio", "version", "--remote=false"},
+			Remove: true}
+		output := docker.Run(t, tag, opts)
+		assert.True(t, strings.Contains(output, m["ISTIO_VERSION"]), output)
+	})
 }

@@ -46,5 +46,8 @@ ENV PATH /root/tools/linkerd:$PATH
 
 RUN bash install_trivy.sh
 
+RUN bash install_istio.sh
+ENV PATH /root/tools/istio/bin:$PATH
+
 WORKDIR /
 RUN rm -rf /src

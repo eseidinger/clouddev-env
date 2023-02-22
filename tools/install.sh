@@ -33,3 +33,5 @@ bash ${SCRIPT_DIR}/install_java.sh
 bash ${SCRIPT_DIR}/install_linkerd.sh
 bash ${SCRIPT_DIR}/config_linkerd.sh
 bash ${SCRIPT_DIR}/install_trivy.sh
+bash ${SCRIPT_DIR}/install_istio.sh
+bash ${SCRIPT_DIR}/config_istio.sh
