@@ -22,70 +22,23 @@ func TestVersions(t *testing.T) {
 	}
 	tag := "cloud-tools"
 
-	t.Run("PYTHON_VERSION", func(t *testing.T) {
-		opts := &docker.RunOptions{Command: []string{"python", "--version"},
-			Remove: true}
-		output := docker.Run(t, tag, opts)
-		assert.True(t, strings.Contains(output, m["PYTHON_VERSION"]), output)
-	})
 	t.Run("CONDA_VERSION", func(t *testing.T) {
 		opts := &docker.RunOptions{Command: []string{"conda", "--version"},
 			Remove: true}
 		output := docker.Run(t, tag, opts)
 		assert.True(t, strings.Contains(output, m["CONDA_VERSION"]), output)
 	})
-	t.Run("ANSIBLE_VERSION", func(t *testing.T) {
-		opts := &docker.RunOptions{Command: []string{"pip", "show", "ansible"},
+	t.Run("PYTHON_VERSION", func(t *testing.T) {
+		opts := &docker.RunOptions{Command: []string{"python", "--version"},
 			Remove: true}
 		output := docker.Run(t, tag, opts)
-		assert.True(t, strings.Contains(output, "Version: "+m["ANSIBLE_VERSION"]), output)
-	})
-	t.Run("DOCKER_VERSION", func(t *testing.T) {
-		opts := &docker.RunOptions{Command: []string{"docker", "version"},
-			Remove:  true,
-			Volumes: []string{"/var/run/docker.sock:/var/run/docker.sock"}}
-		output := docker.Run(t, tag, opts)
-		version_string := regexp.MustCompile(`^\d+:(\d+\.\d+\.\d+)`)
-		docker_version := version_string.FindStringSubmatch(m["DOCKER_VERSION"])[1]
-		assert.True(t, strings.Contains(output, docker_version), output)
-	})
-	t.Run("KUBECTL_VERSION", func(t *testing.T) {
-		opts := &docker.RunOptions{Command: []string{"kubectl", "version", "--client=true"},
-			Remove: true}
-		output := docker.Run(t, tag, opts)
-		version_string := regexp.MustCompile(`^\d+\.\d+\.\d+`)
-		kubectl_version := version_string.FindString(m["KUBECTL_VERSION"])
-		assert.True(t, strings.Contains(output, kubectl_version), output)
-	})
-	t.Run("HELM_VERSION", func(t *testing.T) {
-		opts := &docker.RunOptions{Command: []string{"helm", "version"},
-			Remove: true}
-		output := docker.Run(t, tag, opts)
-		assert.True(t, strings.Contains(output, m["HELM_VERSION"]), output)
-	})
-	t.Run("AWS_CLI_VERSION", func(t *testing.T) {
-		opts := &docker.RunOptions{Command: []string{"aws", "--version"},
-			Remove: true}
-		output := docker.Run(t, tag, opts)
-		assert.True(t, strings.Contains(output, m["AWS_CLI_VERSION"]), output)
-	})
-	t.Run("TERRAFORM_VERSION", func(t *testing.T) {
-		opts := &docker.RunOptions{Command: []string{"terraform", "version"},
-			Remove: true}
-		output := docker.Run(t, tag, opts)
-		assert.True(t, strings.Contains(output, m["TERRAFORM_VERSION"]), output)
+		assert.True(t, strings.Contains(output, m["PYTHON_VERSION"]), output)
 	})
 	t.Run("GOLANG_VERSION", func(t *testing.T) {
 		opts := &docker.RunOptions{Command: []string{"go", "version"},
 			Remove: true}
 		output := docker.Run(t, tag, opts)
 		assert.True(t, strings.Contains(output, m["GOLANG_VERSION"]), output)
-	})
-	t.Run("KIND_VERSION", func(t *testing.T) {
-		opts := &docker.RunOptions{Command: []string{"kind", "version"},
-			Remove: true}
-		output := docker.Run(t, tag, opts)
-		assert.True(t, strings.Contains(output, m["KIND_VERSION"]), output)
 	})
 	t.Run("NODE_VERSION", func(t *testing.T) {
 		opts := &docker.RunOptions{Command: []string{"node", "--version"},
@@ -117,28 +70,63 @@ func TestVersions(t *testing.T) {
 		output := docker.Run(t, tag, opts)
 		assert.True(t, strings.Contains(output, m["GRADLE_VERSION"]), output)
 	})
+	t.Run("DOCKER_VERSION", func(t *testing.T) {
+		opts := &docker.RunOptions{Command: []string{"docker", "version"},
+			Remove:  true,
+			Volumes: []string{"/var/run/docker.sock:/var/run/docker.sock"}}
+		output := docker.Run(t, tag, opts)
+		version_string := regexp.MustCompile(`^\d+:(\d+\.\d+\.\d+)`)
+		docker_version := version_string.FindStringSubmatch(m["DOCKER_VERSION"])[1]
+		assert.True(t, strings.Contains(output, docker_version), output)
+	})
 	t.Run("TRIVY_VERSION", func(t *testing.T) {
 		opts := &docker.RunOptions{Command: []string{"trivy", "--version"},
 			Remove: true}
 		output := docker.Run(t, tag, opts)
 		assert.True(t, strings.Contains(output, m["TRIVY_VERSION"]), output)
 	})
-	t.Run("LINKERD_VERSION", func(t *testing.T) {
-		opts := &docker.RunOptions{Command: []string{"linkerd", "version", "--client"},
+	t.Run("KIND_VERSION", func(t *testing.T) {
+		opts := &docker.RunOptions{Command: []string{"kind", "version"},
 			Remove: true}
 		output := docker.Run(t, tag, opts)
-		assert.True(t, strings.Contains(output, m["LINKERD_VERSION"]), output)
+		assert.True(t, strings.Contains(output, m["KIND_VERSION"]), output)
 	})
-	t.Run("LINKERD_SMI_VERSION", func(t *testing.T) {
-		opts := &docker.RunOptions{Command: []string{"linkerd", "smi", "version"},
+	t.Run("KUBECTL_VERSION", func(t *testing.T) {
+		opts := &docker.RunOptions{Command: []string{"kubectl", "version", "--client=true"},
 			Remove: true}
 		output := docker.Run(t, tag, opts)
-		assert.True(t, strings.Contains(output, m["LINKERD_SMI_VERSION"]), output)
+		version_string := regexp.MustCompile(`^\d+\.\d+\.\d+`)
+		kubectl_version := version_string.FindString(m["KUBECTL_VERSION"])
+		assert.True(t, strings.Contains(output, kubectl_version), output)
+	})
+	t.Run("HELM_VERSION", func(t *testing.T) {
+		opts := &docker.RunOptions{Command: []string{"helm", "version"},
+			Remove: true}
+		output := docker.Run(t, tag, opts)
+		assert.True(t, strings.Contains(output, m["HELM_VERSION"]), output)
 	})
 	t.Run("ISTIO_VERSION", func(t *testing.T) {
-		opts := &docker.RunOptions{Command: []string{"istio", "version", "--remote=false"},
+		opts := &docker.RunOptions{Command: []string{"istioctl", "version", "--remote=false"},
 			Remove: true}
 		output := docker.Run(t, tag, opts)
 		assert.True(t, strings.Contains(output, m["ISTIO_VERSION"]), output)
+	})
+	t.Run("AWS_CLI_VERSION", func(t *testing.T) {
+		opts := &docker.RunOptions{Command: []string{"aws", "--version"},
+			Remove: true}
+		output := docker.Run(t, tag, opts)
+		assert.True(t, strings.Contains(output, m["AWS_CLI_VERSION"]), output)
+	})
+	t.Run("TERRAFORM_VERSION", func(t *testing.T) {
+		opts := &docker.RunOptions{Command: []string{"terraform", "version"},
+			Remove: true}
+		output := docker.Run(t, tag, opts)
+		assert.True(t, strings.Contains(output, m["TERRAFORM_VERSION"]), output)
+	})
+	t.Run("ANSIBLE_VERSION", func(t *testing.T) {
+		opts := &docker.RunOptions{Command: []string{"pip", "show", "ansible"},
+			Remove: true}
+		output := docker.Run(t, tag, opts)
+		assert.True(t, strings.Contains(output, "Version: "+m["ANSIBLE_VERSION"]), output)
 	})
 }

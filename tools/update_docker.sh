@@ -3,6 +3,12 @@
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source ${SCRIPT_DIR}/versions.sh
 
-apt-get update
+SUDO=
+if type sudo >/dev/null &> /dev/null
+then
+    SUDO="sudo"
+fi
 
-apt-get install -y --allow-downgrades docker-ce=${DOCKER_VERSION} docker-ce-cli=${DOCKER_VERSION}
+${SUDO} apt-get update
+
+${SUDO} apt-get install -y --allow-downgrades docker-ce=${DOCKER_VERSION} docker-ce-cli=${DOCKER_VERSION}

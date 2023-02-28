@@ -29,39 +29,11 @@ class TestToolVersions(unittest.TestCase):
                     key, version = line.split('=')
                     self.versions[key] = version.strip('"')
 
-        self.vm_name = os.getenv('VM_NAME', 'eseidinger-clouddev')
+        self.vm_name = os.getenv('VM_NAME', 'clouddev')
         if self.vm_name == "localhost":
             self.command_prefix = "bash -c"
         else:
             self.command_prefix = f"ssh {self.vm_name}"
-
-    def test_docker(self):
-        """
-        Test Docker version
-        """
-        version_info = subprocess.run(f'{self.command_prefix} "docker version"',
-                                      shell=True, capture_output=True, check=True)
-        match = re.search(r'\d+:(\d+\.\d+\.\d+)',
-                          self.versions['DOCKER_VERSION'])
-        if match is not None:
-            version = match.group(1)
-        else:
-            self.fail("Docker version regex did not match")
-        self.assertTrue(version in str(version_info.stdout))
-
-    def test_microk8s(self):
-        """
-        Test MicroK8s version
-        """
-        version_info = subprocess.run(f'{self.command_prefix} "microk8s version"',
-                                      shell=True, capture_output=True, check=True)
-        match = re.search(
-            r'(\d+\.\d+)/', self.versions['MICROK8S_VERSION'])
-        if match is not None:
-            version = match.group(1)
-        else:
-            self.fail("MicroK8s version regex did not match")
-        self.assertTrue(version in str(version_info.stdout))
 
     def test_conda(self):
         """
@@ -81,15 +53,6 @@ class TestToolVersions(unittest.TestCase):
         self.assertTrue(
             self.versions['PYTHON_VERSION'] in str(version_info.stdout))
 
-    def test_ansible(self):
-        """
-        Test ansible version
-        """
-        version_info = subprocess.run(f'{self.command_prefix} "~/miniconda3/bin/pip show ansible"',
-                                      shell=True, capture_output=True, check=True)
-        self.assertTrue(
-            self.versions['ANSIBLE_VERSION'] in str(version_info.stdout))
-
     def test_golang(self):
         """
         Test Golang version
@@ -98,57 +61,6 @@ class TestToolVersions(unittest.TestCase):
                                       shell=True, capture_output=True, check=True)
         self.assertTrue(self.versions['GOLANG_VERSION']
                         in str(version_info.stdout))
-
-    def test_kind(self):
-        """
-        Test kind version
-        """
-        version_info = subprocess.run(f'{self.command_prefix} "~/go/bin/kind version"',
-                                      shell=True, capture_output=True, check=True)
-        self.assertTrue(self.versions['KIND_VERSION']
-                        in str(version_info.stdout))
-
-    def test_kubectl(self):
-        """
-        Test kubectl version
-        """
-        version_info = subprocess.run(f'{self.command_prefix} "kubectl --client=true version"',
-                                      shell=True, capture_output=True, check=True)
-        match = re.search(
-            r'\d+\.\d+\.\d+', self.versions['KUBECTL_VERSION'])
-        if match is not None:
-            version = match.group(0)
-        else:
-            self.fail("Kubectl version regex did not match")
-        self.assertTrue(version in str(version_info.stdout))
-
-    def test_helm(self):
-        """
-        Test Helm version
-        """
-        version_info = subprocess.run(f'{self.command_prefix} "~/tools/helm/helm version"',
-                                      shell=True, capture_output=True, check=True)
-        self.assertTrue(self.versions['HELM_VERSION']
-                        in str(version_info.stdout))
-
-    def test_awscli(self):
-        """
-        Test AWS CLI version
-        """
-        version_info = subprocess.run(f'{self.command_prefix} "aws --version"',
-                                      shell=True, capture_output=True, check=True)
-        self.assertTrue(
-            self.versions['AWS_CLI_VERSION'] in str(version_info.stdout))
-
-    def test_terraform(self):
-        """
-        Test Terraform version
-        """
-        version_info = subprocess.run(f'{self.command_prefix} '
-                                      + '"~/tools/terraform/terraform --version"',
-                                      shell=True, capture_output=True, check=True)
-        self.assertTrue(
-            self.versions['TERRAFORM_VERSION'] in str(version_info.stdout))
 
     def test_nvm(self):
         """
@@ -181,17 +93,6 @@ class TestToolVersions(unittest.TestCase):
             shell=True, capture_output=True, check=True)
         self.assertTrue(
             self.versions['NPM_VERSION'] in str(version_info.stdout))
-
-    def test_k9s(self):
-        """
-        Test K9s version
-        """
-        version_info = subprocess.run(
-            f'{self.command_prefix} '
-            + '"~/tools/k9s/k9s version"',
-            shell=True, capture_output=True, check=True)
-        self.assertTrue(
-            self.versions['K9S_VERSION'] in str(version_info.stdout))
 
     def test_java(self):
         """
@@ -226,6 +127,20 @@ class TestToolVersions(unittest.TestCase):
         self.assertTrue(
             self.versions['GRADLE_VERSION'] in str(version_info.stdout))
 
+    def test_docker(self):
+        """
+        Test Docker version
+        """
+        version_info = subprocess.run(f'{self.command_prefix} "docker version"',
+                                      shell=True, capture_output=True, check=True)
+        match = re.search(r'\d+:(\d+\.\d+\.\d+)',
+                          self.versions['DOCKER_VERSION'])
+        if match is not None:
+            version = match.group(1)
+        else:
+            self.fail("Docker version regex did not match")
+        self.assertTrue(version in str(version_info.stdout))
+
     def test_trivy(self):
         """
         Test Trivy version
@@ -237,27 +152,62 @@ class TestToolVersions(unittest.TestCase):
         self.assertTrue(
             self.versions['TRIVY_VERSION'] in str(version_info.stdout))
 
-    def test_linkerd(self):
+    def test_microk8s(self):
         """
-        Test linkerd version
+        Test MicroK8s version
         """
-        version_info = subprocess.run(
-            f'{self.command_prefix} '
-            + '"linkerd version --client"',
-            shell=True, capture_output=True, check=True)
-        self.assertTrue(
-            self.versions['LINKERD_VERSION'] in str(version_info.stdout))
+        version_info = subprocess.run(f'{self.command_prefix} "microk8s version"',
+                                      shell=True, capture_output=True, check=True)
+        match = re.search(
+            r'(\d+\.\d+)/', self.versions['MICROK8S_VERSION'])
+        if match is not None:
+            version = match.group(1)
+        else:
+            self.fail("MicroK8s version regex did not match")
+        self.assertTrue(version in str(version_info.stdout))
 
-    def test_linkerd_smi(self):
+    def test_kind(self):
         """
-        Test linkerd smi version
+        Test kind version
+        """
+        version_info = subprocess.run(f'{self.command_prefix} "~/tools/kind/kind version"',
+                                      shell=True, capture_output=True, check=True)
+        self.assertTrue(self.versions['KIND_VERSION']
+                        in str(version_info.stdout))
+
+    def test_kubectl(self):
+        """
+        Test kubectl version
+        """
+        version_info = subprocess.run(f'{self.command_prefix} "kubectl --client=true version"',
+                                      shell=True, capture_output=True, check=True)
+        match = re.search(
+            r'\d+\.\d+\.\d+', self.versions['KUBECTL_VERSION'])
+        if match is not None:
+            version = match.group(0)
+        else:
+            self.fail("Kubectl version regex did not match")
+        self.assertTrue(version in str(version_info.stdout))
+
+    def test_helm(self):
+        """
+        Test Helm version
+        """
+        version_info = subprocess.run(f'{self.command_prefix} "~/tools/helm/helm version"',
+                                      shell=True, capture_output=True, check=True)
+        self.assertTrue(self.versions['HELM_VERSION']
+                        in str(version_info.stdout))
+
+    def test_k9s(self):
+        """
+        Test K9s version
         """
         version_info = subprocess.run(
             f'{self.command_prefix} '
-            + '"linkerd smi version"',
+            + '"~/tools/k9s/k9s version"',
             shell=True, capture_output=True, check=True)
         self.assertTrue(
-            self.versions['LINKERD_SMI_VERSION'] in str(version_info.stdout))
+            self.versions['K9S_VERSION'] in str(version_info.stdout))
 
     def test_istio(self):
         """
@@ -269,6 +219,34 @@ class TestToolVersions(unittest.TestCase):
             shell=True, capture_output=True, check=True)
         self.assertTrue(
             self.versions['ISTIO_VERSION'] in str(version_info.stdout))
+
+    def test_awscli(self):
+        """
+        Test AWS CLI version
+        """
+        version_info = subprocess.run(f'{self.command_prefix} "aws --version"',
+                                      shell=True, capture_output=True, check=True)
+        self.assertTrue(
+            self.versions['AWS_CLI_VERSION'] in str(version_info.stdout))
+
+    def test_terraform(self):
+        """
+        Test Terraform version
+        """
+        version_info = subprocess.run(f'{self.command_prefix} '
+                                      + '"~/tools/terraform/terraform --version"',
+                                      shell=True, capture_output=True, check=True)
+        self.assertTrue(
+            self.versions['TERRAFORM_VERSION'] in str(version_info.stdout))
+
+    def test_ansible(self):
+        """
+        Test ansible version
+        """
+        version_info = subprocess.run(f'{self.command_prefix} "~/miniconda3/bin/pip show ansible"',
+                                      shell=True, capture_output=True, check=True)
+        self.assertTrue(
+            self.versions['ANSIBLE_VERSION'] in str(version_info.stdout))
 
 if __name__ == '__main__':
     unittest.main()

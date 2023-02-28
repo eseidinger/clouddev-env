@@ -62,7 +62,7 @@ def get_clean_ssh_config(vm_name: str) -> str:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Create development VM.')
     parser.add_argument('--vm_name', help='the name of the VM to create',
-                        default='eseidinger-clouddev', required=False)
+                        default='clouddev', required=False)
     args = parser.parse_args()
     ip = get_vm_ip(args.vm_name)
     ssh_config_snippet = create_ssh_config_snippet(args.vm_name, ip)

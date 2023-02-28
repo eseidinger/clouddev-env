@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
-username=$1
+username=$(whoami)
 
-usermod -a -G docker $username
+SUDO=
+if type sudo >/dev/null &> /dev/null
+then
+    SUDO="sudo"
+fi
+
+${SUDO} usermod -a -G docker $username

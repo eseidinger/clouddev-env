@@ -1,18 +1,44 @@
-# Miniconda
+# Software Development Tools
+
+## Miniconda
 
 https://repo.anaconda.com/miniconda/
 
-# Conda
+## Conda
 
 conda search conda
 
-# Python
+## Python
 
 conda search python
 
-# Ansible
+## Go
 
-https://pypi.org/project/ansible/
+https://go.dev/dl/
+
+## nvm
+
+https://github.com/nvm-sh/nvm/releases
+
+### Node.js
+
+https://github.com/nodejs/node/blob/main/CHANGELOG.md
+
+### npm
+
+https://www.npmjs.com/package/npm
+
+## Java
+
+sdk list java
+
+### Kotlin
+
+sdk list kotlin
+
+### Gradle
+
+sdk list gradle
 
 # Docker
 
@@ -24,67 +50,46 @@ apt-cache madison docker-ce | awk '{ print $3 }'
 
 https://hub.docker.com/_/docker
 
-# Kubectl
+## Trivy
 
-apt-cache madison kubectl | awk '{ print $3 }'
+https://github.com/aquasecurity/trivy/releases
 
-# Helm
+# Kubernetes Tools
 
-https://github.com/helm/helm/releases
-
-# AWS CLI
-
-https://raw.githubusercontent.com/aws/aws-cli/v2/CHANGELOG.rst
-
-# Terraform
-
-https://releases.hashicorp.com/terraform/
-
-# Go
-
-https://go.dev/dl/
-
-# kind
-
-https://github.com/kubernetes-sigs/kind/releases
-
-# MicroK8s
+## MicroK8s
 
 https://microk8s.io/docs/release-notes
 
-# nvm
+## kind
 
-https://github.com/nvm-sh/nvm/releases
+https://github.com/kubernetes-sigs/kind/releases
 
-## Node.js
+## Kubectl
 
-https://github.com/nodejs/node/blob/main/CHANGELOG.md
+apt-cache madison kubectl | awk '{ print $3 }'
 
-## npm
+## Helm
 
-https://www.npmjs.com/package/npm
+https://github.com/helm/helm/releases
 
-# k9s
+## k9s
 
 https://github.com/derailed/k9s/releases
 
-# Java
+## Istio
 
-sdk list java
+https://github.com/istio/istio/releases/
 
-## Gradle
+# Provisioning Tools
 
-sdk list gradle
+## AWS CLI
 
-## Kotlin
+https://raw.githubusercontent.com/aws/aws-cli/v2/CHANGELOG.rst
 
-sdk list kotlin
+## Terraform
 
-# Linkerd
+https://releases.hashicorp.com/terraform/
 
-https://github.com/linkerd/linkerd2/releases/
-https://github.com/linkerd/linkerd-smi/releases
+## Ansible
 
-# Trivy
-
-https://github.com/aquasecurity/trivy/releases
+https://pypi.org/project/ansible/

@@ -11,7 +11,7 @@ tool_script_path = f"{script_path}{os.sep}..{os.sep}tools"
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Create development VM.')
     parser.add_argument('--vm_name', help='the name of the VM to create',
-                        default='eseidinger-clouddev', required=False)
+                        default='clouddev', required=False)
     args = parser.parse_args()
     subprocess.run(f'ssh {args.vm_name} "mkdir -p ~/install"',
                    shell=True, check=True)
