@@ -2,43 +2,43 @@ pipeline {
     agent {
         kubernetes {
             yaml '''
-        apiVersion: v1
-        kind: Pod
-        metadata:
-            labels:
-                app: cloud-tools-image
-        spec:
-            containers:
-            - name: docker
-              image: docker:23.0.1
-              command:
-              - cat
-              tty: true
-              volumeMounts:
-              - name: certs
-                mountPath: /certs
-              env:
-              - name: DOCKER_TLS_CERTDIR
-                value: /certs
-              - name: DOCKER_HOST
-                value: "tcp://localhost:2376"
-              - name: DOCKER_TLS_VERIFY
-                value: 1
-              - name: DOCKER_CERT_PATH
-                value: /certs/client
-            - name: docker-daemon
-              image: docker:23.0.1-dind
-              securityContext:
-                privileged: true
-              volumeMounts:
-              - name: certs
-                mountPath: /certs
-              env:
-              - name: DOCKER_TLS_CERTDIR
-                value: /certs
-            volumes:
-            - name: certs
-              emptyDir: {}
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: cloud-tools-image
+spec:
+  containers:
+    - name: docker
+      image: docker:23.0.1
+      command:
+        - cat
+      tty: true
+      volumeMounts:
+        - name: certs
+          mountPath: /certs
+      env:
+        - name: DOCKER_TLS_CERTDIR
+          value: /certs
+        - name: DOCKER_HOST
+          value: "tcp://localhost:2376"
+        - name: DOCKER_TLS_VERIFY
+          value: 1
+        - name: DOCKER_CERT_PATH
+          value: /certs/client
+    - name: docker-daemon
+      image: docker:23.0.1-dind
+      securityContext:
+        privileged: true
+      volumeMounts:
+        - name: certs
+          mountPath: /certs
+      env:
+        - name: DOCKER_TLS_CERTDIR
+          value: /certs
+  volumes:
+    - name: certs
+      emptyDir: {}
         '''
         }
     }
