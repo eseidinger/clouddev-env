@@ -1,6 +1,7 @@
 services:
   cloud-test:
     image: cloud-tools
+    user: root
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./image-test:/image-test
