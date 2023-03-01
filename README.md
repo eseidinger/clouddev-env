@@ -30,10 +30,11 @@ The virtual machine as well as the image contain tools for all kinds of software
 
 ### Kubernetes Tools
 
+* [MicroK8s](https://microk8s.io/): The lightweight Kubernetes (VM only)
 * [kind](https://kind.sigs.k8s.io/): a tool for running local Kubernetes clusters using Docker container “nodes”
 * [Kubectl](https://kubernetes.io/docs/reference/kubectl/): the Kubernetes CLI
 * [Helm](https://helm.sh/): the package manager for Kubernetes
-* [k9s](https://k9scli.io/): Kubernetes CLI To Manage Your Clusters In Style
+* [k9s](https://k9scli.io/): Kubernetes CLI To Manage Your Clusters In Style (VM only)
 * [Istio](https://istio.io/): a service mesh for Kubernetes
 
 ### Provisioning Tools
@@ -41,10 +42,6 @@ The virtual machine as well as the image contain tools for all kinds of software
 * [AWS CLI](https://aws.amazon.com/de/cli/): a unified tool to manage your AWS services
 * [Ansible](https://docs.ansible.com/ansible/latest/index.html): a radically simple IT automation system
 * [Terraform](https://www.terraform.io/): automate infrastructure on any cloud
-
-The following tool will only be installed in the VM because it cannot be run inside a Docker container:
-
-* [MicroK8s](https://microk8s.io/): The lightweight Kubernetes
 
 ## Usage
 
