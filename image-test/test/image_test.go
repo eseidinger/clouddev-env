@@ -73,6 +73,7 @@ func TestVersions(t *testing.T) {
 	t.Run("DOCKER_VERSION", func(t *testing.T) {
 		opts := &docker.RunOptions{Command: []string{"docker", "version"},
 			Remove:  true,
+			User:    "root",
 			Volumes: []string{"/var/run/docker.sock:/var/run/docker.sock"}}
 		output := docker.Run(t, tag, opts)
 		version_string := regexp.MustCompile(`^\d+:(\d+\.\d+\.\d+)`)
