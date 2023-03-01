@@ -215,7 +215,7 @@ class TestToolVersions(unittest.TestCase):
         """
         version_info = subprocess.run(
             f'{self.command_prefix} '
-            + '"istioctl version --remote=false"',
+            + '"~/tools/istio/bin/istioctl version --remote=false"',
             shell=True, capture_output=True, check=True)
         self.assertTrue(
             self.versions['ISTIO_VERSION'] in str(version_info.stdout))

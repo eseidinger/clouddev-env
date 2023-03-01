@@ -85,13 +85,7 @@ The next script will adapt the SSH config file in your home directory to allow c
 to enter a username or password.
 
 ```
-python setup_ssh.py [--vm_name your_vm_name]
-```
-
-If you would rather add the respective section to the config file yourself, you can just print the needed configuration.
-
-```
-python print_ssh_config.py [--vm_name your_vm_name]
+python print_ssh_config.py [--vm_name your_vm_name] > ~/.ssh/config
 ```
 
 Now you should be able to login to your VM using SSH. Try the following command.

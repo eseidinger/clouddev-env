@@ -8,4 +8,4 @@ then
     SUDO="sudo"
 fi
 
-usermod -a -G microk8s $username
+${SUDO} usermod -a -G microk8s $username
