@@ -60,55 +60,54 @@ You need to install them, if they are not already available on your host.
 
 First you need to clone this repository:
 
-```
+```bash
 git clone https://gitea.eseidinger.de/public/clouddev-env.git
 cd clouddev-env
 ```
 
-The scripts for provisioning the development VM are in the directory _multipass_.
+The scripts for provisioning the development VM are in the directory *multipass*.
 
-```
+```bash
 cd multipass
 ```
 
 Executing the following command will create an Ubuntu VM using the virtualization technology native to your system.
-A SSH keypair will be created and the public key is set as authorized key for the _clouddev_ user in the VM.
-The _clouddev_ user is configured for sudo without password. The configuration for the user is created using
+A SSH keypair will be created and the public key is set as authorized key for the *clouddev* user in the VM.
+The *clouddev* user is configured for sudo without password. The configuration for the user is created using
 [cloud-init](https://cloudinit.readthedocs.io/en/latest/).
-You can optionally specify a VM name for all commands. If you do not specificy a VM name, _clouddev_ will be used.
+You can optionally specify a VM name for all commands. If you do not specificy a VM name, *clouddev* will be used.
 
-```
+```bash
 python create_devenv.py [--vm_name your_vm_name]
 ```
 
 The next script will adapt the SSH config file in your home directory to allow connections to the VM without having
 to enter a username or password.
 
-```
+```bash
 python print_ssh_config.py [--vm_name your_vm_name] > ~/.ssh/config
 ```
 
 Now you should be able to login to your VM using SSH. Try the following command.
 You may need to change the host name.
 
-```
+```bash
 ssh clouddev
 ```
 
-You should now see a shell with the prompt _(base) clouddev@clouddev:~$_
+You should now see a shell with the prompt *(base) clouddev@clouddev:~$*
 The prompt may be different depending on your host name. Type `exit` to leave the shell.
 
 Next we are going to install all the tools we need into the virtual development environment.
 
-```
+```bash
 python install_tools.py [--vm_name your_vm_name]
 ```
 
 You can test if all the tools have been installed and have the correct version by executing the
 [pytests](https://docs.pytest.org/).
 
-
-```
+```bash
 cd test
 [VM_NAME=your_vm_name] python test_tool_versions.py
 ```
@@ -120,9 +119,9 @@ Start Visual Studio Code and follow the instructions on ["Remote Development usi
 Or simply click on the "Open a Remote Window" button on the left side of the status bar and select "Connect to Host...".
 A drop down menu should appear, offering you to connect to "clouddev".
 
-Open the folder _/home/clouddev_ and open a terminal to configure git and clone this repository.
+Open the folder */home/clouddev* and open a terminal to configure git and clone this repository.
 
-```
+```bash
 git config --global user.name "Your Name"
 git config --global user.email "your.email@address.com"
 git clone https://gitea.eseidinger.de/public/clouddev-env.git
@@ -131,20 +130,23 @@ git clone https://gitea.eseidinger.de/public/clouddev-env.git
 ### Build and Test the Docker Image
 
 The image can be built using the following command:
-```
+
+```bash
 docker build -t cloud-tools ./tools/ -f image/Dockerfile
 ```
 
 To test the image run:
-```
+
+```bash
 docker compose up
 ```
 
-This will mount the Go test module in the _image-test_ directory, install [Terratest](https://terratest.gruntwork.io/) and execute the tests.
-The tests will check if all the tools were installed and have the correct version. 
+This will mount the Go test module in the *image-test* directory, install [Terratest](https://terratest.gruntwork.io/) and execute the tests.
+The tests will check if all the tools were installed and have the correct version.
 
 To try the tools in the image using a Docker in Docker environment, run:
-```
+
+```bash
 docker compose -f docker-compose-dind.yml up -d
 docker compose -f docker-compose-dind.yml exec cloud-tools bash
 ```
@@ -153,9 +155,9 @@ docker compose -f docker-compose-dind.yml exec cloud-tools bash
 
 ### Cannot connect to VM after reboot
 
-If you cannot connect to your VM, it may have gotten a new IP address. To reconnect, run the *print_ssh_config.py* script again and modify your _~/.ssh/config_ accordingly.
+If you cannot connect to your VM, it may have gotten a new IP address. To reconnect, run the *print_ssh_config.py* script again and modify your *~/.ssh/config* accordingly.
 
 ### Docker and MicroK8s not working
 
-If you have connected Visual Studio Code to the _clouddev_ VM before running the *install_tools.py* script, _docker_ and _microk8s_ won't work due to lacking privileges.
-You'll have to reconnet (see [Cleaning up the VS Code Server on the remote](https://code.visualstudio.com/docs/remote/troubleshooting#_cleaning-up-the-vs-code-server-on-the-remote)), for the necessary group changes to the _clouddev_ user to be applied.
+If you have connected Visual Studio Code to the *clouddev* VM before running the *install_tools.py* script, *docker* and *microk8s* won't work due to lacking privileges.
+You'll have to reconnet (see [Cleaning up the VS Code Server on the remote](https://code.visualstudio.com/docs/remote/troubleshooting#_cleaning-up-the-vs-code-server-on-the-remote)), for the necessary group changes to the *clouddev* user to be applied.
