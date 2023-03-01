@@ -148,3 +148,14 @@ To try the tools in the image using a Docker in Docker environment, run:
 docker compose -f docker-compose-dind.yml up -d
 docker compose -f docker-compose-dind.yml exec cloud-tools bash
 ```
+
+## Troubleshooting
+
+### Cannot connect to VM after reboot
+
+If you cannot connect to your VM, it may have gotten a new IP address. To reconnect, run the *print_ssh_config.py* script again and modify your _~/.ssh/config_ accordingly.
+
+### Docker and MicroK8s not working
+
+If you have connected Visual Studio Code to the _clouddev_ VM before running the *install_tools.py* script, _docker_ and _microk8s_ won't work due to lacking privileges.
+You'll have to reconnet (see [Cleaning up the VS Code Server on the remote](https://code.visualstudio.com/docs/remote/troubleshooting#_cleaning-up-the-vs-code-server-on-the-remote)), for the necessary group changes to the _clouddev_ user to be applied.
