@@ -21,6 +21,10 @@ RUN bash install_kubectl.sh
 
 RUN bash install_aws_cli.sh
 
+RUN bash install_psycopg_requirements.sh
+
+RUN bash install_cypress_requirements.sh
+
 USER clouddev
 
 RUN mkdir /home/clouddev/tools
