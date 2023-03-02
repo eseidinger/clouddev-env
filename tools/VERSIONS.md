@@ -54,6 +54,10 @@ https://hub.docker.com/_/docker
 
 https://github.com/aquasecurity/trivy/releases
 
+## Cosign
+
+https://github.com/sigstore/cosign/releases/
+
 # Kubernetes Tools
 
 ## MicroK8s

@@ -86,6 +86,12 @@ func TestVersions(t *testing.T) {
 		output := docker.Run(t, tag, opts)
 		assert.True(t, strings.Contains(output, m["TRIVY_VERSION"]), output)
 	})
+	t.Run("COSIGN_VERSION", func(t *testing.T) {
+		opts := &docker.RunOptions{Command: []string{"cosign", "version"},
+			Remove: true}
+		output := docker.Run(t, tag, opts)
+		assert.True(t, strings.Contains(output, m["COSIGN_VERSION"]), output)
+	})
 	t.Run("KIND_VERSION", func(t *testing.T) {
 		opts := &docker.RunOptions{Command: []string{"kind", "version"},
 			Remove: true}

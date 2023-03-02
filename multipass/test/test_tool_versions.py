@@ -152,6 +152,17 @@ class TestToolVersions(unittest.TestCase):
         self.assertTrue(
             self.versions['TRIVY_VERSION'] in str(version_info.stdout))
 
+    def test_cosign(self):
+        """
+        Test cosign version
+        """
+        version_info = subprocess.run(
+            f'{self.command_prefix} '
+            + '"~/tools/cosign/cosign version"',
+            shell=True, capture_output=True, check=True)
+        self.assertTrue(
+            self.versions['COSIGN_VERSION'] in str(version_info.stderr))
+
     def test_microk8s(self):
         """
         Test MicroK8s version

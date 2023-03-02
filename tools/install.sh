@@ -27,6 +27,8 @@ bash ${SCRIPT_DIR}/install_java.sh
 bash ${SCRIPT_DIR}/install_docker.sh
 bash ${SCRIPT_DIR}/config_docker.sh
 bash ${SCRIPT_DIR}/install_trivy.sh
+bash ${SCRIPT_DIR}/install_cosign.sh
+bash ${SCRIPT_DIR}/config_cosign.sh
 
 # Kubernetes tools
 bash ${SCRIPT_DIR}/install_microk8s.sh

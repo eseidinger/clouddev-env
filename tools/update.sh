@@ -16,6 +16,7 @@ bash ${SCRIPT_DIR}/update_java.sh
 # Docker tools
 bash ${SCRIPT_DIR}/update_docker.sh
 bash ${SCRIPT_DIR}/install_trivy.sh
+bash ${SCRIPT_DIR}/update_cosign.sh
 
 # Kubernetes tools
 bash ${SCRIPT_DIR}/update_microk8s.sh

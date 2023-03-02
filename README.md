@@ -27,6 +27,7 @@ The virtual machine as well as the image contain tools for all kinds of software
 
 * [Docker](https://www.docker.com/): package an application in an image and run it in an isolated container
 * [Trivy](https://github.com/aquasecurity/trivy): a security scanner that can be used on images
+* [cosgin](https://github.com/sigstore/cosign): Signing OCI containers (and other artifacts)
 
 ### Kubernetes Tools
 
