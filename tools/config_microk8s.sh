@@ -9,3 +9,4 @@ then
 fi
 
 ${SUDO} usermod -a -G microk8s $username
+${SUDO} microk8s enable registry
