@@ -74,8 +74,10 @@ spec:
                         sh 'docker login harbor.eseidinger.de/public/ -u $USERNAME -p $PASSWORD'
                         sh 'docker tag cloud-tools harbor.eseidinger.de/public/cloud-tools:latest'
                         sh 'docker tag harbor.eseidinger.de/public/cloud-tools:latest harbor.eseidinger.de/public/cloud-tools:$TAG_NAME'
-                        imageSha = sh (script: 'docker push harbor.eseidinger.de/public/cloud-tools:latest', returnStdout: true).
-                            split("\n").reversed().get(1).split(" ").get(2)
+                        script {
+                          imageSha = sh (script: 'docker push harbor.eseidinger.de/public/cloud-tools:latest', returnStdout: true).
+                              split("\n").reversed().get(1).split(" ").get(2)
+                        }
                         sh 'docker push harbor.eseidinger.de/public/cloud-tools:$TAG_NAME'
                     }
                 }
