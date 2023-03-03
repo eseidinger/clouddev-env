@@ -3,3 +3,4 @@
 *_rsa*
 cloud-config.yaml
 __pycache__/
+secret/
