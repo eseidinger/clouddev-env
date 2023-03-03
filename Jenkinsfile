@@ -76,7 +76,7 @@ spec:
                         sh 'docker tag harbor.eseidinger.de/public/cloud-tools:latest harbor.eseidinger.de/public/cloud-tools:$TAG_NAME'
                         script {
                           imageSha = sh (script: 'docker push harbor.eseidinger.de/public/cloud-tools:latest', returnStdout: true).
-                              split("\n").reversed().get(1).split(" ").get(2)
+                              split("\n").reverse()[1].split(" ")[2]
                         }
                         sh 'docker push harbor.eseidinger.de/public/cloud-tools:$TAG_NAME'
                     }
