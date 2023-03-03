@@ -30,6 +30,8 @@ spec:
           value: /certs/client
     - name: cosign
       image: bitnami/cosign:2.0.0
+      securityContext:
+        runAsUser: 1000
       command:
         - cat
       tty: true
@@ -93,7 +95,7 @@ spec:
                         file(credentialsId: 'cosign-key', variable: 'COSIGN_KEY'),
                         string(credentialsId: 'cosign-key-pass', variable: 'COSIGN_PASSWORD')
                     ]) {
-                            sh "cosign sign -y --key \${COSIGN_KEY} harbor.eseidinger.de/public/cloud-tools@${imageSha}"
+                        sh "cosign sign -y --key \${COSIGN_KEY} harbor.eseidinger.de/public/cloud-tools@${imageSha}"
                     }
                 }
             }
