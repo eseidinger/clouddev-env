@@ -52,6 +52,12 @@ func TestVersions(t *testing.T) {
 		output := docker.Run(t, tag, opts)
 		assert.True(t, strings.Contains(output, m["NPM_VERSION"]), output)
 	})
+	t.Run("YARN_VERSION", func(t *testing.T) {
+		opts := &docker.RunOptions{Command: []string{"yarn", "--version"},
+			Remove: true}
+		output := docker.Run(t, tag, opts)
+		assert.True(t, strings.Contains(output, m["YARN_VERSION"]), output)
+	})
 	t.Run("JAVA_VERSION", func(t *testing.T) {
 		opts := &docker.RunOptions{Command: []string{"java", "-version"},
 			Remove: true}

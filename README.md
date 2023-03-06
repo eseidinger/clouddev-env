@@ -1,7 +1,7 @@
 # Cloud Development Environment
 
 This repository contains Python and shell scripts to set up a local Ubuntu VM containing cloud development tools.
-The VM can be created on Linux, MacOS and Windows using Multipass.
+The VM can be created on Linux, MacOS and Windows using [Multipass](https://multipass.run/).
 
 There are also scripts to set up a SSH connection from your host machine to the development VM.
 A modern IDE like [Visual Studio Code](https://code.visualstudio.com/) can be used to work remotely on your VM using SSH.
@@ -73,10 +73,10 @@ cd multipass
 ```
 
 Executing the following command will create an Ubuntu VM using the virtualization technology native to your system.
-A SSH keypair will be created and the public key is set as authorized key for the *clouddev* user in the VM.
+A SSH key pair will be created and the public key is set as authorized key for the *clouddev* user in the VM.
 The *clouddev* user is configured for sudo without password. The configuration for the user is created using
 [cloud-init](https://cloudinit.readthedocs.io/en/latest/).
-You can optionally specify a VM name for all commands. If you do not specificy a VM name, *clouddev* will be used.
+You can optionally specify a VM name for all commands. If you do not specify a VM name, *clouddev* will be used.
 
 ```bash
 python create_devenv.py [--vm_name your_vm_name]
@@ -161,4 +161,4 @@ If you cannot connect to your VM, it may have gotten a new IP address. To reconn
 ### Docker and MicroK8s not working
 
 If you have connected Visual Studio Code to the *clouddev* VM before running the *install_tools.py* script, *docker* and *microk8s* won't work due to lacking privileges.
-You'll have to reconnet (see [Cleaning up the VS Code Server on the remote](https://code.visualstudio.com/docs/remote/troubleshooting#_cleaning-up-the-vs-code-server-on-the-remote)), for the necessary group changes to the *clouddev* user to be applied.
+You'll have to reconnect (see [Cleaning up the VS Code Server on the remote](https://code.visualstudio.com/docs/remote/troubleshooting#_cleaning-up-the-vs-code-server-on-the-remote)), for the necessary group changes to the *clouddev* user to be applied.

@@ -12,3 +12,6 @@ export NVM_DIR="$HOME/.nvm"
 nvm install ${NODE_VERSION}
 nvm use ${NODE_VERSION}
 npm install -g npm@${NPM_VERSION}
+
+corepack enable
+corepack prepare yarn@${YARN_VERSION} --activate

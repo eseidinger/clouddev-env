@@ -28,6 +28,10 @@ https://github.com/nodejs/node/blob/main/CHANGELOG.md
 
 https://www.npmjs.com/package/npm
 
+### yarn
+
+https://github.com/yarnpkg/berry/releases
+
 ## Java
 
 sdk list java

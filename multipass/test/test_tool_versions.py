@@ -94,6 +94,18 @@ class TestToolVersions(unittest.TestCase):
         self.assertTrue(
             self.versions['NPM_VERSION'] in str(version_info.stdout))
 
+    def test_yarn(self):
+        """
+        Test yarn version
+        """
+        version_info = subprocess.run(
+            f'{self.command_prefix} '
+            + f'"~/.nvm/versions/node/v{self.versions["NODE_VERSION"]}/bin/node '
+            + f'~/.nvm/versions/node/v{self.versions["NODE_VERSION"]}/bin/yarn --version"',
+            shell=True, capture_output=True, check=True)
+        self.assertTrue(
+            self.versions['YARN_VERSION'] in str(version_info.stdout))
+
     def test_java(self):
         """
         Test Java version

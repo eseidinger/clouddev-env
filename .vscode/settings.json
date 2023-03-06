@@ -2,5 +2,19 @@
     "python.linting.enabled": true,
     "python.linting.lintOnSave": true,
     "python.linting.pylintEnabled": true,
-    "python.analysis.typeCheckingMode": "basic"
+    "python.analysis.typeCheckingMode": "basic",
+    "cSpell.words": [
+        "clouddev",
+        "cosgin",
+        "devenv",
+        "dind",
+        "Istio",
+        "microk",
+        "Miniconda",
+        "Mulitpass",
+        "Multipass",
+        "pytests",
+        "Terratest",
+        "Trivy"
+    ]
 }
