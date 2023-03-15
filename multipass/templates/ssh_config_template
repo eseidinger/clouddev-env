@@ -2,3 +2,4 @@ Host [VMName]
     Hostname [Hostname]
     User clouddev
     IdentityFile [IdentityFile]
+    ForwardX11 yes
