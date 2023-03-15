@@ -152,6 +152,21 @@ docker compose -f docker-compose-dind.yml up -d
 docker compose -f docker-compose-dind.yml exec cloud-tools bash
 ```
 
+### X11 Forwarding
+
+Although not strictly necessary, you can forward an X11 connection to the development VM to use tools with a GUI.
+This works for Linux hosts out of the box.
+For MacOS you'll have to install an XServer like [XQuartz](https://www.xquartz.org/)
+and for Windows there is for example [VcXsrv](https://sourceforge.net/projects/vcxsrv/).
+
+For Windows you also need to set the DISPLAY environment variable on the Linux VM.
+
+```bash
+export DISPLAY=xxx.xxx.xxx.xxx:0.0
+```
+
+Where *xxx.xxx.xxx.xxx* is the IPv4 address of the default switch. You can get this address using the `ipconfig` command on the Windows host.
+
 ## Troubleshooting
 
 ### Cannot connect to VM after reboot
