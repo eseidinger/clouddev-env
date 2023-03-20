@@ -167,7 +167,7 @@ export DISPLAY=xxx.xxx.xxx.xxx:0.0
 
 Where *xxx.xxx.xxx.xxx* is the IPv4 address of the ethernet adapter on the default switch.
 You can get this address using the `ipconfig` command on the Windows host.
-You'll also have to configure you're Windows firewall to allow incoming connections for VcSsrv.
+You'll also have to configure you're Windows firewall to allow incoming connections for VcXsrv.
 
 As an alternative to exporting the DISPLAY variable and configuring the firewall, you can use [PuTTY](https://www.chiark.greenend.org.uk/~sgtatham/putty/) to connect to the development VM.
 PuTTY supports X11 forwarding.
