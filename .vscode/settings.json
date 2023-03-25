@@ -16,6 +16,7 @@
         "Multipass",
         "pytests",
         "Terratest",
-        "Trivy"
+        "Trivy",
+        "Xsrv"
     ]
 }
