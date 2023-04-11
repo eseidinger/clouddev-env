@@ -4,3 +4,4 @@
 cloud-config.yaml
 __pycache__/
 secret/
+*.ppk
