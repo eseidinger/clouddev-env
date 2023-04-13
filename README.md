@@ -172,7 +172,7 @@ You'll also have to configure you're Windows firewall to allow incoming connecti
 As an alternative to exporting the DISPLAY variable and configuring the firewall, you can use [PuTTY](https://www.chiark.greenend.org.uk/~sgtatham/putty/) to connect to the development VM.
 PuTTY supports X11 forwarding.
 
-On MacOS you need to set the following environment variable on the VM to enable some X11 applications.
+On Linux and MacOS you need to set the following environment variable in the VM to enable some X11 applications.
 
 ```bash
 export XAUTHORITY=$HOME/.Xauthority
