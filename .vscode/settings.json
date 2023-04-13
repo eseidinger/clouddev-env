@@ -17,6 +17,7 @@
         "pytests",
         "Terratest",
         "Trivy",
+        "Xauthority",
         "Xsrv"
     ]
 }
