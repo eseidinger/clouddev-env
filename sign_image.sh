@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-cosign sign --key secret/cosign.key harbor.eseidinger.de/public/cloud-tools@sha256:036d165f163e4969b870ba2662053904fb75ee89788802ea6257da3f4707958c
+cosign sign --key secret/cosign.key harbor.eseidinger.de/public/cloud-tools@sha256:09ab5727eac2b4284f91dd3af46efb7e82d35cf63b44ef09036facccd03435b2
