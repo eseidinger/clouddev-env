@@ -11,32 +11,32 @@ template_path = f"{script_path}{os.sep}templates"
 config_path = f"{script_path}{os.sep}config"
 
 
-def clean_old_config(vm_name) -> None:
+def clean_old_config(env_name) -> None:
     """
     Remove old config files
     """
     try:
-        os.remove(f"{config_path}{os.sep}{vm_name}_rsa")
-        os.remove(f"{config_path}{os.sep}{vm_name}_rsa.pub")
+        os.remove(f"{config_path}{os.sep}{env_name}_rsa")
+        os.remove(f"{config_path}{os.sep}{env_name}_rsa.pub")
         os.remove(f"{config_path}{os.sep}cloud-config.yaml")
     except FileNotFoundError:
         pass
 
 
-def create_ssh_key(vm_name: str) -> None:
+def create_ssh_key(env_name: str) -> None:
     """
     Create a SSH key to use to connect to the VM
     """
     subprocess.run("ssh-keygen -m PEM -t rsa -b 4096 "
-                   + f'-f {config_path}{os.sep}{vm_name}_rsa -N "" -q',
+                   + f'-f {config_path}{os.sep}{env_name}_rsa -N "" -q',
                    shell=True, check=True)
 
 
-def get_ssh_public_key(vm_name: str) -> str:
+def get_ssh_public_key(env_name: str) -> str:
     """
     Read the SSH public key from the configuration
     """
-    with open(f"{config_path}{os.sep}{vm_name}_rsa.pub", encoding="utf-8") as file:
+    with open(f"{config_path}{os.sep}{env_name}_rsa.pub", encoding="utf-8") as file:
         ssh_public_key = file.read()
     return ssh_public_key.strip(" \r\n")
 
@@ -57,11 +57,11 @@ def create_cloud_config(ssh_authorized_key: str):
         file.write(cloud_config)
 
 
-def create_vm(vm_name: str):
+def create_vm(env_name: str):
     """
     Create a VM using a cloud-config file
     """
-    subprocess.run(f"multipass launch jammy --name {vm_name} --cpus 6 "
+    subprocess.run(f"multipass launch jammy --name {env_name} --cpus 6 "
                    + "--disk 60G --memory 12G --cloud-init "
                    + f"{config_path}{os.sep}cloud-config.yaml",
                    shell=True, check=True)
@@ -69,11 +69,11 @@ def create_vm(vm_name: str):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Create development VM.')
-    parser.add_argument('--vm_name', help='the name of the VM to create',
+    parser.add_argument('--env_name', help='the name of the VM to create',
                         default='clouddev', required=False)
     args = parser.parse_args()
-    clean_old_config(args.vm_name)
-    create_ssh_key(args.vm_name)
-    public_key: str = get_ssh_public_key(args.vm_name)
+    clean_old_config(args.env_name)
+    create_ssh_key(args.env_name)
+    public_key: str = get_ssh_public_key(args.env_name)
     create_cloud_config(public_key)
-    create_vm(args.vm_name)
+    create_vm(args.env_name)

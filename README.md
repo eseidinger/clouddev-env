@@ -79,14 +79,14 @@ The *clouddev* user is configured for sudo without password. The configuration f
 You can optionally specify a VM name for all commands. If you do not specify a VM name, *clouddev* will be used.
 
 ```bash
-python create_devenv.py [--vm_name your_vm_name]
+python create_devenv.py [--env_name your_env_name]
 ```
 
 The next script will adapt the SSH config file in your home directory to allow connections to the VM without having
 to enter a username or password.
 
 ```bash
-python print_ssh_config.py [--vm_name your_vm_name] > ~/.ssh/config
+python print_ssh_config.py [--env_name your_env_name] > ~/.ssh/config
 ```
 
 Now you should be able to login to your VM using SSH. Try the following command.
@@ -102,7 +102,7 @@ The prompt may be different depending on your host name. Type `exit` to leave th
 Next we are going to install all the tools we need into the virtual development environment.
 
 ```bash
-python install_tools.py [--vm_name your_vm_name]
+python install_tools.py [--env_name your_env_name]
 ```
 
 You can test if all the tools have been installed and have the correct version by executing the
@@ -110,7 +110,7 @@ You can test if all the tools have been installed and have the correct version b
 
 ```bash
 cd test
-[VM_NAME=your_vm_name] python test_tool_versions.py
+[ENV_NAME=your_env_name] python test_tool_versions.py
 ```
 
 ### Connect to the Development Environment

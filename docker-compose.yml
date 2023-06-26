@@ -1,11 +1,12 @@
 services:
   cloud-test:
     image: cloud-tools
-    user: root
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ./image-test:/image-test
+      - ./test:/test
       - ./tools/versions.sh:/tools/versions.sh
+    environment:
+      - ENV_NAME=docker
     entrypoint:
-      - sh
-      - /image-test/test.sh
+      - python
+      - /test/test_tool_versions.py
