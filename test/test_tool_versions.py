@@ -157,7 +157,7 @@ class TestToolVersions(unittest.TestCase):
         """
         Test Docker version
         """
-        version_info = subprocess.run(f'{self.command_prefix} "docker version"',
+        version_info = subprocess.run(f'{self.command_prefix} "docker -v"',
                                       shell=True, capture_output=True, check=True)
         match = re.search(r'\d+:(\d+\.\d+\.\d+)',
                           self.versions['DOCKER_VERSION'])
