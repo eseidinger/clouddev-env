@@ -4,6 +4,7 @@
     "python.linting.pylintEnabled": true,
     "python.analysis.typeCheckingMode": "basic",
     "cSpell.words": [
+        "argocd",
         "awscli",
         "clouddev",
         "conda",

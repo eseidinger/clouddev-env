@@ -88,6 +88,10 @@ https://github.com/derailed/k9s/releases
 
 https://github.com/istio/istio/releases/
 
+## Argo CD
+
+https://github.com/argoproj/argo-cd/releases
+
 # Provisioning Tools
 
 ## AWS CLI

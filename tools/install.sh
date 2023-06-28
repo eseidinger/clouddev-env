@@ -42,6 +42,8 @@ bash ${SCRIPT_DIR}/install_k9s.sh
 bash ${SCRIPT_DIR}/config_k9s.sh
 bash ${SCRIPT_DIR}/install_istio.sh
 bash ${SCRIPT_DIR}/config_istio.sh
+bash ${SCRIPT_DIR}/install_argocd.sh
+bash ${SCRIPT_DIR}/config_argocd.sh
 
 # Provisioning tools
 bash ${SCRIPT_DIR}/install_aws_cli.sh

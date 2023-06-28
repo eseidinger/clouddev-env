@@ -261,6 +261,17 @@ class TestToolVersions(unittest.TestCase):
         self.assertTrue(
             self.versions['ISTIO_VERSION'] in str(version_info.stdout))
 
+    def test_argocd(self):
+        """
+        Test argocd version
+        """
+        version_info = subprocess.run(
+            f'{self.command_prefix} '
+            + '"~/tools/argocd/argocd version || true"',
+            shell=True, capture_output=True, check=True)
+        self.assertTrue(
+            self.versions['ARGOCD_VERSION'] in str(version_info.stdout))
+
     def test_awscli(self):
         """
         Test AWS CLI version
