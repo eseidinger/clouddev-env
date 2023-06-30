@@ -5,7 +5,7 @@ variables:
   DOCKER_HOST: tcp://docker:2376
   DOCKER_TLS_VERIFY: 1
   DOCKER_CERT_PATH: "/certs/client"
-  IMAGE_NAME: "$CI_REGISTRY/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME/cloud-tools"
+  IMAGE_NAME: "$CI_REGISTRY_IMAGE/cloud-tools"
 
 services:
   - name: docker:24.0.2-dind
@@ -15,11 +15,7 @@ stages:
   - build
   - test
   - deploy
-
-before_script:
-  - echo $IMAGE_NAME
-  - echo $CI_REGISTRY
-  - echo $CI_REGISTRY_IMAGE
+  - clean
 
 build:
   stage: build
@@ -47,3 +43,17 @@ deploy:
     - docker tag $IMAGE_NAME:$CI_COMMIT_SHA $IMAGE_NAME:$CI_COMMIT_TAG
     - docker push $IMAGE_NAME:latest
     - docker push $IMAGE_NAME:$CI_COMMIT_TAG
+
+delete_image:
+  before_script:
+    - curl --fail --show-error --location "https://github.com/genuinetools/reg/releases/download/v$REG_VERSION/reg-linux-amd64" --output ./reg
+    - echo "$REG_SHA256  ./reg" | sha256sum -c -
+    - chmod a+x ./reg
+  image: curlimages/curl:8.1.2
+  script:
+    - ./reg rm -d --auth-url $CI_REGISTRY -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $IMAGE_TAG
+  stage: clean
+  variables:
+    IMAGE_TAG: $IMAGE_NAME:$CI_COMMIT_SHA
+    REG_SHA256: ade837fc5224acd8c34732bf54a94f579b47851cc6a7fd5899a98386b782e228
+    REG_VERSION: 0.16.1
