@@ -5,6 +5,7 @@ variables:
   DOCKER_HOST: tcp://docker:2376
   DOCKER_TLS_VERIFY: 1
   DOCKER_CERT_PATH: "/certs/client"
+  IMAGE_NAME: "$CI_REGISTRY/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME/cloud-tools"
 
 services:
   - name: docker:24.0.2-dind
@@ -15,14 +16,24 @@ stages:
   - test
   - deploy
 
+before_script:
+  - echo $IMAGE_NAME
+  - echo $CI_REGISTRY
+  - echo $CI_REGISTRY_IMAGE
+
 build:
   stage: build
   script:
-    - docker build -t cloud-tools ./tools/ -f image/Dockerfile
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - docker build -t $IMAGE_NAME:$CI_COMMIT_SHA ./tools/ -f image/Dockerfile
+    - docker push $IMAGE_NAME:$CI_COMMIT_SHA
 
 test:
   stage: test
   script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - docker pull $IMAGE_NAME:$CI_COMMIT_SHA
+    - docker tag $IMAGE_NAME:$CI_COMMIT_SHA cloud-tools
     - docker compose up --exit-code-from cloud-test
 
 deploy:
@@ -31,7 +42,8 @@ deploy:
     - tags
   script:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
-    - docker tag cloud-tools $CI_REGISTRY/default/clouddev-env/cloud-tools:latest
-    - docker tag cloud-tools $CI_REGISTRY/default/clouddev-env/cloud-tools:$CI_COMMIT_TAG
-    - docker push cloud-tools $CI_REGISTRY/default/clouddev-env/cloud-tools:latest
-    - docker push $CI_REGISTRY/default/clouddev-env/cloud-tools:$CI_COMMIT_TAG
+    - docker pull $IMAGE_NAME:$CI_COMMIT_SHA
+    - docker tag $IMAGE_NAME:$CI_COMMIT_SHA $IMAGE_NAME:latest
+    - docker tag $IMAGE_NAME:$CI_COMMIT_SHA $IMAGE_NAME:$CI_COMMIT_TAG
+    - docker push $IMAGE_NAME:latest
+    - docker push $IMAGE_NAME:$CI_COMMIT_TAG
