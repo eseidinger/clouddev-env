@@ -35,6 +35,9 @@ ENV PATH /home/clouddev/tools/cosign:$PATH
 RUN bash install_argocd.sh
 ENV PATH /home/clouddev/tools/argocd:$PATH
 
+RUN bash install_tekton.sh
+ENV PATH /home/clouddev/tools/tekton:$PATH
+
 RUN bash install_miniconda.sh
 ENV PATH /home/clouddev/miniconda3/bin:$PATH
 

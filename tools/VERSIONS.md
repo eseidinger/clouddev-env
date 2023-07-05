@@ -92,6 +92,10 @@ https://github.com/istio/istio/releases/
 
 https://github.com/argoproj/argo-cd/releases
 
+## Tekton
+
+https://github.com/tektoncd/cli/releases
+
 # Provisioning Tools
 
 ## AWS CLI

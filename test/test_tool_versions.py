@@ -263,7 +263,7 @@ class TestToolVersions(unittest.TestCase):
 
     def test_argocd(self):
         """
-        Test argocd version
+        Test ArgoCD version
         """
         version_info = subprocess.run(
             f'{self.command_prefix} '
@@ -271,6 +271,17 @@ class TestToolVersions(unittest.TestCase):
             shell=True, capture_output=True, check=True)
         self.assertTrue(
             self.versions['ARGOCD_VERSION'] in str(version_info.stdout))
+
+    def test_tekton(self):
+        """
+        Test Tekton version
+        """
+        version_info = subprocess.run(
+            f'{self.command_prefix} '
+            + '"~/tools/tekton/tkn version"',
+            shell=True, capture_output=True, check=True)
+        self.assertTrue(
+            self.versions['TEKTON_VERSION'] in str(version_info.stdout))
 
     def test_awscli(self):
         """

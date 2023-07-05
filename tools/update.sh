@@ -26,6 +26,7 @@ bash ${SCRIPT_DIR}/update_helm.sh
 bash ${SCRIPT_DIR}/update_k9s.sh
 bash ${SCRIPT_DIR}/update_istio.sh
 bash ${SCRIPT_DIR}/update_argocd.sh
+bash ${SCRIPT_DIR}/update_tekton.sh
 
 # Provisioning tools
 bash ${SCRIPT_DIR}/install_aws_cli.sh --update

@@ -2,5 +2,5 @@
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-rm -rf ~/tools/argocd
-bash ${SCRIPT_DIR}/install_argocd.sh
+rm -rf ~/tools/tekton
+bash ${SCRIPT_DIR}/install_tekton.sh

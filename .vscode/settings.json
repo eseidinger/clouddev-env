@@ -21,6 +21,7 @@
         "Multipass",
         "pytests",
         "sdkman",
+        "Tekton",
         "Terratest",
         "Trivy",
         "Xauthority",

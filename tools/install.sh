@@ -44,6 +44,8 @@ bash ${SCRIPT_DIR}/install_istio.sh
 bash ${SCRIPT_DIR}/config_istio.sh
 bash ${SCRIPT_DIR}/install_argocd.sh
 bash ${SCRIPT_DIR}/config_argocd.sh
+bash ${SCRIPT_DIR}/install_tekton.sh
+bash ${SCRIPT_DIR}/config_tekton.sh
 
 # Provisioning tools
 bash ${SCRIPT_DIR}/install_aws_cli.sh
