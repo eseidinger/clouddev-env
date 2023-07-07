@@ -10,8 +10,6 @@ COPY . .
 
 USER root
 
-RUN chown -R clouddev:clouddev /home/clouddev
-
 RUN apt-get update && apt-get install -y jq zip unzip wget build-essential
 
 RUN bash install_docker.sh
