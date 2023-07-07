@@ -62,10 +62,7 @@ RUN bash install_helm.sh
 ENV PATH /home/clouddev/tools/helm:$PATH
 RUN helm plugin install https://github.com/chartmuseum/helm-push
 
-USER root
 RUN bash install_istio.sh
-RUN chown -R clouddev:clouddev /home/clouddev/tools/istio
-USER clouddev
 ENV PATH /home/clouddev/tools/istio/bin:$PATH
 
 RUN bash install_terraform.sh
@@ -74,7 +71,4 @@ ENV PATH /home/clouddev/tools/terraform:$PATH
 RUN bash install_ansible.sh
 
 WORKDIR /home/clouddev
-
-USER root
 RUN rm -rf /home/clouddev/src
-USER clouddev
