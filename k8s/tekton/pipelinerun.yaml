@@ -1,0 +1,33 @@
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  generateName: clone-build-push-run-
+spec:
+  pipelineRef:
+    name: clone-build-push
+  taskRunTemplate:
+    podTemplate:
+      securityContext:
+        fsGroup: 1000
+  workspaces:
+  - name: shared-data
+    volumeClaimTemplate:
+      spec:
+        storageClassName: "rook-cephfs"
+        accessModes:
+        - ReadWriteOnce
+        resources:
+          requests:
+            storage: 1Gi
+  - name: docker-credentials
+    secret:
+      secretName: docker-credentials
+  params:
+  - name: repo-url
+    value: https://gitlab.bot-social.de/default/clouddev-env.git
+  - name: image-reference
+    value: registry.bot-social.de/default/clouddev-env/cloud-tools:4.3.0-tekton
+  - name: dockerfile-reference
+    value: ./image/Dockerfile
+  - name: context-path
+    value: ./tools/

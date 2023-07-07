@@ -5,3 +5,5 @@ cloud-config.yaml
 __pycache__/
 secret/
 *.ppk
+k8s/.kube/config-local
+k8s/.kube/config-remote
