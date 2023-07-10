@@ -41,3 +41,7 @@ spec:
       value: $(params.dockerfile-reference)
     - name: CONTEXT
       value: $(params.context-path)
+    - name: EXTRA_ARGS
+      value:
+        - "--push-retry"
+        - "5"
