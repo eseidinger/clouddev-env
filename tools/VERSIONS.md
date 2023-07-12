@@ -102,6 +102,10 @@ https://github.com/tektoncd/cli/releases
 
 https://raw.githubusercontent.com/aws/aws-cli/v2/CHANGELOG.rst
 
+## Azure CLI
+
+apt-cache policy azure-cli
+
 ## Terraform
 
 https://releases.hashicorp.com/terraform/

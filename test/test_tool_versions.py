@@ -292,6 +292,20 @@ class TestToolVersions(unittest.TestCase):
         self.assertTrue(
             self.versions['AWS_CLI_VERSION'] in str(version_info.stdout))
 
+    def test_azurecli(self):
+        """
+        Test Azure CLI version
+        """
+        version_info = subprocess.run(f'{self.command_prefix} "az version"',
+                                      shell=True, capture_output=True, check=True)
+        match = re.search(r'(\d+\.\d+\.\d+)',
+                          self.versions['AZURE_CLI_VERSION'])
+        if match is not None:
+            version = match.group(0)
+        else:
+            self.fail("Azure CLI version regex did not match")
+        self.assertTrue(version in str(version_info.stdout))
+
     def test_terraform(self):
         """
         Test Terraform version
