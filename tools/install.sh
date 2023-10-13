@@ -53,3 +53,9 @@ bash ${SCRIPT_DIR}/install_azure_cli.sh
 bash ${SCRIPT_DIR}/install_terraform.sh
 bash ${SCRIPT_DIR}/config_terraform.sh
 bash ${SCRIPT_DIR}/install_ansible.sh
+
+# Test tools
+bash ${SCRIPT_DIR}/install_firefox.sh
+bash ${SCRIPT_DIR}/config_firefox.sh
+bash ${SCRIPT_DIR}/install_zap.sh
+bash ${SCRIPT_DIR}/config_zap.sh

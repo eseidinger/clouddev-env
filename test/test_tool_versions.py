@@ -325,5 +325,25 @@ class TestToolVersions(unittest.TestCase):
         self.assertTrue(
             self.versions['ANSIBLE_VERSION'] in str(version_info.stdout))
 
+    def test_firefox(self):
+        """
+        Test Firefox version
+        """
+        version_info = subprocess.run(f'{self.command_prefix} '
+                                      + '"~/tools/firefox/firefox --version"',
+                                      shell=True, capture_output=True, check=True)
+        self.assertTrue(
+            self.versions['FIREFOX_VERSION'] in str(version_info.stdout))
+
+    def test_zap(self):
+        """
+        Test ZAP version
+        """
+        version_info = subprocess.run(f'{self.command_prefix} '
+                                      + '"~/tools/zap/zap.sh -version"',
+                                      shell=True, capture_output=True, check=True)
+        self.assertTrue(
+            self.versions['ZAP_VERSION'] in str(version_info.stdout))
+
 if __name__ == '__main__':
     unittest.main()

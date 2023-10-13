@@ -72,5 +72,11 @@ ENV PATH /home/clouddev/tools/terraform:$PATH
 
 RUN bash install_ansible.sh
 
+RUN bash install_firefox.sh
+ENV PATH /home/clouddev/tools/firefox:$PATH
+
+RUN bash install_zap.sh
+ENV PATH /home/clouddev/tools/zap:$PATH
+
 WORKDIR /home/clouddev
 RUN rm -rf /home/clouddev/src

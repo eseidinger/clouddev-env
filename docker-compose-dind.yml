@@ -1,6 +1,6 @@
 services:
   docker:
-    image: docker:24.0.2-dind
+    image: docker:24.0.6-dind
     privileged: true
     expose:
       - 2376
