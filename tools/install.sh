@@ -59,3 +59,5 @@ bash ${SCRIPT_DIR}/install_firefox.sh
 bash ${SCRIPT_DIR}/config_firefox.sh
 bash ${SCRIPT_DIR}/install_zap.sh
 bash ${SCRIPT_DIR}/config_zap.sh
+bash ${SCRIPT_DIR}/install_sonar_cli.sh
+bash ${SCRIPT_DIR}/config_sonar_cli.sh

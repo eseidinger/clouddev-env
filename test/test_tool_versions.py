@@ -345,5 +345,15 @@ class TestToolVersions(unittest.TestCase):
         self.assertTrue(
             self.versions['ZAP_VERSION'] in str(version_info.stdout))
 
+    def test_sonar(self):
+        """
+        Test Sonar version
+        """
+        version_info = subprocess.run(f'{self.command_prefix} '
+                                      + '"~/tools/sonar-scanner/bin/sonar-scanner --version"',
+                                      shell=True, capture_output=True, check=True)
+        self.assertTrue(
+            self.versions['SONAR_CLI_VERSION'] in str(version_info.stdout))
+
 if __name__ == '__main__':
     unittest.main()

@@ -36,3 +36,5 @@ bash ${SCRIPT_DIR}/install_ansible.sh
 
 # Test tools
 bash ${SCRIPT_DIR}/update_firefox.sh
+bash ${SCRIPT_DIR}/update_zap.sh
+bash ${SCRIPT_DIR}/update_sonar_cli.sh

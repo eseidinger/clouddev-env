@@ -123,3 +123,7 @@ apt-cache policy azure-cli
 ## ZAP
 
 <https://github.com/zaproxy/zaproxy/releases>
+
+## Sonar Scanner
+
+<https://docs.sonarsource.com/sonarqube/latest/analyzing-source-code/scanners/sonarscanner/>

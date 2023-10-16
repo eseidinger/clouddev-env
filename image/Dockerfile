@@ -78,5 +78,8 @@ ENV PATH /home/clouddev/tools/firefox:$PATH
 RUN bash install_zap.sh
 ENV PATH /home/clouddev/tools/zap:$PATH
 
+RUN bash install_sonar_cli.sh
+ENV PATH /home/clouddev/tools/sonar-scanner/bin:$PATH
+
 WORKDIR /home/clouddev
 RUN rm -rf /home/clouddev/src
