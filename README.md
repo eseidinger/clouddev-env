@@ -22,6 +22,7 @@ The virtual machine as well as the image contain tools for all kinds of software
 * [Java](https://www.java.com/): a programming language and computing platform
 * [Kotlin](https://kotlinlang.org/): a modern but already mature programming language
 * [Gradle](https://gradle.org/): an open-source build automation tool
+* [R](https://www.r-project.org/): a programming language and free software environment for statistical computing and graphics
 
 ### Docker Tools
 
@@ -31,18 +32,26 @@ The virtual machine as well as the image contain tools for all kinds of software
 
 ### Kubernetes Tools
 
-* [MicroK8s](https://microk8s.io/): The lightweight Kubernetes (VM only)
+* [MicroK8s](https://microk8s.io/): the lightweight Kubernetes (VM only)
 * [kind](https://kind.sigs.k8s.io/): a tool for running local Kubernetes clusters using Docker container “nodes”
 * [Kubectl](https://kubernetes.io/docs/reference/kubectl/): the Kubernetes CLI
 * [Helm](https://helm.sh/): the package manager for Kubernetes
 * [k9s](https://k9scli.io/): Kubernetes CLI To Manage Your Clusters In Style (VM only)
 * [Istio](https://istio.io/): a service mesh for Kubernetes
+* [Argo CD](https://argo-cd.readthedocs.io/en/stable/): a declarative, GitOps continuous delivery tool for Kubernetes
+* [Tekton](https://tekton.dev/): a powerful and flexible open-source framework for creating CI/CD systems
 
 ### Provisioning Tools
 
 * [AWS CLI](https://aws.amazon.com/de/cli/): a unified tool to manage your AWS services
+* [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/): a set of commands used to create and manage Azure resources
 * [Ansible](https://docs.ansible.com/ansible/latest/index.html): a radically simple IT automation system
 * [Terraform](https://www.terraform.io/): automate infrastructure on any cloud
+
+### Test Tools
+
+* [ZAP](https://www.zaproxy.org/): a free, open-source penetration testing tool
+* [Sonar Scanner](https://docs.sonarqube.org/latest/analysis/scan/sonarscanner/): a tool used to analyze projects with SonarQube
 
 ## Usage
 
@@ -133,7 +142,7 @@ git clone https://gitea.eseidinger.de/public/clouddev-env.git
 The image can be built using the following command:
 
 ```bash
-docker build -t cloud-tools ./tools/ -f image/Dockerfile
+docker build -t cloud-tools -f image/Dockerfile ./tools/
 ```
 
 To test the image run:
@@ -142,7 +151,7 @@ To test the image run:
 docker compose up
 ```
 
-This will mount the Go test module in the *image-test* directory, install [Terratest](https://terratest.gruntwork.io/) and execute the tests.
+This will mount the Python tests in the *test* directory and execute the tests.
 The tests will check if all the tools were installed and have the correct version.
 
 To try the tools in the image using a Docker in Docker environment, run:

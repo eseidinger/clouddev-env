@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
+FROM ubuntu@sha256:c9cf959fd83770dfdefd8fb42cfef0761432af36a764c077aed54bbc5bb25368
 
 RUN groupadd clouddev && useradd --no-log-init -m -s /bin/bash -g clouddev clouddev
 
@@ -26,6 +26,9 @@ RUN bash install_azure_cli.sh
 RUN bash install_psycopg_requirements.sh
 
 RUN bash install_cypress_requirements.sh
+
+ENV DEBIAN_FRONTEND noninteractive
+RUN bash install_r.sh
 
 USER clouddev
 

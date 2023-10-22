@@ -36,6 +36,8 @@ spec:
       env:
         - name: DOCKER_TLS_CERTDIR
           value: /certs
+      args:
+        - "--mtu=500"
   volumes:
     - name: certs
       emptyDir: {}
@@ -46,7 +48,7 @@ spec:
         stage('Build image') {
             steps {
                 container('docker') {
-                    sh 'docker build -t cloud-tools ./tools/ -f image/Dockerfile'
+                    sh 'docker build --no-cache -t cloud-tools -f image/Dockerfile ./tools/'
                 }
             }
         }

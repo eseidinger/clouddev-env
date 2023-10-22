@@ -1,129 +1,135 @@
-# Software Development Tools
+# Version Information
 
-## Miniconda
+## Software Development Tools
+
+### Miniconda
 
 <https://repo.anaconda.com/miniconda/>
 
-## Conda
+### Conda
 
 conda search conda
 
-## Python
+### Python
 
 conda search python
 
-## Go
+### Go
 
 <https://go.dev/dl/>
 
-## nvm
+### nvm
 
 <https://github.com/nvm-sh/nvm/releases>
 
-### Node.js
+#### Node.js
 
 <https://github.com/nodejs/node/blob/main/CHANGELOG.md>
 
-### npm
+#### npm
 
 <https://www.npmjs.com/package/npm>
 
-### yarn
+#### yarn
 
 <https://github.com/yarnpkg/berry/releases>
 
-## Java
+### Java
 
 sdk list java
 
-### Kotlin
+#### Kotlin
 
 sdk list kotlin
 
-### Gradle
+#### Gradle
 
 sdk list gradle
 
-# Docker
+### R
 
-## Engine
+apt-cache madison r-base | awk '{ print $3 }'
+
+## Docker
+
+### Engine
 
 apt-cache madison docker-ce | awk '{ print $3 }'
 
-## Image
+### Image
 
 <https://hub.docker.com/_/docker>
 
-## Trivy
+### Trivy
 
 <https://github.com/aquasecurity/trivy/releases>
 
-## Cosign
+### Cosign
 
 <https://github.com/sigstore/cosign/releases/>
 
-# Kubernetes Tools
+## Kubernetes Tools
 
-## MicroK8s
+### MicroK8s
 
 <https://microk8s.io/docs/release-notes>
 
-## kind
+### kind
 
 <https://github.com/kubernetes-sigs/kind/releases>
 
-## Kubectl
+### Kubectl
 
 apt-cache madison kubectl | awk '{ print $3 }'
 
-## Helm
+### Helm
 
 <https://github.com/helm/helm/releases>
 
-## k9s
+### k9s
 
 <https://github.com/derailed/k9s/releases>
 
-## Istio
+### Istio
 
 <https://github.com/istio/istio/releases/>
 
-## Argo CD
+### Argo CD
 
-<https://github.com/argoprojv/argo-cd/releases>
+<https://github.com/argoproj/argo-cd/releases>
 
-## Tekton
+### Tekton
 
 <https://github.com/tektoncd/cli/releases>
 
-# Provisioning Tools
+## Provisioning Tools
 
-## AWS CLI
+### AWS CLI
 
 <https://raw.githubusercontent.com/aws/aws-cli/v2/CHANGELOG.rst>
 
-## Azure CLI
+### Azure CLI
 
 apt-cache policy azure-cli
 
-## Terraform
+### Terraform
 
 <https://releases.hashicorp.com/terraform/>
 
-## Ansible
+### Ansible
 
 <https://pypi.org/project/ansible/>
 
-# Test
+## Test
 
-## Firefox
+### Firefox
 
 <https://ftp.mozilla.org/pub/firefox/releases/>
 
-## ZAP
+### ZAP
 
 <https://github.com/zaproxy/zaproxy/releases>
 
-## Sonar Scanner
+### Sonar Scanner
 
 <https://docs.sonarsource.com/sonarqube/latest/analyzing-source-code/scanners/sonarscanner/>

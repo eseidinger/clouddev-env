@@ -1,5 +1,5 @@
 services:
-  docker-deamon:
+  docker:
     image: docker:24.0.6-dind
     privileged: true
     expose:
@@ -8,8 +8,8 @@ services:
       - certs:/certs
     environment:
       - DOCKER_TLS_CERTDIR=/certs
-  docker:
-    image: docker:24.0.6
+  cloud-tools:
+    image: cloud-tools
     volumes:
       - certs:/certs
       - ./image:/build/image

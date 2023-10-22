@@ -153,6 +153,20 @@ class TestToolVersions(unittest.TestCase):
         self.assertTrue(
             self.versions['GRADLE_VERSION'] in str(version_info.stdout))
 
+    def test_r(self):
+        """
+        Test R version
+        """
+        version_info = subprocess.run(f'{self.command_prefix} "R --version"',
+                                      shell=True, capture_output=True, check=True)
+        match = re.search(r'(\d+\.\d+\.\d+)-\d+\.\d+\.\d+',
+                          self.versions['R_VERSION'])
+        if match is not None:
+            version = match.group(1)
+        else:
+            self.fail("R version regex did not match")
+        self.assertTrue(version in str(version_info.stdout))
+
     def test_docker(self):
         """
         Test Docker version
