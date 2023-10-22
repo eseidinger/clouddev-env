@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-cosign verify --key cosign.pub harbor.eseidinger.de/public/cloud-tools@sha256:db39db03113c8480effa91fb92c5e3ef6d2093033e126e4bccfcd81cfa31d871
+cosign verify --key cosign.pub harbor.eseidinger.de/public/cloud-tools@sha256:372d992779ba968b5cd4e8e556923951499902b8b0e083bc4c18383f7299b4a5
