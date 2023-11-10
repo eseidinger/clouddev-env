@@ -9,8 +9,8 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
-nvm install ${NODE_VERSION}
-nvm use ${NODE_VERSION}
+nvm install v${NODE_VERSION}
+nvm use v${NODE_VERSION}
 npm install -g npm@${NPM_VERSION}
 
 corepack enable

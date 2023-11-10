@@ -26,6 +26,8 @@ conda search python
 
 <https://github.com/nodejs/node/blob/main/CHANGELOG.md>
 
+nvm ls-remote --lts
+
 #### npm
 
 <https://www.npmjs.com/package/npm>
