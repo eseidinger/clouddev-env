@@ -10,7 +10,8 @@ COPY . .
 
 USER root
 
-RUN apt-get update && apt-get install -y jq zip unzip wget build-essential
+RUN apt-get update && apt-get upgrade -y
+RUN apt-get install -y jq zip unzip wget build-essential
 
 RUN bash install_docker.sh
 RUN usermod -a -G docker clouddev
