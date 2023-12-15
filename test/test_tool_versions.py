@@ -153,6 +153,42 @@ class TestToolVersions(unittest.TestCase):
         self.assertTrue(
             self.versions['GRADLE_VERSION'] in str(version_info.stdout))
 
+    def test_maven(self):
+        """
+        Test Maven version
+        """
+        version_info = subprocess.run(
+            f'{self.command_prefix} '
+            + '"JAVA_HOME=~/.sdkman/candidates/java/current/ '
+            + '~/.sdkman/candidates/maven/current/bin/mvn --version"',
+            shell=True, capture_output=True, check=True)
+        self.assertTrue(
+            self.versions['MAVEN_VERSION'] in str(version_info.stdout))
+
+    def test_jbang(self):
+        """
+        Test JBang version
+        """
+        version_info = subprocess.run(
+            f'{self.command_prefix} '
+            + '"JAVA_HOME=~/.sdkman/candidates/java/current/ '
+            + '~/.sdkman/candidates/jbang/current/bin/jbang --version"',
+            shell=True, capture_output=True, check=True)
+        self.assertTrue(
+            self.versions['JBANG_VERSION'] in str(version_info.stderr))
+
+    def test_quarkus(self):
+        """
+        Test Quarkus version
+        """
+        version_info = subprocess.run(
+            f'{self.command_prefix} '
+            + '"JAVA_HOME=~/.sdkman/candidates/java/current/ '
+            + '~/.sdkman/candidates/quarkus/current/bin/quarkus --version"',
+            shell=True, capture_output=True, check=True)
+        self.assertTrue(
+            self.versions['QUARKUS_VERSION'] in str(version_info.stdout))
+
     def test_r(self):
         """
         Test R version
