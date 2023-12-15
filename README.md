@@ -160,8 +160,8 @@ The tests will check if all the tools were installed and have the correct versio
 To try the tools in the image using a Docker in Docker environment, run:
 
 ```bash
-docker compose -f docker-compose-dind.yml up -d
-docker compose -f docker-compose-dind.yml exec cloud-tools bash
+docker compose -f docker-compose-cloud-tools.yml up -d
+docker compose -f docker-compose-cloud-tools.yml exec cloud-tools bash
 ```
 
 ### X11 Forwarding
