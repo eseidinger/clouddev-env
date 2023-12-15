@@ -60,6 +60,9 @@ RUN bash install_java.sh
 ENV PATH /home/clouddev/.sdkman/candidates/java/current/bin:$PATH
 ENV PATH /home/clouddev/.sdkman/candidates/kotlin/current/bin:$PATH
 ENV PATH /home/clouddev/.sdkman/candidates/gradle/current/bin:$PATH
+ENV PATH /home/clouddev/.sdkman/candidates/maven/current/bin:$PATH
+ENV PATH /home/clouddev/.sdkman/candidates/jbang/current/bin:$PATH
+ENV PATH /home/clouddev/.sdkman/candidates/quarkus/current/bin:$PATH
 
 RUN bash install_kind.sh
 ENV PATH /home/clouddev/tools/kind:$PATH
