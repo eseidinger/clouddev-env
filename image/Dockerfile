@@ -1,4 +1,4 @@
-FROM ubuntu@sha256:c9cf959fd83770dfdefd8fb42cfef0761432af36a764c077aed54bbc5bb25368
+FROM ubuntu:jammy-20231211.1
 
 RUN groupadd clouddev && useradd --no-log-init -m -s /bin/bash -g clouddev clouddev
 
