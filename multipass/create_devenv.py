@@ -4,12 +4,21 @@ A script to create a development VM with multipass that is accessible via SSH
 import argparse
 import os
 import subprocess
+import platform
 
 
 script_path = os.path.dirname(__file__)
 template_path = f"{script_path}{os.sep}templates"
 config_path = f"{script_path}{os.sep}config"
 
+system = platform.system()
+
+multipass_extension = ""
+
+if system == "Linux":
+    kernel_info = platform.uname().release
+    if "WSL2" in kernel_info:
+        multipass_extension = ".exe"
 
 def clean_old_config(env_name) -> None:
     """
@@ -62,7 +71,7 @@ def create_vm(env_name: str, cpus: str, disk: str, memory: str):
     """
     Create a VM using a cloud-config file
     """
-    subprocess.run(f"multipass launch jammy --name {env_name} --cpus {cpus} "
+    subprocess.run(f"multipass{multipass_extension} launch jammy --name {env_name} --cpus {cpus} "
                    + f"--disk {disk} --memory {memory} --cloud-init "
                    + f"{config_path}{os.sep}cloud-config.yaml",
                    shell=True, check=True)

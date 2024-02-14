@@ -16,6 +16,14 @@ if system == "Windows":
 else:
     home = os.environ["HOME"]
 
+multipass_extension = ""
+
+if system == "Linux":
+    kernel_info = platform.uname().release
+    if "WSL2" in kernel_info:
+        multipass_extension = ".exe"
+
+
 ssh_config_template_filename = f"{script_path}{os.sep}templates{os.sep}ssh_config_template"
 ssh_config_filename = f"{home}{os.sep}.ssh{os.sep}config"
 
@@ -25,7 +33,7 @@ def get_vm_ip(env_name: str) -> str:
     Get the IP address of the running development VM
     """
     multipass_info = subprocess.run(
-        f"multipass info --format json {env_name}",
+        f"multipass{multipass_extension} info --format json {env_name}",
         shell=True, capture_output=True, check=True)
     multipass_info_object = json.loads(multipass_info.stdout)
     return multipass_info_object["info"][env_name]["ipv4"][0]
