@@ -1,5 +1,5 @@
 Host [VMName]
     Hostname [Hostname]
-    User clouddev
+    User [User]
     IdentityFile [IdentityFile]
     ForwardX11 yes

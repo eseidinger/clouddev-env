@@ -41,7 +41,7 @@ def get_ssh_public_key(env_name: str) -> str:
     return ssh_public_key.strip(" \r\n")
 
 
-def create_cloud_config(ssh_authorized_key: str):
+def create_cloud_config(ssh_authorized_key: str, user: str):
     """
     Create cloud-config to use to create VM
     """
@@ -50,19 +50,20 @@ def create_cloud_config(ssh_authorized_key: str):
         cloud_config_template = file.read()
 
     cloud_config = cloud_config_template.replace(
-        "[ssh_authorized_key]", ssh_authorized_key)
+        "[ssh_authorized_key]", ssh_authorized_key) \
+        .replace("[user]", user)
 
     with open(f"{config_path}{os.sep}cloud-config.yaml", "w",
               encoding="utf-8") as file:
         file.write(cloud_config)
 
 
-def create_vm(env_name: str):
+def create_vm(env_name: str, cpus: str, disk: str, memory: str):
     """
     Create a VM using a cloud-config file
     """
-    subprocess.run(f"multipass launch jammy --name {env_name} --cpus 6 "
-                   + "--disk 60G --memory 12G --cloud-init "
+    subprocess.run(f"multipass launch jammy --name {env_name} --cpus {cpus} "
+                   + f"--disk {disk} --memory {memory} --cloud-init "
                    + f"{config_path}{os.sep}cloud-config.yaml",
                    shell=True, check=True)
 
@@ -71,9 +72,17 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Create development VM.')
     parser.add_argument('--env_name', help='the name of the VM to create',
                         default='clouddev', required=False)
+    parser.add_argument('--cpus', help='the number of CPUs for the VM',
+                        default='6', required=False)
+    parser.add_argument('--disk', help='the disk size for the VM',
+                        default='60G', required=False)
+    parser.add_argument('--memory', help='the memory size for the VM',
+                        default='12G', required=False)
+    parser.add_argument('--user', help='user for the VM',
+                        default='clouddev', required=False)
     args = parser.parse_args()
     clean_old_config(args.env_name)
     create_ssh_key(args.env_name)
     public_key: str = get_ssh_public_key(args.env_name)
-    create_cloud_config(public_key)
-    create_vm(args.env_name)
+    create_cloud_config(public_key, args.user)
+    create_vm(args.env_name, args.cpus, args.disk, args.memory)

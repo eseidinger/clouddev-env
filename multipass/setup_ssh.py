@@ -31,7 +31,7 @@ def get_vm_ip(env_name: str) -> str:
     return multipass_info_object["info"][env_name]["ipv4"][0]
 
 
-def create_ssh_config_snippet(env_name: str, vm_ip: str) -> str:
+def create_ssh_config_snippet(env_name: str, vm_ip: str, user: str) -> str:
     """
     Create SSH config snippet to connect to the development VM
     """
@@ -40,6 +40,7 @@ def create_ssh_config_snippet(env_name: str, vm_ip: str) -> str:
         ssh_config_template = ssh_config_template_file.read()
     return (ssh_config_template.replace("[VMName]", env_name)
             .replace("[Hostname]", vm_ip)
+            .replace("[User]", user)
             .replace("[IdentityFile]", private_key_filename).strip(" \r\n"))
 
 
@@ -63,9 +64,11 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Create development VM.')
     parser.add_argument('--env_name', help='the name of the VM to create',
                         default='clouddev', required=False)
+    parser.add_argument('--user', help='the name of the user for the VM',
+                        default='clouddev', required=False)
     args = parser.parse_args()
     ip = get_vm_ip(args.env_name)
-    ssh_config_snippet = create_ssh_config_snippet(args.env_name, ip)
+    ssh_config_snippet = create_ssh_config_snippet(args.env_name, ip, args.user)
     old_ssh_config = get_clean_ssh_config(args.env_name)
     if old_ssh_config != "" and not old_ssh_config.endswith("\n"):
         old_ssh_config = old_ssh_config + "\n"

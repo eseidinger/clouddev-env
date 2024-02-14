@@ -1,7 +1,7 @@
 package_update: true
 package_upgrade: true
 users:
-  - name: clouddev
+  - name: [user]
     shell: /bin/bash
     sudo: ALL=(ALL) NOPASSWD:ALL
     ssh_authorized_keys:
