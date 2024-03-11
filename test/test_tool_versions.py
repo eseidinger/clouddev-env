@@ -337,7 +337,7 @@ class TestToolVersions(unittest.TestCase):
         """
         version_info = subprocess.run(
             f'{self.command_prefix} '
-            + '"~/tools/tekton/tkn version"',
+            + '"~/tools/tekton/tkn version --component client"',
             shell=True, capture_output=True, check=True)
         self.assertTrue(
             self.versions['TEKTON_VERSION'] in str(version_info.stdout))

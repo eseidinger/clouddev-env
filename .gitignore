@@ -7,3 +7,4 @@ secret/
 *.ppk
 k8s/.kube/config-local
 k8s/.kube/config-remote
+.quarkus
