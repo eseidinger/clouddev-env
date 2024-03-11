@@ -10,7 +10,7 @@ metadata:
 spec:
   containers:
     - name: docker
-      image: docker:24.0.7
+      image: docker:25.0.4
       command:
         - cat
       tty: true
@@ -27,7 +27,7 @@ spec:
         - name: DOCKER_CERT_PATH
           value: /certs/client
     - name: docker-daemon
-      image: docker:24.0.7-dind
+      image: docker:25.0.4-dind
       securityContext:
         privileged: true
       volumeMounts:

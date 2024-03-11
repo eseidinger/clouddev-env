@@ -23,6 +23,8 @@ bash ${SCRIPT_DIR}/config_go.sh
 bash ${SCRIPT_DIR}/install_node.sh
 bash ${SCRIPT_DIR}/install_java.sh
 bash ${SCRIPT_DIR}/install_r.sh
+bash ${SCRIPT_DIR}/install_flutter.sh
+bash ${SCRIPT_DIR}/config_flutter.sh
 
 # Docker tools
 bash ${SCRIPT_DIR}/install_docker.sh
@@ -37,6 +39,7 @@ bash ${SCRIPT_DIR}/config_microk8s.sh
 bash ${SCRIPT_DIR}/install_kind.sh
 bash ${SCRIPT_DIR}/config_kind.sh
 bash ${SCRIPT_DIR}/install_kubectl.sh
+bash ${SCRIPT_DIR}/config_kubectl.sh
 bash ${SCRIPT_DIR}/install_helm.sh
 bash ${SCRIPT_DIR}/config_helm.sh
 bash ${SCRIPT_DIR}/install_k9s.sh

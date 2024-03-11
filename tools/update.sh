@@ -13,6 +13,7 @@ bash ${SCRIPT_DIR}/update_go.sh
 bash ${SCRIPT_DIR}/install_node.sh
 bash ${SCRIPT_DIR}/update_java.sh
 bash ${SCRIPT_DIR}/update_r.sh
+bash ${SCRIPT_DIR}/update_flutter.sh
 
 # Docker tools
 bash ${SCRIPT_DIR}/update_docker.sh

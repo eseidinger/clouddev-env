@@ -203,6 +203,15 @@ class TestToolVersions(unittest.TestCase):
             self.fail("R version regex did not match")
         self.assertTrue(version in str(version_info.stdout))
 
+    def test_flutter(self):
+        """
+        Test Flutter version
+        """
+        version_info = subprocess.run(f'{self.command_prefix} "flutter --version"',
+                                      shell=True, capture_output=True, check=True)
+        self.assertTrue(
+            f"Flutter {self.versions['FLUTTER_VERSION']}" in str(version_info.stdout))
+
     def test_docker(self):
         """
         Test Docker version

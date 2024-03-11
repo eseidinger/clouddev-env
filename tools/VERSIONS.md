@@ -64,6 +64,10 @@ sdk list quarkus
 
 apt-cache madison r-base | awk '{ print $3 }'
 
+### Flutter
+
+<https://flutter.dev/docs/development/tools/sdk/releases>
+
 ## Docker
 
 ### Engine
@@ -94,7 +98,7 @@ apt-cache madison docker-ce | awk '{ print $3 }'
 
 ### Kubectl
 
-apt-cache madison kubectl | awk '{ print $3 }'
+<https://cdn.dl.k8s.io/release/stable.txt>
 
 ### Helm
 

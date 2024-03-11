@@ -26,6 +26,7 @@ The virtual machine as well as the image contain tools for all kinds of software
 * [JBang](https://www.jbang.dev/): a tool for running Java code as scripts
 * [Quarkus](https://quarkus.io/): a Kubernetes Native Java stack tailored for OpenJDK HotSpot and GraalVM
 * [R](https://www.r-project.org/): a programming language and free software environment for statistical computing and graphics
+* [Flutter](https://flutter.dev/): Google's UI toolkit for building natively compiled applications for mobile, web, and desktop from a single codebase
 
 ### Docker Tools
 

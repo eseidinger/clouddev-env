@@ -18,8 +18,6 @@ RUN usermod -a -G docker clouddev
 
 RUN bash install_trivy.sh
 
-RUN bash install_kubectl.sh
-
 RUN bash install_aws_cli.sh
 
 RUN bash install_azure_cli.sh
@@ -63,6 +61,12 @@ ENV PATH /home/clouddev/.sdkman/candidates/gradle/current/bin:$PATH
 ENV PATH /home/clouddev/.sdkman/candidates/maven/current/bin:$PATH
 ENV PATH /home/clouddev/.sdkman/candidates/jbang/current/bin:$PATH
 ENV PATH /home/clouddev/.sdkman/candidates/quarkus/current/bin:$PATH
+
+RUN bash install_flutter.sh
+ENV PATH /home/clouddev/tools/flutter/bin:$PATH
+
+RUN bash install_kubectl.sh
+ENV PATH /home/clouddev/tools/kubectl:$PATH
 
 RUN bash install_kind.sh
 ENV PATH /home/clouddev/tools/kind:$PATH
