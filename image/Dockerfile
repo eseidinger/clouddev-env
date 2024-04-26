@@ -1,4 +1,4 @@
-FROM ubuntu:jammy-20231211.1
+FROM ubuntu:jammy-20240416
 
 RUN groupadd clouddev && useradd --no-log-init -m -s /bin/bash -g clouddev clouddev
 
@@ -59,8 +59,6 @@ ENV PATH /home/clouddev/.sdkman/candidates/java/current/bin:$PATH
 ENV PATH /home/clouddev/.sdkman/candidates/kotlin/current/bin:$PATH
 ENV PATH /home/clouddev/.sdkman/candidates/gradle/current/bin:$PATH
 ENV PATH /home/clouddev/.sdkman/candidates/maven/current/bin:$PATH
-ENV PATH /home/clouddev/.sdkman/candidates/jbang/current/bin:$PATH
-ENV PATH /home/clouddev/.sdkman/candidates/quarkus/current/bin:$PATH
 
 RUN bash install_flutter.sh
 ENV PATH /home/clouddev/tools/flutter/bin:$PATH

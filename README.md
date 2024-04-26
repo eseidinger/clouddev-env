@@ -23,8 +23,6 @@ The virtual machine as well as the image contain tools for all kinds of software
 * [Kotlin](https://kotlinlang.org/): a modern but already mature programming language
 * [Gradle](https://gradle.org/): an open-source build automation tool
 * [Maven](https://maven.apache.org/): a build automation tool used primarily for Java projects
-* [JBang](https://www.jbang.dev/): a tool for running Java code as scripts
-* [Quarkus](https://quarkus.io/): a Kubernetes Native Java stack tailored for OpenJDK HotSpot and GraalVM
 * [R](https://www.r-project.org/): a programming language and free software environment for statistical computing and graphics
 * [Flutter](https://flutter.dev/): Google's UI toolkit for building natively compiled applications for mobile, web, and desktop from a single codebase
 

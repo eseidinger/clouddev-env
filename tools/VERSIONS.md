@@ -52,14 +52,6 @@ sdk list gradle
 
 sdk list maven
 
-#### JBang
-
-sdk list jbang
-
-#### Quarkus
-
-sdk list quarkus
-
 ### R
 
 apt-cache madison r-base | awk '{ print $3 }'
