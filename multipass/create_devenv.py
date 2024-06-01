@@ -71,7 +71,7 @@ def create_vm(env_name: str, cpus: str, disk: str, memory: str):
     """
     Create a VM using a cloud-config file
     """
-    subprocess.run(f"multipass{multipass_extension} launch jammy --name {env_name} --cpus {cpus} "
+    subprocess.run(f"multipass{multipass_extension} launch noble --name {env_name} --cpus {cpus} "
                    + f"--disk {disk} --memory {memory} --cloud-init "
                    + f"{config_path}{os.sep}cloud-config.yaml",
                    shell=True, check=True)
@@ -82,11 +82,11 @@ if __name__ == "__main__":
     parser.add_argument('--env_name', help='the name of the VM to create',
                         default='clouddev', required=False)
     parser.add_argument('--cpus', help='the number of CPUs for the VM',
-                        default='6', required=False)
+                        default='4', required=False)
     parser.add_argument('--disk', help='the disk size for the VM',
-                        default='60G', required=False)
+                        default='40G', required=False)
     parser.add_argument('--memory', help='the memory size for the VM',
-                        default='12G', required=False)
+                        default='4G', required=False)
     parser.add_argument('--user', help='user for the VM',
                         default='clouddev', required=False)
     args = parser.parse_args()

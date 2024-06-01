@@ -10,7 +10,7 @@ metadata:
 spec:
   containers:
     - name: docker
-      image: docker:26.1.0
+      image: docker:26.1.3
       command:
         - cat
       tty: true

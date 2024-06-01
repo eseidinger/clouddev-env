@@ -1,4 +1,4 @@
-FROM ubuntu:jammy-20240416
+FROM ubuntu:24.04
 
 RUN groupadd clouddev && useradd --no-log-init -m -s /bin/bash -g clouddev clouddev
 
@@ -20,12 +20,6 @@ RUN bash install_trivy.sh
 
 RUN bash install_aws_cli.sh
 
-RUN bash install_azure_cli.sh
-
-RUN bash install_psycopg_requirements.sh
-
-RUN bash install_cypress_requirements.sh
-
 ENV DEBIAN_FRONTEND noninteractive
 RUN bash install_r.sh
 
@@ -44,6 +38,8 @@ ENV PATH /home/clouddev/tools/tekton:$PATH
 
 RUN bash install_miniconda.sh
 ENV PATH /home/clouddev/miniconda3/bin:$PATH
+
+RUN bash install_azure_cli.sh
 
 RUN bash install_go.sh
 ENV GOROOT /home/clouddev/tools/go
@@ -80,9 +76,6 @@ RUN bash install_terraform.sh
 ENV PATH /home/clouddev/tools/terraform:$PATH
 
 RUN bash install_ansible.sh
-
-RUN bash install_firefox.sh
-ENV PATH /home/clouddev/tools/firefox:$PATH
 
 RUN bash install_zap.sh
 ENV PATH /home/clouddev/tools/zap:$PATH

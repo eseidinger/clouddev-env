@@ -120,7 +120,7 @@ apt-cache madison docker-ce | awk '{ print $3 }'
 
 ### Azure CLI
 
-apt-cache policy azure-cli
+<https://pypi.org/project/azure-cli/>
 
 ### Terraform
 
@@ -131,10 +131,6 @@ apt-cache policy azure-cli
 <https://pypi.org/project/ansible/>
 
 ## Test
-
-### Firefox
-
-<https://ftp.mozilla.org/pub/firefox/releases/>
 
 ### ZAP
 
