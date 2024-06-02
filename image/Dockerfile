@@ -56,8 +56,8 @@ ENV PATH /home/clouddev/.sdkman/candidates/kotlin/current/bin:$PATH
 ENV PATH /home/clouddev/.sdkman/candidates/gradle/current/bin:$PATH
 ENV PATH /home/clouddev/.sdkman/candidates/maven/current/bin:$PATH
 
-RUN bash install_flutter.sh
-ENV PATH /home/clouddev/tools/flutter/bin:$PATH
+# RUN bash install_flutter.sh
+# ENV PATH /home/clouddev/tools/flutter/bin:$PATH
 
 RUN bash install_kubectl.sh
 ENV PATH /home/clouddev/tools/kubectl:$PATH

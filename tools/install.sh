@@ -23,8 +23,8 @@ bash ${SCRIPT_DIR}/config_go.sh
 bash ${SCRIPT_DIR}/install_node.sh
 bash ${SCRIPT_DIR}/install_java.sh
 # bash ${SCRIPT_DIR}/install_r.sh
-bash ${SCRIPT_DIR}/install_flutter.sh
-bash ${SCRIPT_DIR}/config_flutter.sh
+# bash ${SCRIPT_DIR}/install_flutter.sh
+# bash ${SCRIPT_DIR}/config_flutter.sh
 
 # Docker tools
 bash ${SCRIPT_DIR}/install_docker.sh
