@@ -20,8 +20,8 @@ RUN bash install_trivy.sh
 
 RUN bash install_aws_cli.sh
 
-ENV DEBIAN_FRONTEND noninteractive
-RUN bash install_r.sh
+# ENV DEBIAN_FRONTEND noninteractive
+# RUN bash install_r.sh
 
 USER clouddev
 

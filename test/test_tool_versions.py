@@ -169,6 +169,8 @@ class TestToolVersions(unittest.TestCase):
         """
         Test R version
         """
+        if self.env_name == "docker":
+            return
         version_info = subprocess.run(f'{self.command_prefix} "R --version"',
                                       shell=True, capture_output=True, check=True)
         match = re.search(r'(\d+\.\d+\.\d+)-\d+\.\d+\.\d+',
