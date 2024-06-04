@@ -71,7 +71,7 @@ def create_vm(env_name: str, cpus: str, disk: str, memory: str):
     """
     Create a VM using a cloud-config file
     """
-    subprocess.run(f"multipass{multipass_extension} launch noble --name {env_name} --cpus {cpus} "
+    subprocess.run(f"multipass{multipass_extension} launch jammy --name {env_name} --cpus {cpus} "
                    + f"--disk {disk} --memory {memory} --cloud-init "
                    + f"{config_path}{os.sep}cloud-config.yaml",
                    shell=True, check=True)
