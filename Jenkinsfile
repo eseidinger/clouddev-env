@@ -1,3 +1,77 @@
+def contexts = ['x86-build', 'arm-build']
+
+def transformToCreateContextStep(context) {
+    return {
+        stage ("Create ${context} context") {
+            container("docker-${context}") {
+                sshagent(credentials: ["${context}_ssh-key"]) {
+                    sh """
+                        [ -d ~/.ssh ] || mkdir ~/.ssh && chmod 0700 ~/.ssh
+                        ssh-keyscan -t rsa ${context}.eseidinger.de >> ~/.ssh/known_hosts
+                        docker context create ${context} --docker host=ssh://root@${context}.eseidinger.de
+                    """
+                }
+            }
+        }
+    }
+}
+
+def transformToBuildStep(context) {
+    return {
+        stage ("Build ${context}") {
+            container("docker-${context}") {
+                sshagent(credentials: ["${context}_ssh-key"]) {
+                    sh """
+                        docker context use ${context}
+                        docker build --no-cache -t cloud-tools -f image/Dockerfile ./tools/
+                    """
+                }
+            }
+        }
+    }
+}
+
+def transformToTestStep(context) {
+    return {
+        stage ("Test ${context}") {
+            container("docker-${context}") {
+                sshagent(credentials: ["${context}_ssh-key"]) {
+                    sh """
+                        docker context use ${context}
+                        docker compose up --exit-code-from cloud-test
+                    """
+                }
+            }
+        }
+    }
+}
+
+def transformToPublishStep(context) {
+    return {
+        stage ("Publish ${context}") {
+            container("docker-${context}") {
+                sshagent(credentials: ["${context}_ssh-key"]) {
+                    withCredentials([usernamePassword(credentialsId: 'harbor', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                        sh """
+                            docker context use ${context}
+                            docker login harbor.eseidinger.de/public/ -u $USERNAME -p $PASSWORD
+                            docker tag cloud-tools harbor.eseidinger.de/public/cloud-tools:latest
+                            docker push harbor.eseidinger.de/public/cloud-tools:latest
+                            docker tag harbor.eseidinger.de/public/cloud-tools:latest harbor.eseidinger.de/public/cloud-tools:$TAG_NAME
+                            docker push harbor.eseidinger.de/public/cloud-tools:$TAG_NAME
+                        """
+                    }
+                }
+            }
+        }
+    }
+}
+
+def createContextSteps = [:]
+def buildSteps = [:]
+def testSteps = [:]
+def publishSteps = [:]
+
 pipeline {
     agent {
         kubernetes {
@@ -9,53 +83,47 @@ metadata:
     app: cloud-tools-image
 spec:
   containers:
-    - name: docker
+    - name: docker-x86-build
       image: docker:26.1.3
       command:
         - cat
       tty: true
-      volumeMounts:
-        - name: certs
-          mountPath: /certs
-      env:
-        - name: DOCKER_TLS_CERTDIR
-          value: /certs
-        - name: DOCKER_HOST
-          value: "tcp://localhost:2376"
-        - name: DOCKER_TLS_VERIFY
-          value: 1
-        - name: DOCKER_CERT_PATH
-          value: /certs/client
-    - name: docker-daemon
-      image: docker:26.1.0-dind
-      securityContext:
-        privileged: true
-      volumeMounts:
-        - name: certs
-          mountPath: /certs
-      env:
-        - name: DOCKER_TLS_CERTDIR
-          value: /certs
-      args:
-        - "--mtu=500"
-  volumes:
-    - name: certs
-      emptyDir: {}
+    - name: docker-arm-build
+      image: docker:26.1.3
+      command:
+        - cat
+      tty: true
         '''
         }
     }
     stages {
+        stage('Create Docker contexts') {
+            steps {
+                script {
+                    contexts.each { context ->
+                        createContextSteps["Create context ${context}"] = transformToCreateContextStep(context)
+                    }                
+                    parallel createContextSteps
+                }
+            }
+        }
         stage('Build image') {
             steps {
-                container('docker') {
-                    sh 'docker build --no-cache -t cloud-tools -f image/Dockerfile ./tools/'
+                script {
+                    contexts.each { context ->
+                        buildSteps["Build ${context}"] = transformToBuildStep(context)
+                    }
+                    parallel buildSteps
                 }
             }
         }
         stage('Test image') {
             steps {
-                container('docker') {
-                    sh 'docker compose up --exit-code-from cloud-test'
+                script {
+                    contexts.each { context ->
+                        testSteps["Test ${context}"] = transformToTestStep(context)
+                    }
+                    parallel testSteps
                 }
             }
         }
@@ -64,14 +132,11 @@ spec:
                 buildingTag()
             }
             steps {
-                container('docker') {
-                    withCredentials([usernamePassword(credentialsId: 'harbor', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                        sh 'docker login harbor.eseidinger.de/public/ -u $USERNAME -p $PASSWORD'
-                        sh 'docker tag cloud-tools harbor.eseidinger.de/public/cloud-tools:latest'
-                        sh 'docker tag harbor.eseidinger.de/public/cloud-tools:latest harbor.eseidinger.de/public/cloud-tools:$TAG_NAME'
-                        sh 'docker push harbor.eseidinger.de/public/cloud-tools:latest'
-                        sh 'docker push harbor.eseidinger.de/public/cloud-tools:$TAG_NAME'
+                script {
+                    contexts.each { context ->
+                        publishSteps["Publish ${context}"] = transformToPublishStep(context)
                     }
+                    parallel publishSteps
                 }
             }
         }
