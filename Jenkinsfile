@@ -55,10 +55,10 @@ def transformToPublishStep(context) {
                         sh """
                             docker context use ${context}
                             docker login harbor.eseidinger.de/public/ -u $USERNAME -p $PASSWORD
-                            docker tag cloud-tools harbor.eseidinger.de/public/cloud-tools:latest
-                            docker push harbor.eseidinger.de/public/cloud-tools:latest
-                            docker tag harbor.eseidinger.de/public/cloud-tools:latest harbor.eseidinger.de/public/cloud-tools:$TAG_NAME
-                            docker push harbor.eseidinger.de/public/cloud-tools:$TAG_NAME
+                            docker tag cloud-tools harbor.eseidinger.de/public/cloud-tools:latest-${context}
+                            docker push harbor.eseidinger.de/public/cloud-tools:latest-${context}
+                            docker tag harbor.eseidinger.de/public/cloud-tools:latest-${context} harbor.eseidinger.de/public/cloud-tools:$TAG_NAME-${context}
+                            docker push harbor.eseidinger.de/public/cloud-tools:$TAG_NAME-${context}
                         """
                     }
                 }
@@ -137,6 +137,27 @@ spec:
                         publishSteps["Publish ${context}"] = transformToPublishStep(context)
                     }
                     parallel publishSteps
+                }
+            }
+        }
+        stage('Create manifest') {
+            when {
+                buildingTag()
+            }
+            steps {
+                container("docker-x86-build") {
+                    sshagent(credentials: ["x86-build_ssh-key"]) {
+                        withCredentials([usernamePassword(credentialsId: 'harbor', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                            sh """
+                                docker context use x86-build
+                                docker login harbor.eseidinger.de/public/ -u $USERNAME -p $PASSWORD
+                                docker manifest create harbor.eseidinger.de/public/cloud-tools:$TAG_NAME harbor.eseidinger.de/public/cloud-tools:$TAG_NAME-x86-build harbor.eseidinger.de/public/cloud-tools:$TAG_NAME-arm-build
+                                docker manifest push harbor.eseidinger.de/public/cloud-tools:$TAG_NAME
+                                docker manifest create harbor.eseidinger.de/public/cloud-tools:latest harbor.eseidinger.de/public/cloud-tools:$TAG_NAME
+                                docker manifest push harbor.eseidinger.de/public/cloud-tools:latest
+                            """
+                        }
+                    }
                 }
             }
         }
