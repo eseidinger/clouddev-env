@@ -153,7 +153,7 @@ spec:
                                 docker login harbor.eseidinger.de/public/ -u $USERNAME -p $PASSWORD
                                 docker manifest create harbor.eseidinger.de/public/cloud-tools:$TAG_NAME harbor.eseidinger.de/public/cloud-tools:$TAG_NAME-x86-build harbor.eseidinger.de/public/cloud-tools:$TAG_NAME-arm-build
                                 docker manifest push harbor.eseidinger.de/public/cloud-tools:$TAG_NAME
-                                docker manifest create harbor.eseidinger.de/public/cloud-tools:latest harbor.eseidinger.de/public/cloud-tools:$TAG_NAME
+                                docker manifest create harbor.eseidinger.de/public/cloud-tools:latest harbor.eseidinger.de/public/cloud-tools:$TAG_NAME-x86-build harbor.eseidinger.de/public/cloud-tools:$TAG_NAME-arm-build
                                 docker manifest push harbor.eseidinger.de/public/cloud-tools:latest
                             """
                         }
