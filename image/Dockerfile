@@ -21,9 +21,6 @@ RUN bash install_trivy.sh
 
 RUN bash install_aws_cli.sh
 
-# ENV DEBIAN_FRONTEND noninteractive
-# RUN bash install_r.sh
-
 USER clouddev
 
 RUN mkdir /home/clouddev/tools
@@ -42,11 +39,6 @@ ENV PATH /home/clouddev/miniconda3/bin:$PATH
 
 RUN bash install_azure_cli.sh
 
-RUN bash install_go.sh
-ENV GOROOT /home/clouddev/tools/go
-ENV GOPATH /home/clouddev/go
-ENV PATH $GOPATH/bin:$GOROOT/bin:$PATH
-
 RUN bash install_node.sh
 RUN bash config_node_docker.sh
 ENV PATH /home/clouddev/.nvm/versions/node/current/bin:$PATH
@@ -56,9 +48,6 @@ ENV PATH /home/clouddev/.sdkman/candidates/java/current/bin:$PATH
 ENV PATH /home/clouddev/.sdkman/candidates/kotlin/current/bin:$PATH
 ENV PATH /home/clouddev/.sdkman/candidates/gradle/current/bin:$PATH
 ENV PATH /home/clouddev/.sdkman/candidates/maven/current/bin:$PATH
-
-# RUN bash install_flutter.sh
-# ENV PATH /home/clouddev/tools/flutter/bin:$PATH
 
 RUN bash install_kubectl.sh
 ENV PATH /home/clouddev/tools/kubectl:$PATH

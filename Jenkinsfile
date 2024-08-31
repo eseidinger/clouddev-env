@@ -84,12 +84,12 @@ metadata:
 spec:
   containers:
     - name: docker-x86-build
-      image: docker:26.1.3
+      image: docker:27.2.0
       command:
         - cat
       tty: true
     - name: docker-arm-build
-      image: docker:26.1.3
+      image: docker:27.2.0
       command:
         - cat
       tty: true

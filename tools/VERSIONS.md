@@ -14,10 +14,6 @@ conda search conda
 
 conda search python
 
-### Go
-
-<https://go.dev/dl/>
-
 ### nvm
 
 <https://github.com/nvm-sh/nvm/releases>
@@ -51,14 +47,6 @@ sdk list gradle
 #### Maven
 
 sdk list maven
-
-### R
-
-apt-cache madison r-base | awk '{ print $3 }'
-
-### Flutter
-
-<https://flutter.dev/docs/development/tools/sdk/releases>
 
 ## Docker
 

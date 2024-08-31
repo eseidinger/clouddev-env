@@ -53,15 +53,6 @@ class TestToolVersions(unittest.TestCase):
         self.assertTrue(
             self.versions['PYTHON_VERSION'] in str(version_info.stdout))
 
-    def test_golang(self):
-        """
-        Test Golang version
-        """
-        version_info = subprocess.run(f'{self.command_prefix} "~/tools/go/bin/go version"',
-                                      shell=True, capture_output=True, check=True)
-        self.assertTrue(self.versions['GOLANG_VERSION']
-                        in str(version_info.stdout))
-
     def test_nvm(self):
         """
         Test nvm version
@@ -164,29 +155,6 @@ class TestToolVersions(unittest.TestCase):
             shell=True, capture_output=True, check=True)
         self.assertTrue(
             self.versions['MAVEN_VERSION'] in str(version_info.stdout))
-
-    # def test_r(self):
-    #     """
-    #     Test R version
-    #     """
-    #     version_info = subprocess.run(f'{self.command_prefix} "R --version"',
-    #                                   shell=True, capture_output=True, check=True)
-    #     match = re.search(r'(\d+\.\d+\.\d+)-\d+\.\d+\.\d+',
-    #                       self.versions['R_VERSION'])
-    #     if match is not None:
-    #         version = match.group(1)
-    #     else:
-    #         self.fail("R version regex did not match")
-    #     self.assertTrue(version in str(version_info.stdout))
-
-    # def test_flutter(self):
-    #     """
-    #     Test Flutter version
-    #     """
-    #     version_info = subprocess.run(f'{self.command_prefix} "flutter --version"',
-    #                                   shell=True, capture_output=True, check=True)
-    #     self.assertTrue(
-    #         f"Flutter {self.versions['FLUTTER_VERSION']}" in str(version_info.stdout))
 
     def test_docker(self):
         """

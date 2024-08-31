@@ -17,14 +17,11 @@ The virtual machine as well as the image contain tools for all kinds of software
 
 * [python](https://www.python.org/): a programming language that lets you work quickly and integrate systems more effectively
 * [Miniconda](https://docs.conda.io/en/latest/miniconda.html): open source package management system and environment management for Python
-* [Go](https://go.dev/): an open source programming language supported by Google
 * [Node.js](https://nodejs.org/): an open-source, cross-platform JavaScript runtime environment
 * [Java](https://www.java.com/): a programming language and computing platform
 * [Kotlin](https://kotlinlang.org/): a modern but already mature programming language
 * [Gradle](https://gradle.org/): an open-source build automation tool
 * [Maven](https://maven.apache.org/): a build automation tool used primarily for Java projects
-* [R](https://www.r-project.org/): a programming language and free software environment for statistical computing and graphics
-* [Flutter](https://flutter.dev/): Google's UI toolkit for building natively compiled applications for mobile, web, and desktop from a single codebase
 
 ### Docker Tools
 
