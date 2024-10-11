@@ -1,6 +1,6 @@
 services:
   docker-deamon:
-    image: docker:27.2.0-dind
+    image: docker:27.3.1-dind
     privileged: true
     expose:
       - 2376
@@ -9,7 +9,7 @@ services:
     environment:
       - DOCKER_TLS_CERTDIR=/certs
   docker:
-    image: docker:27.2.0
+    image: docker:27.3.1
     volumes:
       - certs:/certs
       - ./image:/build/image

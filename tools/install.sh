@@ -51,6 +51,7 @@ bash ${SCRIPT_DIR}/install_aws_cli.sh
 bash ${SCRIPT_DIR}/install_azure_cli.sh
 bash ${SCRIPT_DIR}/install_terraform.sh
 bash ${SCRIPT_DIR}/config_terraform.sh
+bash ${SCRIPT_DIR}/install_tofu.sh
 bash ${SCRIPT_DIR}/install_ansible.sh
 
 # Test tools

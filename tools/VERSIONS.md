@@ -114,6 +114,10 @@ apt-cache madison docker-ce | awk '{ print $3 }'
 
 <https://releases.hashicorp.com/terraform/>
 
+### Open Tofu
+
+apt-cache madison tofu | awk '{ print $3 }'
+
 ### Ansible
 
 <https://pypi.org/project/ansible/>

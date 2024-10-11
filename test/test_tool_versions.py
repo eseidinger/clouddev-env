@@ -319,6 +319,16 @@ class TestToolVersions(unittest.TestCase):
         self.assertTrue(
             self.versions['TERRAFORM_VERSION'] in str(version_info.stdout))
 
+    def test_tofu(self):
+        """
+        Test Tofu version
+        """
+        version_info = subprocess.run(f'{self.command_prefix} '
+                                      + '"tofu --version"',
+                                      shell=True, capture_output=True, check=True)
+        self.assertTrue(
+            self.versions['TOFU_VERSION'] in str(version_info.stdout))
+
     def test_ansible(self):
         """
         Test ansible version
