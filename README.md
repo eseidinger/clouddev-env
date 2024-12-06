@@ -44,6 +44,8 @@ The virtual machine as well as the image contain tools for all kinds of software
 
 * [AWS CLI](https://aws.amazon.com/de/cli/): a unified tool to manage your AWS services
 * [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/): a set of commands used to create and manage Azure resources
+* [Hetzner Cloud CLI](https://github.com/hetznercloud/cli/blob/main/README.md): a command-line interface for interacting with Hetzner Cloud
+* [Digital Ocean CLI](https://docs.digitalocean.com/reference/doctl/): allows you to interact with the DigitalOcean API via the command line
 * [Ansible](https://docs.ansible.com/ansible/latest/index.html): a radically simple IT automation system
 * [Terraform](https://www.terraform.io/): automate infrastructure on any cloud
 

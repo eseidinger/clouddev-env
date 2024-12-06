@@ -309,6 +309,34 @@ class TestToolVersions(unittest.TestCase):
             self.fail("Azure CLI version regex did not match")
         self.assertTrue(version in str(version_info.stdout))
 
+    def test_hcloud(self):
+        """
+        Test Hetzner Cloud CLI version
+        """
+        version_info = subprocess.run(f'{self.command_prefix} "hcloud version"',
+                                      shell=True, capture_output=True, check=True)
+        match = re.search(r'(\d+\.\d+\.\d+)',
+                          self.versions['HCLOUD_VERSION'])
+        if match is not None:
+            version = match.group(0)
+        else:
+            self.fail("Hetzner Cloud CLI version regex did not match")
+        self.assertTrue(version in str(version_info.stdout))
+
+    def test_doctl(self):
+        """
+        Test Digital Ocean CLI version
+        """
+        version_info = subprocess.run(f'{self.command_prefix} "doctl version"',
+                                      shell=True, capture_output=True, check=True)
+        match = re.search(r'(\d+\.\d+\.\d+)',
+                          self.versions['DOCTL_VERSION'])
+        if match is not None:
+            version = match.group(0)
+        else:
+            self.fail("Digital Ocean CLI version regex did not match")
+        self.assertTrue(version in str(version_info.stdout))
+
     def test_terraform(self):
         """
         Test Terraform version

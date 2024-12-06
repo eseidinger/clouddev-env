@@ -30,6 +30,8 @@ bash ${SCRIPT_DIR}/update_tekton.sh
 # Provisioning tools
 bash ${SCRIPT_DIR}/install_aws_cli.sh --update
 bash ${SCRIPT_DIR}/install_azure_cli.sh
+bash ${SCRIPT_DIR}/update_hcloud.sh
+bash ${SCRIPT_DIR}/update_doctl.sh
 bash ${SCRIPT_DIR}/update_terraform.sh
 bash ${SCRIPT_DIR}/update_tofu.sh
 bash ${SCRIPT_DIR}/install_ansible.sh

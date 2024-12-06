@@ -49,6 +49,10 @@ bash ${SCRIPT_DIR}/config_tekton.sh
 # Provisioning tools
 bash ${SCRIPT_DIR}/install_aws_cli.sh
 bash ${SCRIPT_DIR}/install_azure_cli.sh
+bash ${SCRIPT_DIR}/install_hcloud.sh
+bash ${SCRIPT_DIR}/config_hcloud.sh
+bash ${SCRIPT_DIR}/install_doctl.sh
+bash ${SCRIPT_DIR}/config_doctl.sh
 bash ${SCRIPT_DIR}/install_terraform.sh
 bash ${SCRIPT_DIR}/config_terraform.sh
 bash ${SCRIPT_DIR}/install_tofu.sh

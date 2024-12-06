@@ -110,6 +110,14 @@ apt-cache madison docker-ce | awk '{ print $3 }'
 
 <https://pypi.org/project/azure-cli/>
 
+### Hetzner Cloud CLI
+
+<https://github.com/hetznercloud/cli/releases>
+
+### DigitalOcean CLI
+
+<https://github.com/digitalocean/doctl/releases>
+
 ### Terraform
 
 <https://releases.hashicorp.com/terraform/>
