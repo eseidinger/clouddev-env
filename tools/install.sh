@@ -13,8 +13,8 @@ sudo apt-get upgrade -y
 sudo apt-get install -y jq zip unzip wget build-essential
 
 # App requirements
-bash ${SCRIPT_DIR}/install_psycopg_requirements.sh
-bash ${SCRIPT_DIR}/install_cypress_requirements.sh
+# bash ${SCRIPT_DIR}/install_psycopg_requirements.sh
+# bash ${SCRIPT_DIR}/install_cypress_requirements.sh
 
 # Software development tools
 bash ${SCRIPT_DIR}/install_miniconda.sh

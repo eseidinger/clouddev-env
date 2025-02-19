@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
+FROM ubuntu:24.04
 
 RUN groupadd clouddev && useradd --no-log-init -m -s /bin/bash -g clouddev clouddev
 

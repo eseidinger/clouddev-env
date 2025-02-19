@@ -29,7 +29,7 @@ class TestToolVersions(unittest.TestCase):
                     key, version = line.split('=')
                     self.versions[key] = version.strip('"')
 
-        self.env_name = os.getenv('ENV_NAME', 'clouddev')
+        self.env_name = os.getenv('ENV_NAME', 'localhost')
         if self.env_name in ["localhost", "docker"]:
             self.command_prefix = "bash -c"
         else:

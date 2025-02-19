@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# TODO
+
 if type sudo >/dev/null &> /dev/null
 then
     SUDO="sudo"
