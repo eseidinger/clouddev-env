@@ -32,4 +32,5 @@ jobs:
           outputs: ${{ github.event_name == 'pull_request' && 'type=cacheonly' || 'type=registry' }}
           context: ./tools
           file: ./image/Dockerfile
+          platforms: linux/amd64,linux/arm64
   
