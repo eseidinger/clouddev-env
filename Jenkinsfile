@@ -51,14 +51,14 @@ def transformToPublishStep(context) {
         stage ("Publish ${context}") {
             container("docker-${context}") {
                 sshagent(credentials: ["${context}_ssh-key"]) {
-                    withCredentials([usernamePassword(credentialsId: 'harbor', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                    withCredentials([usernamePassword(credentialsId: 'docker', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                         sh """
                             docker context use ${context}
-                            docker login harbor.eseidinger.de/public/ -u $USERNAME -p $PASSWORD
-                            docker tag cloud-tools harbor.eseidinger.de/public/cloud-tools:latest-${context}
-                            docker push harbor.eseidinger.de/public/cloud-tools:latest-${context}
-                            docker tag harbor.eseidinger.de/public/cloud-tools:latest-${context} harbor.eseidinger.de/public/cloud-tools:$TAG_NAME-${context}
-                            docker push harbor.eseidinger.de/public/cloud-tools:$TAG_NAME-${context}
+                            docker login -u $USERNAME -p $PASSWORD
+                            docker tag cloud-tools eseidinger/cloud-tools:latest-${context}
+                            docker push eseidinger/cloud-tools:latest-${context}
+                            docker tag eseidinger/cloud-tools:latest-${context} eseidinger/cloud-tools:$TAG_NAME-${context}
+                            docker push eseidinger/cloud-tools:$TAG_NAME-${context}
                         """
                     }
                 }
@@ -147,14 +147,14 @@ spec:
             steps {
                 container("docker-x86-build") {
                     sshagent(credentials: ["x86-build_ssh-key"]) {
-                        withCredentials([usernamePassword(credentialsId: 'harbor', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                        withCredentials([usernamePassword(credentialsId: 'docker', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                             sh """
                                 docker context use x86-build
-                                docker login harbor.eseidinger.de/public/ -u $USERNAME -p $PASSWORD
-                                docker manifest create harbor.eseidinger.de/public/cloud-tools:$TAG_NAME harbor.eseidinger.de/public/cloud-tools:$TAG_NAME-x86-build harbor.eseidinger.de/public/cloud-tools:$TAG_NAME-arm-build
-                                docker manifest push harbor.eseidinger.de/public/cloud-tools:$TAG_NAME
-                                docker manifest create harbor.eseidinger.de/public/cloud-tools:latest harbor.eseidinger.de/public/cloud-tools:$TAG_NAME-x86-build harbor.eseidinger.de/public/cloud-tools:$TAG_NAME-arm-build
-                                docker manifest push harbor.eseidinger.de/public/cloud-tools:latest
+                                docker login -u $USERNAME -p $PASSWORD
+                                docker manifest create eseidinger/cloud-tools:$TAG_NAME eseidinger/cloud-tools:$TAG_NAME-x86-build eseidinger/cloud-tools:$TAG_NAME-arm-build
+                                docker manifest push eseidinger/cloud-tools:$TAG_NAME
+                                docker manifest create eseidinger/cloud-tools:latest eseidinger/cloud-tools:$TAG_NAME-x86-build eseidinger/cloud-tools:$TAG_NAME-arm-build
+                                docker manifest push eseidinger/cloud-tools:latest
                             """
                         }
                     }
