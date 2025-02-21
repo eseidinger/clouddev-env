@@ -27,58 +27,58 @@ USER clouddev
 RUN mkdir /home/clouddev/tools
 
 RUN bash install_cosign.sh
-ENV PATH /home/clouddev/tools/cosign:$PATH
+ENV PATH=/home/clouddev/tools/cosign:$PATH
 
 RUN bash install_argocd.sh
-ENV PATH /home/clouddev/tools/argocd:$PATH
+ENV PATH=/home/clouddev/tools/argocd:$PATH
 
 RUN bash install_tekton.sh
-ENV PATH /home/clouddev/tools/tekton:$PATH
+ENV PATH=/home/clouddev/tools/tekton:$PATH
 
 RUN bash install_miniconda.sh
-ENV PATH /home/clouddev/miniconda3/bin:$PATH
+ENV PATH=/home/clouddev/miniconda3/bin:$PATH
 
 RUN bash install_azure_cli.sh
 
 RUN bash install_node.sh
 RUN bash config_node_docker.sh
-ENV PATH /home/clouddev/.nvm/versions/node/current/bin:$PATH
+ENV PATH=/home/clouddev/.nvm/versions/node/current/bin:$PATH
 
 RUN bash install_java.sh
-ENV PATH /home/clouddev/.sdkman/candidates/java/current/bin:$PATH
-ENV PATH /home/clouddev/.sdkman/candidates/kotlin/current/bin:$PATH
-ENV PATH /home/clouddev/.sdkman/candidates/gradle/current/bin:$PATH
-ENV PATH /home/clouddev/.sdkman/candidates/maven/current/bin:$PATH
+ENV PATH=/home/clouddev/.sdkman/candidates/java/current/bin:$PATH
+ENV PATH=/home/clouddev/.sdkman/candidates/kotlin/current/bin:$PATH
+ENV PATH=/home/clouddev/.sdkman/candidates/gradle/current/bin:$PATH
+ENV PATH=/home/clouddev/.sdkman/candidates/maven/current/bin:$PATH
 
 RUN bash install_kubectl.sh
-ENV PATH /home/clouddev/tools/kubectl:$PATH
+ENV PATH=/home/clouddev/tools/kubectl:$PATH
 
 RUN bash install_kind.sh
-ENV PATH /home/clouddev/tools/kind:$PATH
+ENV PATH=/home/clouddev/tools/kind:$PATH
 
 RUN bash install_helm.sh
-ENV PATH /home/clouddev/tools/helm:$PATH
+ENV PATH=/home/clouddev/tools/helm:$PATH
 RUN helm plugin install https://github.com/chartmuseum/helm-push
 
 RUN bash install_istio.sh
-ENV PATH /home/clouddev/tools/istio/bin:$PATH
+ENV PATH=/home/clouddev/tools/istio/bin:$PATH
 
 RUN bash install_hcloud.sh
-ENV PATH /home/clouddev/tools/hcloud:$PATH
+ENV PATH=/home/clouddev/tools/hcloud:$PATH
 
 RUN bash install_doctl.sh
-ENV PATH /home/clouddev/tools/doctl:$PATH
+ENV PATH=/home/clouddev/tools/doctl:$PATH
 
 RUN bash install_terraform.sh
-ENV PATH /home/clouddev/tools/terraform:$PATH
+ENV PATH=/home/clouddev/tools/terraform:$PATH
 
 RUN bash install_ansible.sh
 
 RUN bash install_zap.sh
-ENV PATH /home/clouddev/tools/zap:$PATH
+ENV PATH=/home/clouddev/tools/zap:$PATH
 
 RUN bash install_sonar_cli.sh
-ENV PATH /home/clouddev/tools/sonar-scanner/bin:$PATH
+ENV PATH=/home/clouddev/tools/sonar-scanner/bin:$PATH
 
 WORKDIR /home/clouddev
 RUN rm -rf /home/clouddev/src
