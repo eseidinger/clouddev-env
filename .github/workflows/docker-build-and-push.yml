@@ -37,6 +37,7 @@ jobs:
           platforms: linux/amd64,linux/arm64
           install: true
       - name: Build and push
+        id: build-docker
         if: startsWith(github.ref, 'refs/tags/')
         uses: docker/build-push-action@v6
         with:
@@ -58,5 +59,4 @@ jobs:
         env:
           COSIGN_PASSWORD: ${{ secrets.COSIGN_PASSWORD }}
         run: |
-          cosign sign --key cosign.key ${{ vars.DOCKER_USER }}/cloud-tools:latest
-          cosign sign --key cosign.key ${{ vars.DOCKER_USER }}/cloud-tools:${{ github.ref_name }}
+          cosign sign --key cosign.key ${{ vars.DOCKER_USER }}/cloud-tools:${{ steps.build-docker.outputs.digest }}
