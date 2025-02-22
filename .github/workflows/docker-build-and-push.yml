@@ -82,4 +82,4 @@ jobs:
         env:
           COSIGN_PASSWORD: ${{ secrets.COSIGN_PASSWORD }}
         run: |
-          cosign sign -y --key cosign.key ${{ vars.DOCKER_USER }}/cloud-tools@${{ outputs.build-docker.digest }}
+          cosign sign -y --key cosign.key ${{ vars.DOCKER_USER }}/cloud-tools@${{ output.build-docker.digest }}
