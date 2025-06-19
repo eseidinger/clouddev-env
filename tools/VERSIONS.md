@@ -40,6 +40,10 @@ sdk list java
 
 sdk list kotlin
 
+#### Groovy
+
+sdk list groovy
+
 #### Gradle
 
 sdk list gradle

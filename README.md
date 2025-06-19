@@ -20,6 +20,7 @@ The virtual machine as well as the image contain tools for all kinds of software
 * [Node.js](https://nodejs.org/): an open-source, cross-platform JavaScript runtime environment
 * [Java](https://www.java.com/): a programming language and computing platform
 * [Kotlin](https://kotlinlang.org/): a modern but already mature programming language
+* [Groovy](https://groovy-lang.org/): a flexible and extensible Java-like language for the JVM
 * [Gradle](https://gradle.org/): an open-source build automation tool
 * [Maven](https://maven.apache.org/): a build automation tool used primarily for Java projects
 
