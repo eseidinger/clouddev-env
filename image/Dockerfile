@@ -58,7 +58,7 @@ ENV PATH=/home/clouddev/tools/kind:$PATH
 
 RUN bash install_helm.sh
 ENV PATH=/home/clouddev/tools/helm:$PATH
-RUN helm plugin install https://github.com/chartmuseum/helm-push
+RUN helm plugin install --verify=false https://github.com/chartmuseum/helm-push
 
 RUN bash install_istio.sh
 ENV PATH=/home/clouddev/tools/istio/bin:$PATH
