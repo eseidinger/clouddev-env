@@ -41,6 +41,7 @@ The virtual machine as well as the image contain tools for all kinds of software
 * [Istio](https://istio.io/): a service mesh for Kubernetes
 * [Argo CD](https://argo-cd.readthedocs.io/en/stable/): a declarative, GitOps continuous delivery tool for Kubernetes
 * [Tekton](https://tekton.dev/): a powerful and flexible open-source framework for creating CI/CD systems
+* [Velero](https://velero.io/): backup and migrate Kubernetes resources and persistent volumes
 
 ### Provisioning Tools
 

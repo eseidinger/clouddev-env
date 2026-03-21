@@ -108,6 +108,10 @@ apt-cache madison docker-ce | awk '{ print $3 }'
 
 <https://github.com/tektoncd/cli/releases>
 
+### Velero
+
+<https://github.com/vmware-tanzu/velero/releases>
+
 ## Provisioning Tools
 
 ### AWS CLI

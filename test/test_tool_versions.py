@@ -295,6 +295,17 @@ class TestToolVersions(unittest.TestCase):
         self.assertTrue(
             self.versions['TEKTON_VERSION'] in str(version_info.stdout))
 
+    def test_velero(self):
+        """
+        Test Velero version
+        """
+        version_info = subprocess.run(
+            f'{self.command_prefix} '
+            + '"~/tools/velero/velero version --client-only"',
+            shell=True, capture_output=True, check=True)
+        self.assertTrue(
+            self.versions['VELERO_VERSION'] in str(version_info.stdout))
+
     def test_awscli(self):
         """
         Test AWS CLI version
