@@ -5,7 +5,10 @@ source ${SCRIPT_DIR}/versions.sh
 
 ARCH="$(dpkg --print-architecture)"
 
+mkdir -p ~/bin
 mkdir -p ~/tools/cosign
 wget  -q -P ~/ https://github.com/sigstore/cosign/releases/download/v${COSIGN_VERSION}/cosign-linux-${ARCH}
 mv ~/cosign-linux-${ARCH} ~/tools/cosign/cosign
 chmod +x ~/tools/cosign/cosign
+rm -f ~/bin/cosign
+ln -s ~/tools/cosign/cosign ~/bin/cosign

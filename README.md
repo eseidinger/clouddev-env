@@ -17,6 +17,7 @@ The virtual machine as well as the image contain tools for all kinds of software
 
 * [python](https://www.python.org/): a programming language that lets you work quickly and integrate systems more effectively
 * [Miniconda](https://docs.conda.io/en/latest/miniconda.html): open source package management system and environment management for Python
+* [uv](https://docs.astral.sh/uv/): an extremely fast Python package and project manager, written in Rust
 * [Node.js](https://nodejs.org/): an open-source, cross-platform JavaScript runtime environment
 * [Java](https://www.java.com/): a programming language and computing platform
 * [Kotlin](https://kotlinlang.org/): a modern but already mature programming language
@@ -73,7 +74,7 @@ You need to install them, if they are not already available on your host.
 First you need to clone this repository:
 
 ```bash
-git clone https://gitea.eseidinger.de/public/clouddev-env.git
+git clone https://github.com/eseidinger/clouddev-env.git
 cd clouddev-env
 ```
 

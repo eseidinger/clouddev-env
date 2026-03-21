@@ -7,3 +7,5 @@ source ~/miniconda3/bin/activate base
 
 conda install -y -n base conda=${CONDA_VERSION}
 conda install -y -n base python=${PYTHON_VERSION}
+
+pip install --no-cache-dir uv==${UV_VERSION}

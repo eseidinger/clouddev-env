@@ -5,7 +5,11 @@ source ${SCRIPT_DIR}/versions.sh
 
 ARCH="$(dpkg --print-architecture)"
 
+mkdir -p ~/bin
 mkdir -p ~/tools/k9s
+
 wget  -q -P ~/ https://github.com/derailed/k9s/releases/download/v${K9S_VERSION}/k9s_Linux_${ARCH}.tar.gz
 tar -C ~/tools/k9s -xzf ~/k9s_Linux_${ARCH}.tar.gz
 rm ~/k9s_Linux_${ARCH}.tar.gz
+rm -f ~/bin/k9s
+ln -s ~/tools/k9s/k9s ~/bin/k9s

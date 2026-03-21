@@ -14,6 +14,10 @@ conda search conda
 
 conda search python
 
+### uv
+
+<https://pypi.org/project/uv/>
+
 ### nvm
 
 <https://github.com/nvm-sh/nvm/releases>
@@ -82,7 +86,7 @@ apt-cache madison docker-ce | awk '{ print $3 }'
 
 ### Kubectl
 
-<https://cdn.dl.k8s.io/release/stable.txt>
+<https://dl.k8s.io/release/stable.txt>
 
 ### Helm
 

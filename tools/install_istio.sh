@@ -5,7 +5,12 @@ source ${SCRIPT_DIR}/versions.sh
 
 ARCH="$(dpkg --print-architecture)"
 
+mkdir -p ~/bin
+mkdir -p ~/tools
+
 wget -q -P ~/ https://github.com/istio/istio/releases/download/${ISTIO_VERSION}/istio-${ISTIO_VERSION}-linux-${ARCH}.tar.gz
 tar -xzf ~/istio-${ISTIO_VERSION}-linux-${ARCH}.tar.gz
 rm ~/istio-${ISTIO_VERSION}-linux-${ARCH}.tar.gz
 mv istio-${ISTIO_VERSION} ~/tools/istio
+rm -f ~/bin/istioctl
+ln -s ~/tools/istio/bin/istioctl ~/bin/istioctl

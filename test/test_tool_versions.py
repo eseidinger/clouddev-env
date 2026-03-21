@@ -53,6 +53,15 @@ class TestToolVersions(unittest.TestCase):
         self.assertTrue(
             self.versions['PYTHON_VERSION'] in str(version_info.stdout))
 
+    def test_uv(self):
+        """
+        Test uv version
+        """
+        version_info = subprocess.run(f'{self.command_prefix} "~/miniconda3/bin/uv --version"',
+                                      shell=True, capture_output=True, check=True)
+        self.assertTrue(
+            self.versions['UV_VERSION'] in str(version_info.stdout))
+
     def test_nvm(self):
         """
         Test nvm version

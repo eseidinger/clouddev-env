@@ -27,41 +27,28 @@ bash ${SCRIPT_DIR}/install_docker.sh
 bash ${SCRIPT_DIR}/config_docker.sh
 bash ${SCRIPT_DIR}/install_trivy.sh
 bash ${SCRIPT_DIR}/install_cosign.sh
-bash ${SCRIPT_DIR}/config_cosign.sh
 
 # Kubernetes tools
 bash ${SCRIPT_DIR}/install_microk8s.sh
 bash ${SCRIPT_DIR}/config_microk8s.sh
 bash ${SCRIPT_DIR}/install_kind.sh
-bash ${SCRIPT_DIR}/config_kind.sh
 bash ${SCRIPT_DIR}/install_kubectl.sh
-bash ${SCRIPT_DIR}/config_kubectl.sh
 bash ${SCRIPT_DIR}/install_helm.sh
-bash ${SCRIPT_DIR}/config_helm.sh
 bash ${SCRIPT_DIR}/install_k9s.sh
-bash ${SCRIPT_DIR}/config_k9s.sh
 bash ${SCRIPT_DIR}/install_istio.sh
-bash ${SCRIPT_DIR}/config_istio.sh
 bash ${SCRIPT_DIR}/install_argocd.sh
-bash ${SCRIPT_DIR}/config_argocd.sh
 bash ${SCRIPT_DIR}/install_tekton.sh
-bash ${SCRIPT_DIR}/config_tekton.sh
 
 # Provisioning tools
 bash ${SCRIPT_DIR}/install_aws_cli.sh
 bash ${SCRIPT_DIR}/install_azure_cli.sh
 bash ${SCRIPT_DIR}/install_hcloud.sh
-bash ${SCRIPT_DIR}/config_hcloud.sh
 bash ${SCRIPT_DIR}/install_doctl.sh
-bash ${SCRIPT_DIR}/config_doctl.sh
 bash ${SCRIPT_DIR}/install_terraform.sh
-bash ${SCRIPT_DIR}/config_terraform.sh
 bash ${SCRIPT_DIR}/install_tofu.sh
 bash ${SCRIPT_DIR}/install_ansible.sh
 
 # Test tools
 bash ${SCRIPT_DIR}/install_firefox.sh
 bash ${SCRIPT_DIR}/install_zap.sh
-bash ${SCRIPT_DIR}/config_zap.sh
 bash ${SCRIPT_DIR}/install_sonar_cli.sh
-bash ${SCRIPT_DIR}/config_sonar_cli.sh
