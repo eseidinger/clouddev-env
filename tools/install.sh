@@ -38,6 +38,7 @@ bash ${SCRIPT_DIR}/install_k9s.sh
 bash ${SCRIPT_DIR}/install_istio.sh
 bash ${SCRIPT_DIR}/install_argocd.sh
 bash ${SCRIPT_DIR}/install_tekton.sh
+bash ${SCRIPT_DIR}/install_velero.sh
 
 # Provisioning tools
 bash ${SCRIPT_DIR}/install_aws_cli.sh

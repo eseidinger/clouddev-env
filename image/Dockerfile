@@ -63,6 +63,9 @@ RUN helm plugin install --verify=false https://github.com/chartmuseum/helm-push
 RUN bash install_istio.sh
 ENV PATH=/home/clouddev/tools/istio/bin:$PATH
 
+RUN bash install_velero.sh
+ENV PATH=/home/clouddev/tools/velero:$PATH
+
 RUN bash install_hcloud.sh
 ENV PATH=/home/clouddev/tools/hcloud:$PATH
 
