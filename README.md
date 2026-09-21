@@ -138,7 +138,7 @@ Open the folder */home/clouddev* and open a terminal to configure git and clone 
 ```bash
 git config --global user.name "Your Name"
 git config --global user.email "your.email@address.com"
-git clone https://gitea.eseidinger.de/public/clouddev-env.git
+git clone https://github.com/eseidinger/clouddev-env.git
 ```
 
 ### Build and Test the Docker Image
