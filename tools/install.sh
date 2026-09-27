@@ -32,6 +32,7 @@ bash ${SCRIPT_DIR}/install_cosign.sh
 bash ${SCRIPT_DIR}/install_microk8s.sh
 bash ${SCRIPT_DIR}/config_microk8s.sh
 bash ${SCRIPT_DIR}/install_kind.sh
+bash ${SCRIPT_DIR}/install_k3d.sh
 bash ${SCRIPT_DIR}/install_kubectl.sh
 bash ${SCRIPT_DIR}/install_helm.sh
 bash ${SCRIPT_DIR}/install_k9s.sh

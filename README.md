@@ -35,6 +35,7 @@ The virtual machine as well as the image contain tools for all kinds of software
 
 * [MicroK8s](https://microk8s.io/): the lightweight Kubernetes (VM only)
 * [kind](https://kind.sigs.k8s.io/): a tool for running local Kubernetes clusters using Docker container “nodes”
+* [k3d](https://k3d.io/): a lightweight wrapper to run k3s in Docker
 * [Kubectl](https://kubernetes.io/docs/reference/kubectl/): the Kubernetes CLI
 * [Helm](https://helm.sh/): the package manager for Kubernetes
 * [k9s](https://k9scli.io/): Kubernetes CLI To Manage Your Clusters In Style (VM only)

@@ -165,6 +165,11 @@ if should_check KIND_VERSION; then
     update_version KIND_VERSION "${tag#v}"
 fi
 
+if should_check K3D_VERSION; then
+    tag=$(gh_latest_tag k3d-io/k3d)
+    update_version K3D_VERSION "${tag#v}"
+fi
+
 if should_check KUBECTL_VERSION; then
     tag=$(curl -sf https://dl.k8s.io/release/stable.txt)
     update_version KUBECTL_VERSION "${tag#v}"

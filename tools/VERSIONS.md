@@ -84,6 +84,10 @@ apt-cache madison docker-ce | awk '{ print $3 }'
 
 <https://github.com/kubernetes-sigs/kind/releases>
 
+### k3d
+
+<https://github.com/k3d-io/k3d/releases>
+
 ### Kubectl
 
 <https://dl.k8s.io/release/stable.txt>

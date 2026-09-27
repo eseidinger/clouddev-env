@@ -20,6 +20,7 @@ bash ${SCRIPT_DIR}/update_cosign.sh
 # Kubernetes tools
 bash ${SCRIPT_DIR}/update_microk8s.sh
 bash ${SCRIPT_DIR}/update_kind.sh
+bash ${SCRIPT_DIR}/update_k3d.sh
 bash ${SCRIPT_DIR}/update_kubectl.sh
 bash ${SCRIPT_DIR}/update_helm.sh
 bash ${SCRIPT_DIR}/update_k9s.sh

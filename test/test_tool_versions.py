@@ -226,6 +226,15 @@ class TestToolVersions(unittest.TestCase):
         self.assertTrue(self.versions['KIND_VERSION']
                         in str(version_info.stdout))
 
+    def test_k3d(self):
+        """
+        Test k3d version
+        """
+        version_info = subprocess.run(f'{self.command_prefix} "~/tools/k3d/k3d version"',
+                                      shell=True, capture_output=True, check=True)
+        self.assertTrue(self.versions['K3D_VERSION']
+                        in str(version_info.stdout))
+
     def test_kubectl(self):
         """
         Test kubectl version
